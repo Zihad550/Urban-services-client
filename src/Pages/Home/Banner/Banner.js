@@ -25,45 +25,46 @@ function Banner() {
         slidesToScroll: 1,
         autoplay: true,
         fade: true,
+        arrows: false,
     };
     return (
-        <div className={`banner grid grid-cols-2 py-10 `}>
-            {/* search field */}
-            <div className="my-auto ml-10">
-                <h2 className="text-3xl mb-3">Find the perfect service</h2>
-                <InputWithBtn placeholder="Search Services" btnText="Search" />
-                <div className="mt-3">
-                    <span className="mr-2">Popular:</span>
-                    {popularServices.map((service) => (
-                        <Button key={service} variant="outlined">
-                            {service}
-                        </Button>
-                    ))}
+        <div className="bg-blue-500 -z-10 pt-20 pb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 md:w-3/4 mx-auto w-full">
+                {/* search field */}
+                <div className="my-auto lg:ml-10 mx-10 lg:mx-0">
+                    <h2 className="text-3xl mb-3">Find the perfect service</h2>
+                    <InputWithBtn placeholder="Search Services" btnText="Search" />
+                    <div className="mt-3">
+                        <span className="mr-2">Popular:</span>
+                        {popularServices.map((service) => (
+                            <Button key={service} variant="outlined">
+                                {service}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+                {/* slider */}
+                <div className="hidden lg:block">
+                    <Slider style={{ zIndex: 1 }} {...settings}>
+                        {persons.map((person, index) => (
+                            <div className="flex justify-center" key={person.id}>
+                                <div
+                                    style={{
+                                        height: '600px',
+                                        overflow: 'hidden',
+                                        mx: 'auto',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <img src={person.src} alt="" />
+                                </div>
+                                <h2 className="text-center text-2xl">{person.name}</h2>
+                            </div>
+                        ))}
+                    </Slider>
                 </div>
             </div>
-            {/* slider */}
-            <Slider {...settings}>
-                {persons.map((person, index) => (
-                    <div
-                        style={{ background: person.bg }}
-                        className="flex justify-center"
-                        key={person.id}
-                    >
-                        <div
-                            style={{
-                                height: '300px',
-                                overflow: 'hidden',
-                                mx: 'auto',
-                                display: 'flex',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <img src={person.src} alt="" />
-                        </div>
-                        <h2 className="text-center text-2xl">{person.name}</h2>
-                    </div>
-                ))}
-            </Slider>
         </div>
     );
 }

@@ -29,7 +29,7 @@ function Footer() {
             {/* newsletter */}
             <Subscribe />
             {/* footer */}
-            <footer className="p-4 bg-white sm:p-6 dark:bg-gray-800">
+            <footer className="p-4 bg-white sm:p-6 dark:bg-gray-800 md:w-3/4 mx-auto">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
