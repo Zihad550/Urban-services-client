@@ -2,11 +2,17 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const navigation = [
     { name: 'Home', href: '#', current: true },
     { name: 'Services', href: '#', current: false },
     { name: 'Workers', href: '#', current: false },
+];
+
+const userNavigations = [
+    { id: 1, name: 'Profile', link: '/' },
+    { id: 2, name: 'Dashboard', link: '/dashboard' },
 ];
 
 function classNames(...classes) {
@@ -70,13 +76,20 @@ export default function Header() {
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
-                                        <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                        <Menu.Button className=" flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                                             <span className="sr-only">Open user menu</span>
-                                            <img
-                                                className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
-                                            />
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-8 w-8"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -88,33 +101,23 @@ export default function Header() {
                                         leaveFrom="transform opacity-100 scale-100"
                                         leaveTo="transform opacity-0 scale-95"
                                     >
+                                        {/* users menu links */}
                                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100' : '',
-                                                            'block px-4 py-2 text-sm text-gray-700'
-                                                        )}
-                                                    >
-                                                        Your Profile
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100' : '',
-                                                            'block px-4 py-2 text-sm text-gray-700'
-                                                        )}
-                                                    >
-                                                        Settings
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
+                                            {userNavigations.map((userNav) => (
+                                                <Menu.Item key={userNav.id}>
+                                                    {({ active }) => (
+                                                        <Link
+                                                            to={userNav.link}
+                                                            className={classNames(
+                                                                active ? 'bg-gray-100' : '',
+                                                                'block px-4 py-2 text-sm text-gray-700'
+                                                            )}
+                                                        >
+                                                            {userNav.name}
+                                                        </Link>
+                                                    )}
+                                                </Menu.Item>
+                                            ))}
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <a

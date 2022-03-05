@@ -1,16 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import Banner from './Pages/Home/Banner/Banner';
-import Footer from './Pages/Shared/Footer/Footer';
-import Header from './Pages/Shared/Header/Header';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import Home from './Pages/Home/Home/Home';
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <Banner />
-            <Footer />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
