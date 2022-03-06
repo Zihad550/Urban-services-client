@@ -7,7 +7,6 @@ function Home() {
     return (
         <div>
             <Header />
-            {/* banner section */}
             <Banner />
             <Footer />
         </div>

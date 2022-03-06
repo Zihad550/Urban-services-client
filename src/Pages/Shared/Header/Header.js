@@ -2,12 +2,12 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Services', href: '#', current: false },
-    { name: 'Workers', href: '#', current: false },
+    { name: 'Home', href: '/', current: true },
+    { name: 'Services', href: '/', current: false },
+    { name: 'Workers', href: '/', current: false },
 ];
 
 const userNavigations = [
@@ -20,8 +20,13 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+    const location = useLocation();
+    console.log(location);
     return (
-        <Disclosure as="nav" className="bg-transparent -mb-20 ">
+        <Disclosure
+            as="nav"
+            className={location.pathname === '/' ? 'bg-transparent -mb-20' : 'bg-blue-400'}
+        >
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -118,6 +123,32 @@ export default function Header() {
                                                     )}
                                                 </Menu.Item>
                                             ))}
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <Link
+                                                        to="/login"
+                                                        className={classNames(
+                                                            active ? 'bg-gray-100' : '',
+                                                            'block px-4 py-2 text-sm text-gray-700'
+                                                        )}
+                                                    >
+                                                        Login
+                                                    </Link>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <Link
+                                                        to="/register"
+                                                        className={classNames(
+                                                            active ? 'bg-gray-100' : '',
+                                                            'block px-4 py-2 text-sm text-gray-700'
+                                                        )}
+                                                    >
+                                                        Register
+                                                    </Link>
+                                                )}
+                                            </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <a
