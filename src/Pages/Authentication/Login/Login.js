@@ -51,7 +51,7 @@ function Login() {
                                 onBlur={handleBlur}
                                 name="email"
                                 type="email"
-                                placeholder="Name"
+                                placeholder="Email"
                             />
                         </div>
                         <div className="mb-3">

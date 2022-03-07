@@ -9,13 +9,14 @@ import img from '../../../images/register.jpg';
 function Register() {
     // use firebase
     const { registerUser, error, user, googleLogin } = useAuth();
+    // states
+    const [registerData, setRegisterData] = useState({});
+    console.log(registerData);
 
     // navigate & location
     const navigate = useNavigate();
     const location = useLocation();
 
-    // states
-    const [registerData, setRegisterData] = useState({});
     const { password, confirmPassword, name, email } = registerData;
 
     const handleBlur = (e) => {
@@ -52,12 +53,7 @@ function Register() {
                         <Input onBlur={handleBlur} name="name" type="text" placeholder="Name" />
                     </div>
                     <div className="mb-3">
-                        <Input
-                            onBlur={handleRegister}
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                        />
+                        <Input onBlur={handleBlur} name="email" type="email" placeholder="Email" />
                     </div>
                     <div className="mb-3">
                         <Input

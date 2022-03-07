@@ -7,8 +7,9 @@ import useAuth from '../../../hooks/useAuth';
 
 const navigation = [
     { name: 'Home', to: '/', current: false },
-    { name: 'Contact Us', to: '/contact', current: false },
-    { name: 'Share Your Experience', to: '/shareExperience', current: false }
+    { name: 'Services', to: '/', current: false },
+    { name: 'Workers', to: '/', current: false },
+    { name: 'Contact Us', to: '/contact', current: false }
 ];
 
 function classNames(...classes) {
@@ -20,10 +21,11 @@ function Header() {
     const navigate = useNavigate();
     console.log(location);
     const { user, logOut, admin } = useAuth();
+    console.log(user);
     return (
         <Disclosure
             as="nav"
-            className={location.pathname === '/' ? 'bg-transparent ' : 'bg-blue-400'}
+            className={location.pathname === '/' ? 'md:bg-transparent' : 'bg-blue-400'}
         >
             {({ open }) => (
                 <>
@@ -31,7 +33,7 @@ function Header() {
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden ">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white bg-violet-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -82,16 +84,26 @@ function Header() {
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative ">
                                     <div>
-                                        <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                        <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white items-center">
                                             <span className="sr-only">Open user menu</span>
                                             {user.photoURL ? (
-                                                <img
-                                                    className="h-8 w-8 rounded-full"
-                                                    src={user.photoURL}
-                                                    alt=""
-                                                />
+                                                <>
+                                                    <p className="text-lg uppercase">
+                                                        {user.displayName}
+                                                    </p>
+                                                    <img
+                                                        className="h-8 w-8 rounded-full"
+                                                        src={user.photoURL}
+                                                        alt=""
+                                                    />
+                                                </>
                                             ) : (
-                                                <UserIcon className="block h-10 w-10 text-white" />
+                                                <>
+                                                    <p className="text-lg uppercase">
+                                                        {user.displayName}
+                                                    </p>
+                                                    <UserIcon className="block h-10 w-10 text-violet-700 border-2 rounded-full border-violet-700" />
+                                                </>
                                             )}
                                         </Menu.Button>
                                     </div>
@@ -159,7 +171,7 @@ function Header() {
                     </div>
 
                     {/* mobile screen menu panel */}
-                    <Disclosure.Panel className="sm:hidden mt-9">
+                    <Disclosure.Panel className="sm:hidden  bg-gray-700 mb-20">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navigation.map((item) => (
                                 <Disclosure.Button
