@@ -13,7 +13,7 @@ function Banner() {
         // { id: 1, src: person1, name: 'Jashim' },
         { id: 1, src: person2, name: 'Karim' },
         { id: 1, src: person3, name: 'Rabbi' },
-        { id: 1, src: person4, name: 'Jasim' },
+        { id: 1, src: person4, name: 'Jasim' }
     ];
 
     const popularServices = ['Network Provider', 'Health Care', 'Housing'];
@@ -25,10 +25,10 @@ function Banner() {
         slidesToScroll: 1,
         autoplay: true,
         fade: true,
-        arrows: false,
+        arrows: false
     };
     return (
-        <div className="bg-blue-500 -z-10 pt-20 pb-10">
+        <div className="bg-blue-500 -z-10 pt-20 pb-10 -mt-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 md:w-3/4 mx-auto w-full">
                 {/* search field */}
                 <div className="my-auto lg:ml-10 mx-10 lg:mx-0">
@@ -54,7 +54,7 @@ function Banner() {
                                         overflow: 'hidden',
                                         mx: 'auto',
                                         display: 'flex',
-                                        justifyContent: 'center',
+                                        justifyContent: 'center'
                                     }}
                                 >
                                     <img src={person.src} alt="" />

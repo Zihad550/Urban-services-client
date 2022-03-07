@@ -37,6 +37,13 @@
     "react-hooks/exhaustive-deps": 0,
     "consistent-return": 0,
     "jsx-a11y/label-has-associated-control": 0,
+    "no-lone-blocks": 0,
+    "no-restricted-syntax": 0,
+    "no-labels": 0,
+    "no-unused-labels": 0,
+    "no-unused-expressions": 0,
+    "import/no-unresolved": 0,
+    "no-shadow": 0,
 
     "react/jsx-filename-extension": [
       1,
@@ -47,7 +54,7 @@
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": "es5",
+        "trailingComma": "none",
         "singleQuote": true,
         "printWidth": 100,
         "tabWidth": 4,

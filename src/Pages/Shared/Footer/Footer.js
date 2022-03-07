@@ -8,7 +8,7 @@ function Footer() {
         { id: 2, page: 'Blog', link: '#' },
         { id: 3, page: 'contact Us', link: '#' },
         { id: 4, page: 'Pricing', link: '#' },
-        { id: 5, page: 'Testimonials', link: '#' },
+        { id: 5, page: 'Testimonials', link: '#' }
     ];
     // supports provided
     const supports = [
@@ -16,12 +16,12 @@ function Footer() {
         { id: 2, support: 'Terms of Service', link: '#' },
         { id: 3, support: 'Legal', link: '#' },
         { id: 4, support: 'Privacy Policy', link: '#' },
-        { id: 5, support: 'Status', link: '#' },
+        { id: 5, support: 'Status', link: '#' }
     ];
     // legal informations
     const legals = [
         { id: 1, legal: 'Privacy Policy', link: '#' },
-        { id: 2, legal: 'Terms &amp; Conditions', link: '#' },
+        { id: 2, legal: 'Terms &amp; Conditions', link: '#' }
     ];
 
     return (
