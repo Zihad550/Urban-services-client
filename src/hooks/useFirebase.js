@@ -32,7 +32,7 @@ const useFirebase = () => {
     // save user to the server
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('https://tranquil-springs-69154.herokuapp.com/users', {
+        fetch('https://radiant-sea-18512.herokuapp.com/users', {
             method,
             headers: {
                 'content-type': 'application/json'
@@ -111,7 +111,7 @@ const useFirebase = () => {
     // checks if the user is admin
     useEffect(() => {
         setAdminLoading(true);
-        fetch(`https://tranquil-springs-69154.herokuapp.com/users/${user.email}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/users/${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.admin) {
