@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Worker() {
-    return <div>Worker</div>;
+    return <div />;
 }
 
 export default Worker;
