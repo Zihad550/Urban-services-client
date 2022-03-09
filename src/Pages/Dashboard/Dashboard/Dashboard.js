@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Sidebar from '../Sidebar/Sidebar';
 
 function Dashboard() {
     const [closeSidebar, setCloseSidebar] = useState(false);
     const { user } = useAuth();
+    const location = useLocation();
+    console.log(location.pathname.split('/')[2]);
     return (
         <div className="flex ">
             <Sidebar closeSidebar={closeSidebar} />
@@ -28,7 +30,9 @@ function Dashboard() {
                             d="M4 6h16M4 12h8m-8 6h16"
                         />
                     </svg>
-                    <h2 className="text-3xl mx-auto">Dashboard</h2>
+                    <h2 className="text-3xl mx-auto uppercase">
+                        {location.pathname.split('/')[2] || location.pathname.split('/')[1]}
+                    </h2>
                 </div>
 
                 <Outlet />

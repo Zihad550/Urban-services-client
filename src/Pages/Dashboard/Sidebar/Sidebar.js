@@ -22,12 +22,17 @@ function Sidebar({ closeSidebar }) {
     // sidebar navs
     const navs = [
         { id: 1, nav: 'Dashboard', link: '/dashboard', icon: faChartLine },
-        { id: 2, nav: 'Worker List', link: '/dashboard/workerList', icon: faList },
-        { id: 3, nav: 'Customers', link: '/dashboard', icon: faUsers },
-        { id: 4, nav: 'Worker Requests', link: '/dashboard', icon: faEnvelope },
-        { id: 5, nav: 'To-Lets', link: '/dashboard', icon: faHouse },
-        { id: 6, nav: 'Employee Available', link: '/dashboard', icon: faUserCheck },
-        { id: 7, nav: 'Employee Busy', link: '/dashboard', icon: faBusinessTime }
+        { id: 2, nav: 'Worker List', link: '/dashboard/workers', icon: faList },
+        { id: 3, nav: 'Customers', link: '/dashboard/customers', icon: faUsers },
+        { id: 4, nav: 'Worker Requests', link: '/dashboard/worker-requests', icon: faEnvelope },
+        { id: 5, nav: 'To-Lets', link: '/dashboard/to-lets', icon: faHouse },
+        {
+            id: 6,
+            nav: 'Available Workers',
+            link: '/dashboard/available-workers',
+            icon: faUserCheck
+        },
+        { id: 7, nav: 'Busy Workers', link: '/dashboard/busy-workers', icon: faBusinessTime }
     ];
     return (
         <div>

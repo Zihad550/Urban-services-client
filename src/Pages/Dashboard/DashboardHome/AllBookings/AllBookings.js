@@ -10,35 +10,35 @@ function AllBookings() {
             phone: '01855629170',
             category: 'Plumber',
             workersName: 'Karim',
-            status: 'Booked'
+            status: 'Hired'
         },
         {
             id: 2,
             phone: '01855629170',
             category: 'Electrician',
             workersName: 'Rasel',
-            status: 'Booked'
+            status: 'Hired'
         },
         {
             id: 3,
             phone: '01855629170',
             category: 'Cheff',
             workersName: 'Karim',
-            status: 'Booked'
+            status: 'Hired'
         },
         {
             id: 4,
             phone: '01855629170',
             category: 'Plumber',
             workersName: 'Karim',
-            status: 'Booked'
+            status: 'Hired'
         },
         {
             id: 5,
             phone: '01855629170',
             category: 'Plumber',
             workersName: 'Karim',
-            status: 'Booked'
+            status: 'Hired'
         }
     ];
     return (
