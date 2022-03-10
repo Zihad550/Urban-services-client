@@ -13,6 +13,7 @@ import ToLets from './Pages/Dashboard/ToLets/ToLets';
 import WorkerList from './Pages/Dashboard/WorkerList/WorkerList';
 import WorkerRequests from './Pages/Dashboard/WorkerRequests/WorkerRequests';
 import Home from './Pages/Home/Home/Home';
+import ServiceHome from './Pages/ServicesPage/ServicesHome/ServicesHome';
 
 function App() {
     return (
@@ -20,6 +21,9 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+
+                    {/* services route */}
+                    <Route path="/services/:serviceName" element={<ServiceHome />} />
 
                     {/* dashboard routes */}
                     <Route path="/dashboard" element={<Dashboard />}>

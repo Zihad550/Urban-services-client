@@ -38,7 +38,7 @@ function AllBookings() {
             phone: '01855629170',
             category: 'Plumber',
             workersName: 'Karim',
-            status: 'Hired'
+            status: 'Hiredf'
         }
     ];
     return (

@@ -25,7 +25,7 @@ function Header() {
     return (
         <Disclosure
             as="nav"
-            className={location.pathname === '/' ? 'md:bg-transparent' : 'bg-blue-400'}
+            className={location.pathname === '/services' ? 'md:bg-transparent' : 'bg-blue-400'}
         >
             {({ open }) => (
                 <>

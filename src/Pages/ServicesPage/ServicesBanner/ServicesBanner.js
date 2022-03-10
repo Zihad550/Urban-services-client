@@ -6,9 +6,9 @@ import InputWithBtn from '../../../components/InputWithBtn';
 import person2 from '../../../images/person2-removebg-preview.png';
 import person3 from '../../../images/person3-removebg-preview.png';
 import person4 from '../../../images/person4-removebg-preview.png';
-import './Banner.css';
+import './ServicesBanner.css';
 
-function Banner() {
+function ServicesBanner() {
     const persons = [
         // { id: 1, src: person1, name: 'Jashim' },
         { id: 1, src: person2, name: 'Karim' },
@@ -69,4 +69,4 @@ function Banner() {
     );
 }
 
-export default Banner;
+export default ServicesBanner;
