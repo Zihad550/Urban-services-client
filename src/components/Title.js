@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Title({ children }) {
+function Title({ children, classes }) {
     return (
-        <div className="w-max mx-auto">
+        <div className={` w-max mx-auto ${classes}`}>
             <h2
                 style={{ fontFamily: 'Lobster, cursive' }}
                 className="lg:text-6xl md:text-5xl text-4xl text-center mt-5"

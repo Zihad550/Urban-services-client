@@ -19,9 +19,7 @@ function classNames(...classes) {
 function Header() {
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location);
     const { user, logOut, admin } = useAuth();
-    console.log(user);
     return (
         <Disclosure
             as="nav"

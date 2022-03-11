@@ -48,6 +48,7 @@ function Login() {
                     <form className="" onSubmit={handleLogin}>
                         <div className="mb-3">
                             <Input
+                                variant="outlined"
                                 onBlur={handleBlur}
                                 name="email"
                                 type="email"
@@ -56,6 +57,7 @@ function Login() {
                         </div>
                         <div className="mb-3">
                             <Input
+                                variant="outlined"
                                 onBlur={handleBlur}
                                 name="password"
                                 type="password"
@@ -72,7 +74,7 @@ function Login() {
 
                         {/* google login */}
                         <div className="text-center text-xl bg-orange-300 text-white py-2 rounded-lg mt-1">
-                            <button onClick={googleLogin}>
+                            <button onClick={() => googleLogin(location, navigate)}>
                                 Login With google{' '}
                                 <FontAwesomeIcon icon={faGoogle} className="text-blue-500" />
                             </button>

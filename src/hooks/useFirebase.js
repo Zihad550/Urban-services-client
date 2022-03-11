@@ -22,6 +22,7 @@ const useFirebase = () => {
 
     // states
     const [user, setUser] = useState({});
+    const [savedUser, setSavedUser] = useState({});
     const [admin, setAdmin] = useState(false);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,7 @@ const useFirebase = () => {
 
     // save user to the server
     const saveUser = (email, displayName, method) => {
-        const user = { email, displayName };
+        const user = { email, displayName, role: 'user' };
         fetch('https://radiant-sea-18512.herokuapp.com/users', {
             method,
             headers: {
@@ -108,14 +109,14 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     };
 
-    // checks if the user is admin
+    // get saved user
     useEffect(() => {
         setAdminLoading(true);
         fetch(`https://radiant-sea-18512.herokuapp.com/users/${user.email}`)
             .then((res) => res.json())
             .then((data) => {
-                if (data.admin) {
-                    setAdmin(data.admin);
+                if (data) {
+                    setSavedUser(data);
                     setAdminLoading(false);
                 } else {
                     setAdminLoading(true);
@@ -146,7 +147,8 @@ const useFirebase = () => {
         logOut,
         isLoading,
         setError,
-        adminLoading
+        adminLoading,
+        savedUser
     };
 };
 
