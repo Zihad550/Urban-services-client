@@ -10,14 +10,16 @@ import WorkerRoute from './Pages/Authentication/WorkerRoute/WorkerRoute';
 import AvailableWorkers from './Pages/AvailableWorkers/AvailableWorkers/AvailableWorkers';
 import AdminAddService from './Pages/Dashboards/AdminDashboard/AdminAddService/AdminAddService';
 import AdminAddWorker from './Pages/Dashboards/AdminDashboard/AdminAddWorker/AdminAddWorker';
+import AdminAvailableWorkers from './Pages/Dashboards/AdminDashboard/AdminAvailableWorkers/AdminAvailableWorkers';
 import AdminDashboard from './Pages/Dashboards/AdminDashboard/AdminDashboard/AdminDashboard';
 import AdminDashboardHome from './Pages/Dashboards/AdminDashboard/AdminDashboardHome/AdminDashboardHome/AdminDashboardHome';
+import AdminWorkers from './Pages/Dashboards/AdminDashboard/AdminWorkers/AdminWorkers';
 import BusyWorkers from './Pages/Dashboards/AdminDashboard/BusyWorkers/BusyWorkers';
 import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
 import WorkerRequests from './Pages/Dashboards/AdminDashboard/WorkerRequests/WorkerRequests';
 import UserDashboard from './Pages/Dashboards/UserDashboard/UserDashboard';
 import WorkerDashboard from './Pages/Dashboards/WorkerDashboard/WorkerDashboard';
-import ElectricianServices from './Pages/Details/ElectricianServices/ElectricianServices';
+import WorkerServices from './Pages/Details/WorkerServices/WorkerServices';
 import Home from './Pages/Home/Home/Home';
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
                     <Route path="/" element={<Home />} />
 
                     {/* services route */}
-                    <Route path="/electricianServices" element={<ElectricianServices />} />
+                    <Route path="/services/:service" element={<WorkerServices />} />
 
                     {/* workers route */}
                     <Route path="/workers/:role" element={<AvailableWorkers />} />
@@ -43,10 +45,14 @@ function App() {
                         }
                     >
                         <Route path="/dashboard" element={<AdminDashboardHome />} />
+                        <Route path="/dashboard/workers/:role" element={<AdminWorkers />} />
                         <Route path="/dashboard/customers" element={<Customers />} />
                         <Route path="/dashboard/worker-requests" element={<WorkerRequests />} />
-                        <Route path="/dashboard/available-workers" element={<BusyWorkers />} />
-                        <Route path="/dashboard/busy-workers" element={<AvailableWorkers />} />
+                        <Route
+                            path="/dashboard/available-workers"
+                            element={<AdminAvailableWorkers />}
+                        />
+                        <Route path="/dashboard/busy-workers" element={<BusyWorkers />} />
                         <Route path="/dashboard/add-worker" element={<AdminAddWorker />} />
                         <Route path="/dashboard/add-service" element={<AdminAddService />} />
                     </Route>

@@ -1,3 +1,5 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
@@ -6,13 +8,14 @@ import AdminDashboardSidebar from '../AdminDashboardSidebar/AdminDashboardSideba
 function AdminDashboard() {
     const [closeSidebar, setCloseSidebar] = useState(false);
     const { user } = useAuth();
+
     console.log(user);
     const location = useLocation();
     return (
         <div className="flex ">
             <AdminDashboardSidebar closeSidebar={closeSidebar} />
-            <div className="ml-3 w-full">
-                <div className="flex w-full">
+            <div className="ml-3 w-full ">
+                <div className="flex w-full shadow-md py-3 px-2 ">
                     <svg
                         onClick={() =>
                             closeSidebar ? setCloseSidebar(false) : setCloseSidebar(true)
@@ -33,6 +36,15 @@ function AdminDashboard() {
                     <h2 className="text-3xl mx-auto uppercase">
                         {location.pathname.split('/')[2] || location.pathname.split('/')[1]}
                     </h2>
+                    {/* user */}
+                    <div className="flex flex-row-reverse items-center">
+                        {user.photoURL ? (
+                            <img className="w-8 h-8 ml-2" src={user.photoURL} alt="" />
+                        ) : (
+                            <FontAwesomeIcon className="w-8 h-8 ml-2" icon={faUser} />
+                        )}
+                        <h2>{user.displayName}</h2>
+                    </div>
                 </div>
 
                 <Outlet />

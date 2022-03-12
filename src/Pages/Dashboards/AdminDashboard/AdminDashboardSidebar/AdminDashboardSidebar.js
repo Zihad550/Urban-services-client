@@ -47,9 +47,9 @@ function AdminDashboardSidebar({ closeSidebar }) {
         { id: 5, nav: 'Add New Service', link: '/dashboard/add-service', icon: faPlus }
     ];
     const workers = [
-        { id: 1, nav: 'Electricians', link: '/dashboard', icon: faUser },
-        { id: 2, nav: 'Plumbers', link: '/dashboard', icon: faUser },
-        { id: 3, nav: 'Chefs', link: '/dashboard', icon: faUser },
+        { id: 1, nav: 'Electricians', link: '/dashboard/workers/electrician', icon: faUser },
+        { id: 2, nav: 'Plumbers', link: '/dashboard/workers/plumber', icon: faUser },
+        { id: 3, nav: 'Chefs', link: '/dashboard/workers/chef', icon: faUser },
         { id: 4, nav: 'Add New Worker', link: '/dashboard/add-worker', icon: faUserPlus }
     ];
     return (

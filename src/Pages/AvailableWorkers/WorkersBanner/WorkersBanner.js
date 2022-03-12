@@ -28,7 +28,7 @@ function WorkersBanner({ role }) {
         arrows: false
     };
     return (
-        <div className="bg-blue-500 -z-10 pt-20 pb-10 -mt-20 ">
+        <div className="bg-pink-400 -z-10 pt-20 pb-10 -mt-20 ">
             <div className="grid grid-cols-1 lg:grid-cols-2 md:w-3/4 mx-auto w-full">
                 {/* search field */}
                 <div className="my-auto lg:ml-10 mx-10 lg:mx-0">

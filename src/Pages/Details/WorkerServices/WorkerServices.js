@@ -8,14 +8,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick/lib/slider';
-import Button from '../../../components/Button';
 import Title from '../../../components/Title';
-import src from '../../../images/electricianHomePage/elec2.jpg';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 import Service from '../../Shared/Service/Service';
+import ChefBanner from '../ChefBanner/ChefBanner';
+import ElectricianBanner from '../ElectricianBanner/ElectricianBanner';
+import PlumberBanner from '../PlumberBanner/PlumberBanner';
 import TopWorkers from '../TopWorkers/TopWorkers';
 
 function NextArrow({ onClick }) {
@@ -42,20 +43,26 @@ function PrevArrow({ onClick }) {
     );
 }
 
-function ElectricianServices() {
+function WorkerServices() {
     const [services, setServices] = useState([]);
+    const { service } = useParams();
     useEffect(() => {
-        fetch('http://localhost:8000/services/electricianServices')
+        fetch(`http://localhost:8000/services/${service}`)
             .then((res) => res.json())
             .then((data) => setServices(data));
     });
     const navigate = useNavigate();
 
+    let serviceFor;
+    if (service === 'electricianServices') {
+        serviceFor = 'electrician';
+    }
+
     const skills = [
         {
             id: 1,
             skill: 'Lightning Response Time',
-            about: 'You shouldn’t have to wait to get your electrician emergency fixed. We pride ourselves on our 24/7 availability and same-day response.',
+            about: `You shouldn’t have to wait to get your   emergency fixed. We pride ourselves on our 24/7 availability and same-day response.`,
             icon: faClock
         },
         {
@@ -73,7 +80,7 @@ function ElectricianServices() {
         {
             id: 4,
             skill: 'Through Fix',
-            about: 'We find the root cause of your electrician issue, and help you prevent it from happening again.',
+            about: 'We find the root cause of the issue, and help you prevent it from happening again.',
             icon: faToolbox
         }
     ];
@@ -133,26 +140,9 @@ function ElectricianServices() {
             {/* header */}
             <Header />
             {/* banner */}
-            <div
-                className="text-white flex items-center justify-center flex-col px-10 "
-                style={{
-                    background: `url(${src}) no-repeat center`,
-                    height: '80vh',
-                    backgroundSize: 'cover'
-                }}
-            >
-                <Title classes="mb-3">Welcome to our Electrician site</Title>
-                <p className="mb-3">
-                    Our electrician expertise isn’t all that sets us apart, though! At Mr. Plumber
-                    we believe every customer deserves nothing but the best customer service. That’s
-                    why our team strives to provide, prompt, professional electrician services at an
-                    affordable price — all from friendly and knowledgeable technicians. If you need
-                    electrician installation, maintenance or repairs in Fort Worth, give us a call.
-                </p>
-                <Button onClick={() => navigate('/workers/electricians')} variant="primary">
-                    Available Electricians
-                </Button>
-            </div>
+            {service === 'electricianServices' && <ElectricianBanner />}
+            {service === 'plumberServices' && <PlumberBanner />}
+            {service === 'chefServices' && <ChefBanner />}
 
             {/* skills */}
             <div className="mt-10 lg:mt-0">
@@ -196,4 +186,4 @@ function ElectricianServices() {
     );
 }
 
-export default ElectricianServices;
+export default WorkerServices;
