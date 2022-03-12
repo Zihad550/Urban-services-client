@@ -4,30 +4,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 function Worker({ worker }) {
-    const { src, name, location, experience, category, level, email, phone } = worker;
+    const { src, name, location, experience, category, skill, email, phone } = worker;
     const socials = [
         { id: 1, icon: faFacebookF, link: '#', bg: '#3b5998' },
         { id: 2, icon: faLinkedinIn, link: '#', bg: '#0e76a8' },
         { id: 3, icon: faInstagram, link: '#', bg: '#3f729b' }
     ];
     return (
-        <div className="mx-3">
+        <div className="mx-3 shadow-lg">
             {/* card header */}
             {/* img */}
-            <div className="">
+            <div className="h-[300px] overflow-hidden">
                 <img className="w-full h-auto rounded-lg " src={src} alt="" />
             </div>
             {/* card body */}
-            <div className="p-5">
+            <div className="p-5 rounded-b-lg">
                 {/* name & level */}
                 <div className="flex">
                     <h2 className="text-xl ">{name}</h2>
                     <p
-                        className={`text-white  inline-block ml-5 px-3 py-1 rounded-full w-min h-min text-sm ${
-                            level === 'Expert' && 'bg-violet-500'
-                        } ${level === 'Intermediate' && 'bg-orange-500'}`}
+                        className={`text-white  inline-block ml-5 px-3 py-1 rounded-full w-min h-min text-sm capitalize ${
+                            skill === 'expert' && 'bg-violet-500'
+                        } ${skill === 'intermediate' && 'bg-orange-500'} ${
+                            skill === 'beginner' && 'bg-green-500'
+                        }`}
                     >
-                        {level}
+                        {skill}
                     </p>
                 </div>
                 {/* experience & location */}

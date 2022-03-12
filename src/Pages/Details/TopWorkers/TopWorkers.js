@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import Slider from 'react-slick/lib/slider';
 import Title from '../../../components/Title';
-import elec1 from '../../../images/electricians/elec1.jpg';
+import elec1 from '../../../images/workers/elec1.png';
 import Worker from '../../Shared/Worker/Worker';
 
 function NextArrow({ onClick }) {
@@ -39,7 +39,7 @@ function TopWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '8 year',
             category: 'Electrician',
-            level: 'Expert',
+            skill: 'expert',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         },
@@ -50,7 +50,7 @@ function TopWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '5 year',
             category: 'Electrician',
-            level: 'Intermediate',
+            skill: 'intermediate',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         },
@@ -61,7 +61,7 @@ function TopWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '8 year',
             category: 'Electrician',
-            level: 'Expert',
+            skill: 'expert',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         },
@@ -72,7 +72,7 @@ function TopWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '5 year',
             category: 'Electrician',
-            level: 'Intermediate',
+            skill: 'intermediate',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         }

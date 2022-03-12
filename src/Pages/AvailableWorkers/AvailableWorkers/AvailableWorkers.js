@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/Title';
-import elec1 from '../../../images/electricians/elec1.jpg';
+import elec1 from '../../../images/workers/elec1.png';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 import Worker from '../../Shared/Worker/Worker';
@@ -24,7 +24,7 @@ function AvailableWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '8 year',
             category: 'Electrician',
-            level: 'Expert',
+            skill: 'expert',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         },
@@ -35,7 +35,7 @@ function AvailableWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '5 year',
             category: 'Electrician',
-            level: 'Intermediate',
+            skill: 'intermediate',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         },
@@ -46,7 +46,7 @@ function AvailableWorkers() {
             location: 'Dhanmondi, Dhaka',
             experience: '8 year',
             category: 'Electrician',
-            level: 'Expert',
+            skill: 'expert',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
         },
@@ -54,12 +54,12 @@ function AvailableWorkers() {
             id: 4,
             src: elec1,
             name: 'Fahad Hossain',
+            email: 'fahadhossain@gmail.com',
+            phone: '01234567891',
             location: 'Dhanmondi, Dhaka',
             experience: '5 year',
             category: 'Electrician',
-            level: 'Intermediate',
-            email: 'fahadhossain@gmail.com',
-            phone: '01234567891'
+            skill: 'intermediate'
         }
     ];
     return (
