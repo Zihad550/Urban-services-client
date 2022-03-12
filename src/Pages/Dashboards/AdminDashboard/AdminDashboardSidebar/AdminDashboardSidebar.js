@@ -6,6 +6,7 @@ import {
     faChartLine,
     faEnvelope,
     faFaucet,
+    faHouseUser,
     faList,
     faPlus,
     faUser,
@@ -17,11 +18,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 
 function AdminDashboardSidebar({ closeSidebar }) {
     // hooks
+    const navigate = useNavigate();
     const { user } = useAuth();
     const [showServices, setShowServices] = useState(false);
     const [showWorkers, setShowWorkers] = useState(false);
@@ -40,17 +42,33 @@ function AdminDashboardSidebar({ closeSidebar }) {
     ];
 
     const services = [
-        { id: 1, nav: 'Electrician Services', link: '/dashboard', icon: faBolt },
-        { id: 2, nav: 'Plumber Services', link: '/dashboard', icon: faFaucet },
-        { id: 3, nav: 'Chef Services', link: '/dashboard', icon: faUtensils },
-        { id: 4, nav: 'To-Let', link: '/dashboard', icon: faBuilding },
+        {
+            id: 1,
+            nav: 'Electrician Services',
+            link: '/dashboard/services/electricianService',
+            icon: faBolt
+        },
+        {
+            id: 2,
+            nav: 'Plumber Services',
+            link: '/dashboard/services/plumberService',
+            icon: faFaucet
+        },
+        { id: 3, nav: 'Chef Services', link: '/dashboard/services/chefService', icon: faUtensils },
+        { id: 4, nav: 'To-Let', link: '/dashboard/services/toLetService', icon: faBuilding },
         { id: 5, nav: 'Add New Service', link: '/dashboard/add-service', icon: faPlus }
     ];
     const workers = [
         { id: 1, nav: 'Electricians', link: '/dashboard/workers/electrician', icon: faUser },
         { id: 2, nav: 'Plumbers', link: '/dashboard/workers/plumber', icon: faUser },
         { id: 3, nav: 'Chefs', link: '/dashboard/workers/chef', icon: faUser },
-        { id: 4, nav: 'Add New Worker', link: '/dashboard/add-worker', icon: faUserPlus }
+        {
+            id: 4,
+            nav: 'Add New House Owner',
+            link: '/dashboard/add-house-owner',
+            icon: faHouseUser
+        },
+        { id: 5, nav: 'Add New Worker', link: '/dashboard/add-worker', icon: faUserPlus }
     ];
     return (
         <div>
@@ -208,7 +226,10 @@ function AdminDashboardSidebar({ closeSidebar }) {
                             </li>
                         ))}
                     </ul>
-                    <button className="flex items-center p-2 font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full">
+                    <button
+                        onClick={() => navigate('/')}
+                        className="flex items-center p-2 font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full"
+                    >
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />{' '}
                         <span className="ml-5">Log Out</span>
                     </button>

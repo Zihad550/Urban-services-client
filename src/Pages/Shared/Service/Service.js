@@ -5,8 +5,10 @@ function Service({ service }) {
     const { src, linkText, link, category, about, name } = service;
 
     return (
-        <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
-            <img className="w-full h-auto rounded-t-lg" src={src} alt="" />
+        <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
+            <div className="h-[200px] overflow-hidden">
+                <img className="w-full h-auto rounded-t-lg" src={src} alt="" />
+            </div>
             <div className="p-5">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {name || category}

@@ -9,7 +9,7 @@ function AdminWorkers() {
         fetch(`http://localhost:8000/workers/${role}`)
             .then((res) => res.json())
             .then((data) => setWorkers(data));
-    }, []);
+    }, [workers]);
     const rows = ['Name', 'Phone Number', 'E-mail', 'Experience', 'Skill', 'Action'];
     return (
         <div>

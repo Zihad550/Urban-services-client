@@ -8,11 +8,13 @@ import Register from './Pages/Authentication/Register/Register';
 import UserRoute from './Pages/Authentication/UserRoute/UserRoute';
 import WorkerRoute from './Pages/Authentication/WorkerRoute/WorkerRoute';
 import AvailableWorkers from './Pages/AvailableWorkers/AvailableWorkers/AvailableWorkers';
+import AdminAddOwner from './Pages/Dashboards/AdminDashboard/AdminAddOwner/AdminAddOwner';
 import AdminAddService from './Pages/Dashboards/AdminDashboard/AdminAddService/AdminAddService';
 import AdminAddWorker from './Pages/Dashboards/AdminDashboard/AdminAddWorker/AdminAddWorker';
 import AdminAvailableWorkers from './Pages/Dashboards/AdminDashboard/AdminAvailableWorkers/AdminAvailableWorkers';
 import AdminDashboard from './Pages/Dashboards/AdminDashboard/AdminDashboard/AdminDashboard';
 import AdminDashboardHome from './Pages/Dashboards/AdminDashboard/AdminDashboardHome/AdminDashboardHome/AdminDashboardHome';
+import AdminServices from './Pages/Dashboards/AdminDashboard/AdminServices/AdminServices';
 import AdminWorkers from './Pages/Dashboards/AdminDashboard/AdminWorkers/AdminWorkers';
 import BusyWorkers from './Pages/Dashboards/AdminDashboard/BusyWorkers/BusyWorkers';
 import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
@@ -21,6 +23,7 @@ import UserDashboard from './Pages/Dashboards/UserDashboard/UserDashboard';
 import WorkerDashboard from './Pages/Dashboards/WorkerDashboard/WorkerDashboard';
 import WorkerServices from './Pages/Details/WorkerServices/WorkerServices';
 import Home from './Pages/Home/Home/Home';
+import Hire from './Pages/Shared/Hire/Hire';
 
 function App() {
     return (
@@ -35,6 +38,9 @@ function App() {
                     {/* workers route */}
                     <Route path="/workers/:role" element={<AvailableWorkers />} />
 
+                    {/* hire */}
+                    <Route path="/hire/:id" element={<Hire />} />
+
                     {/* Admin Route */}
                     <Route
                         path="/dashboard"
@@ -46,6 +52,7 @@ function App() {
                     >
                         <Route path="/dashboard" element={<AdminDashboardHome />} />
                         <Route path="/dashboard/workers/:role" element={<AdminWorkers />} />
+                        <Route path="/dashboard/services/:type" element={<AdminServices />} />
                         <Route path="/dashboard/customers" element={<Customers />} />
                         <Route path="/dashboard/worker-requests" element={<WorkerRequests />} />
                         <Route
@@ -53,6 +60,7 @@ function App() {
                             element={<AdminAvailableWorkers />}
                         />
                         <Route path="/dashboard/busy-workers" element={<BusyWorkers />} />
+                        <Route path="/dashboard/add-house-owner" element={<AdminAddOwner />} />
                         <Route path="/dashboard/add-worker" element={<AdminAddWorker />} />
                         <Route path="/dashboard/add-service" element={<AdminAddService />} />
                     </Route>

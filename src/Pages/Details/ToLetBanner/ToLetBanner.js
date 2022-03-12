@@ -23,7 +23,7 @@ function ToLetBanner() {
                 from friendly and knowledgeable technicians. If you need cheff installation,
                 maintenance or repairs in Fort Worth, give us a call.
             </p>
-            <Button onClick={() => navigate('/workers/plumber')} variant="primary">
+            <Button onClick={() => navigate('/workers/toLet')} variant="primary">
                 Available To-Let
             </Button>
         </div>

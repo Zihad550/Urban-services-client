@@ -9,9 +9,9 @@ function ContactUs() {
     return (
         <div className=" mb-20 container mx-auto">
             <Title classes="mb-5 ">Contact Us</Title>
-            <div className="flex flex-col-reverse items-center  gap-20 md:grid grid-cols-2 mx-auto container">
+            <div className="flex flex-col-reverse items-center  gap-20 md:grid grid-cols-2  container">
                 {/* contact form */}
-                <div className="w-[300px] lg:w-[400px] md:ml-auto mx-auto">
+                <div className="">
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();

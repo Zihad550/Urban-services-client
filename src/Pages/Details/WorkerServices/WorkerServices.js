@@ -142,10 +142,10 @@ function WorkerServices() {
             {/* header */}
             <Header />
             {/* banner */}
-            {service === 'electricianServices' && <ElectricianBanner />}
-            {service === 'plumberServices' && <PlumberBanner />}
-            {service === 'chefServices' && <ChefBanner />}
-            {service === 'toLetServices' && <ToLetBanner />}
+            {service === 'electricianService' && <ElectricianBanner />}
+            {service === 'plumberService' && <PlumberBanner />}
+            {service === 'chefService' && <ChefBanner />}
+            {service === 'toLetService' && <ToLetBanner />}
 
             {/* skills */}
             <div className="mt-10 lg:mt-0">
@@ -173,7 +173,7 @@ function WorkerServices() {
                 <p className="w-2/4 text-center mx-auto mt-3 mb-10">
                     Our estimates are free, schedule an appointment with our online scheduling
                 </p>
-                <Slider className="" {...settings}>
+                <Slider {...settings}>
                     {services.map((service) => (
                         <Service service={service} key={service._id} />
                     ))}

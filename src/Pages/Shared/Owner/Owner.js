@@ -1,20 +1,16 @@
 import { faFacebookF, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function Worker({ worker }) {
-    const navigate = useNavigate();
-    const { src, name, location, experience, category, skill, email, phone, _id } = worker;
+function Owner({ owner }) {
+    const { src, name, location, experience, category, skill, email, phone, houseCategory } = owner;
     const socials = [
         { id: 1, icon: faFacebookF, link: '#', bg: '#3b5998' },
         { id: 2, icon: faLinkedinIn, link: '#', bg: '#0e76a8' },
         { id: 3, icon: faInstagram, link: '#', bg: '#3f729b' }
     ];
-
     return (
-        <div className="shadow-lg">
+        <div className=" shadow-lg">
             {/* card header */}
             {/* img */}
             <div className="h-[300px] overflow-hidden">
@@ -35,27 +31,32 @@ function Worker({ worker }) {
                         {skill}
                     </p>
                 </div>
-                {/* experience & location */}
+                {/*  location */}
 
-                <div className="flex mt-2">
-                    <p className="text-sm mr-2">
-                        Experience:
-                        <span className="font-bold"> {experience}</span>
-                    </p>
+                <div className=" mt-2">
                     <p className="text-sm">
-                        Location: <span className="font-bold">{location}</span>
+                        House Location: <span className="font-bold">{location}</span>
+                    </p>
+                </div>
+                {/*  House type */}
+
+                <div className=" mt-2">
+                    <p className="text-sm">
+                        House Type: <span className="font-bold">{houseCategory}</span>
                     </p>
                 </div>
                 {/* phone & email */}
                 <div className="">
                     <p>
-                        E-mail <FontAwesomeIcon icon={faEnvelope} />:{' '}
+                        E-mail:
                         <span className="ml-1">{email}</span>
                     </p>
-                    <p>
-                        Phone <FontAwesomeIcon icon={faPhone} />:{' '}
-                        <span className="ml-1">{phone}</span>
-                    </p>
+                    <div>
+                        <p>
+                            Phone Number:
+                            <span className="ml-1">{phone}</span>
+                        </p>
+                    </div>
                 </div>
                 {/* social */}
                 <div className="flex justify-center mt-3 items-center">
@@ -67,12 +68,9 @@ function Worker({ worker }) {
                             <FontAwesomeIcon icon={social.icon} />
                         </div>
                     ))}
-                    <button
-                        onClick={() => navigate(`/hire/${_id}`)}
-                        className="relative inline-flex items-center justify-center p-0.5  mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
-                    >
+                    <button className="relative inline-flex items-center justify-center p-0.5  mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
                         <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            Hire
+                            Book
                         </span>
                     </button>
                 </div>
@@ -81,4 +79,4 @@ function Worker({ worker }) {
     );
 }
 
-export default Worker;
+export default Owner;

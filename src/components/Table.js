@@ -2,7 +2,27 @@ import { faPen, faSign, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function Table({ rows, cols, variant }) {
+function Table({ rows, cols, variant, setIsDeleted }) {
+    const handleDeleteWorker = (id) => {
+        fetch(`http://localhost:8000/workers?id=${id}`, {
+            method: 'DELETE'
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                data.deletedCount > 0 && alert('Deleted Successfully');
+                setIsDeleted(true);
+            });
+    };
+    const handleDeleteService = (id) => {
+        fetch(`http://localhost:8000/services?id=${id}`, {
+            method: 'DELETE'
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                data.deletedCount > 0 && alert('Deleted Successfully');
+                setIsDeleted(true);
+            });
+    };
     return (
         <div>
             <div className="flex flex-col">
@@ -49,6 +69,37 @@ function Table({ rows, cols, variant }) {
                                             </tr>
                                         ))}
 
+                                    {/* to show services */}
+                                    {variant === 'adminServices' &&
+                                        cols.map((col) => (
+                                            <tr
+                                                key={col.id}
+                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            >
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.name}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.category}
+                                                </td>
+
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    {/* <button
+                                                        title="Update worker"
+                                                        className="bg-blue-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-blue-500"
+                                                    >
+                                                        <FontAwesomeIcon icon={faPen} />
+                                                    </button> */}
+                                                    <button
+                                                        title="Remove worker"
+                                                        className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
+                                                        onClick={() => handleDeleteService(col._id)}
+                                                    >
+                                                        <FontAwesomeIcon icon={faXmark} />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     {/* to show workers */}
                                     {variant === 'workersTable' &&
                                         cols.map((col) => (
@@ -73,15 +124,16 @@ function Table({ rows, cols, variant }) {
                                                     {col.skill}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                                    <button
+                                                    {/*  <button
                                                         title="Update worker"
                                                         className="bg-blue-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-blue-500"
                                                     >
                                                         <FontAwesomeIcon icon={faPen} />
-                                                    </button>
+                                                    </button> */}
                                                     <button
                                                         title="Remove worker"
                                                         className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
+                                                        onClick={() => handleDeleteWorker(col._id)}
                                                     >
                                                         <FontAwesomeIcon icon={faXmark} />
                                                     </button>
