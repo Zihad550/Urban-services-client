@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from '../../../../components/Table';
 
-function EmployeeAvailable() {
+function AdminAvailableWorkers() {
     const rows = ['#', 'Name', 'Catagories', 'Phone Number', 'Action'];
     const workersAvailable = [
         { id: 1, name: 'Rasel', category: 'Plumber', phone: '01234567891' },
@@ -15,4 +15,4 @@ function EmployeeAvailable() {
     );
 }
 
-export default EmployeeAvailable;
+export default AdminAvailableWorkers;

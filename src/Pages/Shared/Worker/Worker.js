@@ -23,7 +23,7 @@ function Worker({ worker }) {
                 <div className="flex">
                     <h2 className="text-xl ">{name}</h2>
                     <p
-                        className={`text-white  inline-block ml-5 px-3 py-1 rounded-full text-sm ${
+                        className={`text-white  inline-block ml-5 px-3 py-1 rounded-full w-min h-min text-sm ${
                             level === 'Expert' && 'bg-violet-500'
                         } ${level === 'Intermediate' && 'bg-orange-500'}`}
                     >

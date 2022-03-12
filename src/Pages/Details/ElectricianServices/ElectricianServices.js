@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick/lib/slider';
 import Button from '../../../components/Button';
 import Title from '../../../components/Title';
@@ -48,6 +49,7 @@ function ElectricianServices() {
             .then((res) => res.json())
             .then((data) => setServices(data));
     });
+    const navigate = useNavigate();
 
     const skills = [
         {
@@ -147,7 +149,9 @@ function ElectricianServices() {
                     affordable price — all from friendly and knowledgeable technicians. If you need
                     electrician installation, maintenance or repairs in Fort Worth, give us a call.
                 </p>
-                <Button variant="primary">Available Electricians</Button>
+                <Button onClick={() => navigate('/workers/electricians')} variant="primary">
+                    Available Electricians
+                </Button>
             </div>
 
             {/* skills */}

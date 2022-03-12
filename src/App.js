@@ -7,11 +7,11 @@ import Login from './Pages/Authentication/Login/Login';
 import Register from './Pages/Authentication/Register/Register';
 import UserRoute from './Pages/Authentication/UserRoute/UserRoute';
 import WorkerRoute from './Pages/Authentication/WorkerRoute/WorkerRoute';
+import AvailableWorkers from './Pages/AvailableWorkers/AvailableWorkers/AvailableWorkers';
 import AdminAddService from './Pages/Dashboards/AdminDashboard/AdminAddService/AdminAddService';
 import AdminAddWorker from './Pages/Dashboards/AdminDashboard/AdminAddWorker/AdminAddWorker';
 import AdminDashboard from './Pages/Dashboards/AdminDashboard/AdminDashboard/AdminDashboard';
 import AdminDashboardHome from './Pages/Dashboards/AdminDashboard/AdminDashboardHome/AdminDashboardHome/AdminDashboardHome';
-import AvailableWorkers from './Pages/Dashboards/AdminDashboard/AvailableWorkers/AvailableWorkers';
 import BusyWorkers from './Pages/Dashboards/AdminDashboard/BusyWorkers/BusyWorkers';
 import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
 import WorkerRequests from './Pages/Dashboards/AdminDashboard/WorkerRequests/WorkerRequests';
@@ -29,6 +29,9 @@ function App() {
 
                     {/* services route */}
                     <Route path="/electricianServices" element={<ElectricianServices />} />
+
+                    {/* workers route */}
+                    <Route path="/workers/:role" element={<AvailableWorkers />} />
 
                     {/* Admin Route */}
                     <Route
