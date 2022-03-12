@@ -16,10 +16,12 @@ function AdminAddService() {
         newData[e.target.name] = e.target.value;
         setData(newData);
     };
+    console.log(data);
 
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
+
         fetch('http://localhost:8000/services', {
             method: 'POST',
             headers: {
@@ -32,7 +34,6 @@ function AdminAddService() {
                 if (data.insertedId) {
                     alert('Added Successfully');
                     e.target.reset();
-                    setData('');
                 } else {
                     alert('Process Unsuccessful');
                 }
@@ -50,7 +51,7 @@ function AdminAddService() {
                     {/* service name */}
                     <div className="relative z-0 mb-3 w-full group ">
                         <Input
-                            onChange={handleFormData}
+                            onBlur={handleFormData}
                             name="name"
                             variant="outlined"
                             placeholder="Service Name"
@@ -60,7 +61,7 @@ function AdminAddService() {
                     {/* service image */}
                     <div className="relative z-0 mb-3 w-full group ">
                         <Input
-                            onChange={handleFormData}
+                            onBlur={handleFormData}
                             name="src"
                             variant="outlined"
                             placeholder="Service Image"
@@ -71,6 +72,7 @@ function AdminAddService() {
                     {/* about the service */}
                     <div>
                         <textarea
+                            onBlur={handleFormData}
                             id="message"
                             rows="4"
                             name="about"

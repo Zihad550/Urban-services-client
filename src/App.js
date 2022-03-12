@@ -17,8 +17,8 @@ import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
 import WorkerRequests from './Pages/Dashboards/AdminDashboard/WorkerRequests/WorkerRequests';
 import UserDashboard from './Pages/Dashboards/UserDashboard/UserDashboard';
 import WorkerDashboard from './Pages/Dashboards/WorkerDashboard/WorkerDashboard';
+import ElectricianServices from './Pages/Details/ElectricianServices/ElectricianServices';
 import Home from './Pages/Home/Home/Home';
-import ServiceHome from './Pages/ServicesPage/ServicesHome/ServicesHome';
 
 function App() {
     return (
@@ -28,7 +28,7 @@ function App() {
                     <Route path="/" element={<Home />} />
 
                     {/* services route */}
-                    <Route path="/services/:serviceName" element={<ServiceHome />} />
+                    <Route path="/electricianServices" element={<ElectricianServices />} />
 
                     {/* Admin Route */}
                     <Route

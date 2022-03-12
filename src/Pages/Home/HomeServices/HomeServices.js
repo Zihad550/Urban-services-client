@@ -7,7 +7,7 @@ function HomeServices() {
             id: 1,
             src: 'https://i.ibb.co/VxtVMrr/electrician.jpg',
             category: 'Electrician Service',
-            link: 'electricians',
+            link: '/electricianServices',
             linkText: 'Electrician Service Details',
             about: "Development without limits.You have to change yourself. Nothing is easy in the world. If you want to acheive your goal then there is no shortcut. Only one part of success is hard work.If you want to be a web developer then you have to be a hard working person.There is no limits to develop yourself.Let's do it"
         },
