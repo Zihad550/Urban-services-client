@@ -11,7 +11,7 @@ function AvailableWorkers() {
     console.log(workers);
     const { role } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:8000/workers`)
+        fetch(`http://localhost:8000/workers/${role}`)
             .then((res) => res.json())
             .then((data) => setWorkers(data));
     }, []);

@@ -2,6 +2,7 @@ import React from 'react';
 import Title from '../../../components/Title';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
+import ContactUs from '../ContactUs/ContactUs';
 import HomeBanner from '../HomeBanner/HomeBanner';
 import HomeServices from '../HomeServices/HomeServices';
 
@@ -19,6 +20,9 @@ function Home() {
                 <Title>Services We Provide</Title>
                 <HomeServices />
             </div>
+
+            {/* contact us  component */}
+            <ContactUs />
 
             {/* footer */}
             <Footer />

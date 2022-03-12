@@ -17,6 +17,7 @@ import Service from '../../Shared/Service/Service';
 import ChefBanner from '../ChefBanner/ChefBanner';
 import ElectricianBanner from '../ElectricianBanner/ElectricianBanner';
 import PlumberBanner from '../PlumberBanner/PlumberBanner';
+import ToLetBanner from '../ToLetBanner/ToLetBanner';
 import TopWorkers from '../TopWorkers/TopWorkers';
 
 function NextArrow({ onClick }) {
@@ -46,6 +47,7 @@ function PrevArrow({ onClick }) {
 function WorkerServices() {
     const [services, setServices] = useState([]);
     const { service } = useParams();
+    console.log(service);
     useEffect(() => {
         fetch(`http://localhost:8000/services/${service}`)
             .then((res) => res.json())
@@ -143,6 +145,7 @@ function WorkerServices() {
             {service === 'electricianServices' && <ElectricianBanner />}
             {service === 'plumberServices' && <PlumberBanner />}
             {service === 'chefServices' && <ChefBanner />}
+            {service === 'toLetServices' && <ToLetBanner />}
 
             {/* skills */}
             <div className="mt-10 lg:mt-0">

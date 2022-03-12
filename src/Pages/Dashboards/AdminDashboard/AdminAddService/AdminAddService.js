@@ -102,6 +102,7 @@ function AdminAddService() {
                                 <option value="electricianService">Electrician Service</option>
                                 <option value="plumberService">Plumber Service</option>
                                 <option value="chefService">Chef Service</option>
+                                <option value="toLetService">To-Let Service</option>
                             </select>
                         </div>
 
