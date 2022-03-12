@@ -15,7 +15,7 @@ function Home() {
             <HomeBanner />
 
             {/* Services */}
-            <div className="mt-20">
+            <div className="my-20">
                 <Title>Services We Provide</Title>
                 <HomeServices />
             </div>

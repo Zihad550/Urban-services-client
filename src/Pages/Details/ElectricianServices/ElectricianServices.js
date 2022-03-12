@@ -15,6 +15,7 @@ import src from '../../../images/electricianHomePage/elec2.jpg';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 import Service from '../../Shared/Service/Service';
+import TopWorkers from '../TopWorkers/TopWorkers';
 
 function NextArrow({ onClick }) {
     return (
@@ -150,11 +151,12 @@ function ElectricianServices() {
             </div>
 
             {/* skills */}
-            <div>
+            <div className="mt-10 lg:mt-0">
+                <Title classes="lg:hidden block">Skills</Title>
                 <div className="container grid lg:grid-cols-4 grid-cols-2 gap-4 lg:-mt-28 mx-auto mt-10  lg:mx-auto ">
                     {skills.map((skill) => (
                         <div
-                            className="bg-white  p-3 rounded-lg shadow-md flex flex-col"
+                            className="bg-white  p-3 rounded-lg lg:shadow-md shadow-lg  flex flex-col"
                             key={skill.id}
                         >
                             <FontAwesomeIcon
@@ -180,6 +182,9 @@ function ElectricianServices() {
                     ))}
                 </Slider>
             </div>
+
+            {/* topworkers */}
+            <TopWorkers />
 
             {/* footer */}
             <Footer />

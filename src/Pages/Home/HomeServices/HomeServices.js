@@ -1,5 +1,5 @@
 import React from 'react';
-import Service from '../../Shared/Service/Service';
+import HomeService from '../HomeService/HomeService';
 
 function HomeServices() {
     const majorServicesCategories = [
@@ -37,9 +37,9 @@ function HomeServices() {
         }
     ];
     return (
-        <div className="grid grid-cols-2 lg:gap-y-10 gap-y-3 gap-x-3 lg:gap-x-0 xl:w-2/4 md:mx-auto mx-5 my-5 md:w-3/4">
+        <div className="container grid grid-cols-2 lg:grid-cols-4 mx-auto mt-8 gap-5">
             {majorServicesCategories.map((service) => (
-                <Service service={service} key={service.id} />
+                <HomeService service={service} key={service.id} />
             ))}
         </div>
     );
