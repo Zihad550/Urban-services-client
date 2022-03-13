@@ -9,7 +9,7 @@ function CurrentWorks() {
     const { user } = useAuth();
     useEffect(() => {
         setWorkingStatus(false);
-        fetch(`http://localhost:8000/currentWorks?email=${user.email}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/currentWorks?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => setCurrentWorks(data));
     }, [statusUpdate]);

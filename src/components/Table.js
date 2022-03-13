@@ -29,7 +29,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
 
     // handle approve application
     const handleApproveApplication = (worker) => {
-        fetch(`http://localhost:8000/application`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/application`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +47,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
     };
     // handle delete application
     const handleDeleteApplication = (email) => {
-        fetch(`http://localhost:8000/application?email=${email}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/application?email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -61,7 +61,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
 
     // handle working status
     const handleWorkingStatus = (email, status = 'free', id) => {
-        fetch(`http://localhost:8000/workingStatus`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workingStatus`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -80,7 +80,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
 
     // handle complete work
     const handleCompleteWork = (id) => {
-        fetch(`http://localhost:8000/complete`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/complete`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -7,7 +7,7 @@ function AdminAvailableWorkers() {
 
     useEffect(() => {
         setWorkingStatus(false);
-        fetch('http://localhost:8000/availableWorkers')
+        fetch('https://radiant-sea-18512.herokuapp.com/availableWorkers')
             .then((res) => res.json())
             .then((data) => setWorkers(data));
     }, [workingStatus]);

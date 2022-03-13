@@ -6,7 +6,7 @@ function Bookings() {
     const [bookings, setBookings] = useState([]);
     const { user } = useAuth();
     useEffect(() => {
-        fetch(`http://localhost:8000/hired?email=${user.email}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/hired?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => setBookings(data));
     }, [user.email]);

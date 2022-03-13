@@ -6,7 +6,7 @@ function BusyWorkers() {
     const [workingStatus, setWorkingStatus] = useState(false);
     useEffect(() => {
         setWorkingStatus(false);
-        fetch('http://localhost:8000/busyWorkers')
+        fetch('https://radiant-sea-18512.herokuapp.com/busyWorkers')
             .then((res) => res.json())
             .then((data) => setWorkers(data));
     }, [workingStatus]);

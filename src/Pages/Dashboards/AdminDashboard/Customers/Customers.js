@@ -4,7 +4,7 @@ import Table from '../../../../components/Table';
 function Customers() {
     const [customers, setCustomers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:8000/users')
+        fetch('https://radiant-sea-18512.herokuapp.com/users')
             .then((res) => res.json())
             .then((data) => setCustomers(data));
     }, []);

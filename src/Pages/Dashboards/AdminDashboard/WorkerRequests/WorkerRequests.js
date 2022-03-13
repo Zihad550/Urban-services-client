@@ -6,7 +6,7 @@ function WorkerRequests() {
     const [status, setStatus] = useState(false);
     useEffect(() => {
         setStatus(false);
-        fetch('http://localhost:8000/applications')
+        fetch('https://radiant-sea-18512.herokuapp.com/applications')
             .then((res) => res.json())
             .then((data) => setRequests(data));
     }, [status]);
