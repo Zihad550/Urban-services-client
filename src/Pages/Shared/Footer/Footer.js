@@ -30,11 +30,17 @@ function Footer() {
             <Subscribe />
             {/* footer */}
             <footer className="p-4 bg-white sm:p-6 dark:bg-gray-800 md:w-3/4 mx-auto">
-                <div className="md:flex md:justify-between">
-                    <div className="mb-6 md:mb-0">
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
+                    <div className="mb-6 md:mb-0 flex flex-col items-center lg:justify-start lg:items-start">
+                        <span className=" text-2xl font-semibold whitespace-nowrap dark:text-white">
                             Urban Services
                         </span>
+                        <p className="w-3/4">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam aliquam
+                            itaque, iure numquam optio sunt quo sapiente reiciendis tempore amet
+                            voluptatibus eaque quis officia debitis modi sed facere consectetur
+                            voluptatem?
+                        </p>
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         {/* navigations */}

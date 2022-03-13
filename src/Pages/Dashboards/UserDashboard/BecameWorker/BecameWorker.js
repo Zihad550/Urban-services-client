@@ -1,29 +1,19 @@
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
 import Title from '../../../../components/Title';
-import src from '../../../../images/addWorker.svg';
+import useAuth from '../../../../hooks/useAuth';
+import src from '../../../../images/becameWorker.svg';
 
-function AdminAddWorker() {
-    /* 
-    //  https://i.ibb.co/gFxX0PG/elec8.png
-        // https://i.ibb.co/x8DVqwM/elec6.png
-        // https://i.ibb.co/mT1Kzx9/elec1.png
-        // https://i.ibb.co/JpqB8wn/elec7.png
-        // https://i.ibb.co/556P6rK/elec4.png
-        // https://i.ibb.co/JshHdq2/elec2.png
-        // https://i.ibb.co/yNB0MSB/elec3.png
-        // https://i.ibb.co/X29gT3v/elec5.png 
-        */
+function BecameWorker() {
+    const { user } = useAuth();
     const [data, setData] = useState({
         category: 'electrician',
         role: 'worker',
         experience: '0-1 year',
         skill: 'beginner',
-        applicationStatus: 'approved'
+        applicationStatus: 'applied'
     });
     console.log(data);
 
@@ -37,17 +27,17 @@ function AdminAddWorker() {
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://radiant-sea-18512.herokuapp.com/workers', {
+        fetch('http://localhost:8000/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ ...data, name: user.displayName, email: user.email })
         })
             .then((res) => res.json())
             .then((data) => {
                 if (data.insertedId) {
-                    alert('Added Successfully');
+                    alert('Applied Successfully');
                     e.target.reset();
                 } else {
                     alert('Process Unsuccessful');
@@ -57,13 +47,13 @@ function AdminAddWorker() {
 
     return (
         <>
-            <Title classes="mb-5 hidden lg:block">Add New Worker</Title>
+            <Title classes="mb-2 hidden lg:block">Became Worker</Title>
             <div className="container px-5 lg:mx-auto pt-5 grid lg:grid-cols-2 grid-cols-1 items-center">
                 <div className="lg:flex hidden">
                     <img src={src} alt="" />
                 </div>
                 <div>
-                    <Title classes="mb-5 lg:hidden">Add New Worker</Title>
+                    <Title classes="mb-5 lg:hidden">Became Worker</Title>
                     <form onSubmit={handleSubmit}>
                         {/* worker name & email */}
                         <div className="flex">
@@ -71,11 +61,11 @@ function AdminAddWorker() {
                             <div className="relative z-0 mb-6 w-full group mr-5">
                                 <Input
                                     onBlur={handleFormData}
-                                    id="name"
                                     name="name"
                                     variant="underlined"
                                     placeholder=" "
                                     type="text"
+                                    value={user.displayName}
                                 />
                                 <Label>Name</Label>
                             </div>
@@ -83,11 +73,11 @@ function AdminAddWorker() {
                             <div className="relative z-0 mb-6 w-full group">
                                 <Input
                                     onBlur={handleFormData}
-                                    id="email"
                                     name="email"
                                     variant="underlined"
                                     placeholder=" "
                                     type="email"
+                                    value={user.email}
                                 />
                                 <Label>Email Address</Label>
                             </div>
@@ -200,7 +190,7 @@ function AdminAddWorker() {
                         </div>
 
                         <Button type="submit" variant="primary">
-                            Add <FontAwesomeIcon icon={faAdd} />
+                            Apply
                         </Button>
                     </form>
                 </div>
@@ -209,4 +199,4 @@ function AdminAddWorker() {
     );
 }
 
-export default AdminAddWorker;
+export default BecameWorker;

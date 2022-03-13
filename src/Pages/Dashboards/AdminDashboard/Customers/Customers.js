@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '../../../../components/Table';
 
 function Customers() {
-    const customers = [
-        { id: 1, name: 'Rasel', phone: '01234567891', email: 'rasel@gmail.com' },
-        { id: 1, name: 'Rahil', phone: '01234567891', email: 'rahil@gmail.com' },
-        { id: 1, name: 'Rosy', phone: '01234567891', email: 'rosy@gmail.com' }
-    ];
-    const rows = ['#', 'Name', 'Phone', 'Email'];
+    const [customers, setCustomers] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:8000/users')
+            .then((res) => res.json())
+            .then((data) => setCustomers(data));
+    }, []);
+
+    const rows = ['Name', 'Email'];
     return (
         <div>
             <Table rows={rows} cols={customers} variant="customers" />

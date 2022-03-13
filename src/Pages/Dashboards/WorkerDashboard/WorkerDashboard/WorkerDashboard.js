@@ -3,17 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
-import AdminDashboardSidebar from '../AdminDashboardSidebar/AdminDashboardSidebar';
+import WorkerDashboardSidebar from '../WorkerDashboardSidebar/WorkerDashboardSidebar';
 
-function AdminDashboard() {
+function WorkerDashboard() {
     const [closeSidebar, setCloseSidebar] = useState(false);
-    const { user, savedUser } = useAuth();
-
-    console.log(user);
     const location = useLocation();
+    const { user } = useAuth();
     return (
-        <div className="flex ">
-            <AdminDashboardSidebar closeSidebar={closeSidebar} />
+        <div className="flex">
+            <WorkerDashboardSidebar closeSidebar={closeSidebar} />
             <div className="ml-3 w-full ">
                 <div className="flex w-full shadow-md py-3 px-2 ">
                     <svg
@@ -53,4 +51,4 @@ function AdminDashboard() {
     );
 }
 
-export default AdminDashboard;
+export default WorkerDashboard;

@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '../../../../components/Table';
 
 function WorkerRequests() {
-    const rows = ['#', 'Name', 'Catagories', 'Phone Number', 'Experience', 'Actions'];
-    const requests = [
-        { id: 1, name: 'Rasel', category: 'Plumber', phone: '01234567891', experience: '2 years' },
-        { id: 1, name: 'Kabir', category: 'Plumber', phone: '01234567891', experience: '2 years' },
-        { id: 1, name: 'Rahima', category: 'Plumber', phone: '01234567891', experience: '2 years' },
-        { id: 1, name: 'Rabbi', category: 'Plumber', phone: '01234567891', experience: '2 years' }
-    ];
+    const [requests, setRequests] = useState([]);
+    const [status, setStatus] = useState(false);
+    useEffect(() => {
+        setStatus(false);
+        fetch('http://localhost:8000/applications')
+            .then((res) => res.json())
+            .then((data) => setRequests(data));
+    }, [status]);
+    const rows = ['Name', 'Catagories', 'Phone Number', 'Experience', 'Skill', 'Actions'];
+
     return (
         <div>
-            <Table rows={rows} cols={requests} variant="workersRequest" />
+            <Table rows={rows} cols={requests} variant="workersRequest" setStatus={setStatus} />
         </div>
     );
 }

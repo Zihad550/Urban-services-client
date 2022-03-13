@@ -1,9 +1,12 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import AdminDashboard from '../AdminDashboard/AdminDashboard/AdminDashboard';
+import UserDashboard from '../UserDashboard/UserDashboard/UserDashboard';
+import WorkerDashboard from '../WorkerDashboard/WorkerDashboard/WorkerDashboard';
 
 function AdminRoute({ children, ...rest }) {
-    const { savedUser, user, adminLoading } = useAuth();
+    const { savedUser, adminLoading, user } = useAuth();
     const location = useLocation();
     if (adminLoading) {
         return (
@@ -27,8 +30,14 @@ function AdminRoute({ children, ...rest }) {
             </div>
         );
     }
+    if (savedUser.role === 'admin' && user.email) {
+        return <AdminDashboard />;
+    }
     if (savedUser.role === 'user' && user.email) {
-        return children;
+        return <UserDashboard />;
+    }
+    if (savedUser.role === 'worker' && user.email) {
+        return <WorkerDashboard />;
     }
     return <Navigate to="/login" state={{ from: location }} />;
 }

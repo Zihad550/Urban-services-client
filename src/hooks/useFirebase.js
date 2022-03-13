@@ -32,7 +32,7 @@ const useFirebase = () => {
 
     // save user to the server
     const saveUser = (email, displayName, method) => {
-        const user = { email, displayName, role: 'user' };
+        const user = { email, displayName };
         fetch('https://radiant-sea-18512.herokuapp.com/users', {
             method,
             headers: {

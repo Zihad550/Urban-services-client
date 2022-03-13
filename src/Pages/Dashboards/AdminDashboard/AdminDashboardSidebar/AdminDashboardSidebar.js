@@ -21,7 +21,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 
-function AdminDashboardSidebar({ closeSidebar }) {
+function AdminadminDashboardSidebar({ closeSidebar }) {
     // hooks
     const navigate = useNavigate();
     const { user } = useAuth();
@@ -30,45 +30,55 @@ function AdminDashboardSidebar({ closeSidebar }) {
 
     // sidebar navs
     const navs = [
-        { id: 4, nav: 'Customers', link: '/dashboard/customers', icon: faUsers },
-        { id: 5, nav: 'Worker Requests', link: '/dashboard/worker-requests', icon: faEnvelope },
+        { id: 4, nav: 'Customers', link: '/adminDashboard/customers', icon: faUsers },
+        {
+            id: 5,
+            nav: 'Worker Requests',
+            link: '/adminDashboard/worker-requests',
+            icon: faEnvelope
+        },
         {
             id: 7,
             nav: 'Available Workers',
-            link: '/dashboard/available-workers',
+            link: '/adminDashboard/available-workers',
             icon: faUserCheck
         },
-        { id: 8, nav: 'Busy Workers', link: '/dashboard/busy-workers', icon: faBusinessTime }
+        { id: 8, nav: 'Busy Workers', link: '/adminDashboard/busy-workers', icon: faBusinessTime }
     ];
 
     const services = [
         {
             id: 1,
             nav: 'Electrician Services',
-            link: '/dashboard/services/electricianService',
+            link: '/adminDashboard/services/electricianService',
             icon: faBolt
         },
         {
             id: 2,
             nav: 'Plumber Services',
-            link: '/dashboard/services/plumberService',
+            link: '/adminDashboard/services/plumberService',
             icon: faFaucet
         },
-        { id: 3, nav: 'Chef Services', link: '/dashboard/services/chefService', icon: faUtensils },
-        { id: 4, nav: 'To-Let', link: '/dashboard/services/toLetService', icon: faBuilding },
-        { id: 5, nav: 'Add New Service', link: '/dashboard/add-service', icon: faPlus }
+        {
+            id: 3,
+            nav: 'Chef Services',
+            link: '/adminDashboard/services/chefService',
+            icon: faUtensils
+        },
+        { id: 4, nav: 'To-Let', link: '/adminDashboard/services/toLetService', icon: faBuilding },
+        { id: 5, nav: 'Add New Service', link: '/adminDashboard/add-service', icon: faPlus }
     ];
     const workers = [
-        { id: 1, nav: 'Electricians', link: '/dashboard/workers/electrician', icon: faUser },
-        { id: 2, nav: 'Plumbers', link: '/dashboard/workers/plumber', icon: faUser },
-        { id: 3, nav: 'Chefs', link: '/dashboard/workers/chef', icon: faUser },
+        { id: 1, nav: 'Electricians', link: '/adminDashboard/workers/electrician', icon: faUser },
+        { id: 2, nav: 'Plumbers', link: '/adminDashboard/workers/plumber', icon: faUser },
+        { id: 3, nav: 'Chefs', link: '/adminDashboard/workers/chef', icon: faUser },
         {
             id: 4,
             nav: 'Add New House Owner',
-            link: '/dashboard/add-house-owner',
+            link: '/adminDashboard/add-house-owner',
             icon: faHouseUser
         },
-        { id: 5, nav: 'Add New Worker', link: '/dashboard/add-worker', icon: faUserPlus }
+        { id: 5, nav: 'Add New Worker', link: '/adminDashboard/add-worker', icon: faUserPlus }
     ];
     return (
         <div>
@@ -80,10 +90,10 @@ function AdminDashboardSidebar({ closeSidebar }) {
                     </div>
 
                     <ul className="space-y-2">
-                        {/* dashboard */}
+                        {/* adminDashboard */}
                         <li>
                             <Link
-                                to="/dashboard"
+                                to="/adminDashboard"
                                 href="#"
                                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
@@ -239,4 +249,4 @@ function AdminDashboardSidebar({ closeSidebar }) {
     );
 }
 
-export default AdminDashboardSidebar;
+export default AdminadminDashboardSidebar;

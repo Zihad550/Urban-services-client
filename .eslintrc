@@ -45,6 +45,7 @@
     "import/no-unresolved": 0,
     "no-shadow": 0,
     "no-underscore-dangle": 0,
+    "default-param-last": 0,
 
     "react/jsx-filename-extension": [
       1,

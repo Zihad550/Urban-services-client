@@ -10,11 +10,12 @@ function Hire() {
     const [worker, setWorker] = useState();
     const { id } = useParams();
     const navigate = useNavigate();
+
     useEffect(() => {
         fetch(`https://radiant-sea-18512.herokuapp.com/worker/${id}`)
             .then((res) => res.json())
             .then((data) => setWorker(data));
-    }, []);
+    }, [id]);
 
     const { user } = useAuth();
     const { displayName, photoURL, email } = user;
@@ -41,12 +42,15 @@ function Hire() {
             body: JSON.stringify({
                 ...data,
                 cost: data.cost,
-                workerName: worker.name,
+                workerName: worker?.name,
                 workerLocation: worker.location,
                 workerCategory: worker.category,
                 workerPhone: worker.phone,
                 customerName: displayName,
-                customerEmail: email
+                customerEmail: email,
+                workingStatus: 'not working',
+                workingProgress: '0%',
+                workerEmail: worker.email
             })
         })
             .then((res) => res.json())
@@ -55,7 +59,7 @@ function Hire() {
                     alert('Added Successfully');
                     e.target.reset();
                     setData('');
-                    navigate('/dashboard/hired');
+                    navigate('/userDashboard/hired');
                 } else {
                     alert('Process Unsuccessful');
                 }

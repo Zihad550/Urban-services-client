@@ -54,7 +54,13 @@ function Register() {
                     </h2>
                     <form className="" onSubmit={handleRegister}>
                         <div className="mb-3">
-                            <Input onBlur={handleBlur} name="name" type="text" placeholder="Name" />
+                            <Input
+                                variant="outlined"
+                                onBlur={handleBlur}
+                                name="name"
+                                type="text"
+                                placeholder="Name"
+                            />
                         </div>
                         <div className="mb-3">
                             <Input

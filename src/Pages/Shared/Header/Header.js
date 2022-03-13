@@ -18,7 +18,7 @@ function classNames(...classes) {
 function Header() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { user, logOut, admin } = useAuth();
+    const { user, logOut, admin, savedUser } = useAuth();
     return (
         <Disclosure
             as="nav"
@@ -67,14 +67,6 @@ function Header() {
                                                 {item.name}
                                             </Link>
                                         ))}
-                                        {admin && (
-                                            <Link
-                                                to="/dashboard"
-                                                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                                            >
-                                                Dashboard
-                                            </Link>
-                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +80,7 @@ function Header() {
                                             <span className="sr-only">Open user menu</span>
                                             {user.photoURL ? (
                                                 <>
-                                                    <p className="text-lg uppercase">
+                                                    <p className="text-lg uppercase hidden lg:block">
                                                         {user.displayName}
                                                     </p>
                                                     <img
@@ -99,7 +91,7 @@ function Header() {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <p className="text-lg uppercase">
+                                                    <p className="text-lg uppercase hidden lg:block">
                                                         {user.displayName}
                                                     </p>
                                                     <UserIcon className="block h-10 w-10 text-violet-700 border-2 rounded-full border-violet-700" />
@@ -135,17 +127,59 @@ function Header() {
                                                     </Menu.Item>
                                                     <Menu.Item>
                                                         {({ active }) => (
-                                                            <button
-                                                                onClick={() =>
-                                                                    navigate('/dashboard')
-                                                                }
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-100 ' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 w-full'
+                                                            <>
+                                                                {savedUser.role === 'admin' && (
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            navigate(
+                                                                                '/adminDashboard'
+                                                                            )
+                                                                        }
+                                                                        className={classNames(
+                                                                            active
+                                                                                ? 'bg-gray-100 '
+                                                                                : '',
+                                                                            'block px-4 py-2 text-sm text-gray-700 w-full'
+                                                                        )}
+                                                                    >
+                                                                        Dashboard
+                                                                    </button>
                                                                 )}
-                                                            >
-                                                                Dashboard
-                                                            </button>
+                                                                {savedUser.role === 'user' && (
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            navigate(
+                                                                                '/userDashboard'
+                                                                            )
+                                                                        }
+                                                                        className={classNames(
+                                                                            active
+                                                                                ? 'bg-gray-100 '
+                                                                                : '',
+                                                                            'block px-4 py-2 text-sm text-gray-700 w-full'
+                                                                        )}
+                                                                    >
+                                                                        Dashboard
+                                                                    </button>
+                                                                )}
+                                                                {savedUser.role === 'worker' && (
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            navigate(
+                                                                                '/workerDashboard'
+                                                                            )
+                                                                        }
+                                                                        className={classNames(
+                                                                            active
+                                                                                ? 'bg-gray-100 '
+                                                                                : '',
+                                                                            'block px-4 py-2 text-sm text-gray-700 w-full'
+                                                                        )}
+                                                                    >
+                                                                        Dashboard
+                                                                    </button>
+                                                                )}
+                                                            </>
                                                         )}
                                                     </Menu.Item>
                                                 </>
@@ -173,7 +207,7 @@ function Header() {
                     </div>
 
                     {/* mobile screen menu panel */}
-                    <Disclosure.Panel className="sm:hidden  bg-gray-700 mb-20">
+                    <Disclosure.Panel className="sm:hidden  bg-gray-700 ">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navigation.map((item) => (
                                 <Disclosure.Button
@@ -191,10 +225,27 @@ function Header() {
                                     {item.name}
                                 </Disclosure.Button>
                             ))}
-                            {admin && (
+
+                            {savedUser.role === 'admin' && (
                                 <Disclosure.Button
                                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                                    onClick={() => navigate('/dashboard')}
+                                    onClick={() => navigate('/adminDashboard')}
+                                >
+                                    Dashboard
+                                </Disclosure.Button>
+                            )}
+                            {savedUser.role === 'user' && (
+                                <Disclosure.Button
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                                    onClick={() => navigate('/userDashboard')}
+                                >
+                                    Dashboard
+                                </Disclosure.Button>
+                            )}
+                            {savedUser.role === 'worker' && (
+                                <Disclosure.Button
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                                    onClick={() => navigate('/workerDashboard')}
                                 >
                                     Dashboard
                                 </Disclosure.Button>
