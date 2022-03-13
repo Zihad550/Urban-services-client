@@ -6,7 +6,7 @@ function AdminWorkers() {
     const [workers, setWorkers] = useState([]);
     const { role } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:8000/workers/${role}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers/${role}`)
             .then((res) => res.json())
             .then((data) => setWorkers(data));
     }, [workers]);

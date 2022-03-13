@@ -22,7 +22,7 @@ function AdminAddService() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:8000/services', {
+        fetch('https://radiant-sea-18512.herokuapp.com/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -49,7 +49,7 @@ function WorkerServices() {
     const { service } = useParams();
     console.log(service);
     useEffect(() => {
-        fetch(`http://localhost:8000/services/${service}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/services/${service}`)
             .then((res) => res.json())
             .then((data) => setServices(data));
     });

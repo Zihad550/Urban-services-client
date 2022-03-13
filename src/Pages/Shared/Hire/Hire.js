@@ -11,7 +11,7 @@ function Hire() {
     const { id } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        fetch(`http://localhost:8000/worker/${id}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/worker/${id}`)
             .then((res) => res.json())
             .then((data) => setWorker(data));
     }, []);
@@ -33,7 +33,7 @@ function Hire() {
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/hired', {
+        fetch('https://radiant-sea-18512.herokuapp.com/hired', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

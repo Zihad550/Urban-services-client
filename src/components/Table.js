@@ -4,7 +4,7 @@ import React from 'react';
 
 function Table({ rows, cols, variant, setIsDeleted }) {
     const handleDeleteWorker = (id) => {
-        fetch(`http://localhost:8000/workers?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -14,7 +14,7 @@ function Table({ rows, cols, variant, setIsDeleted }) {
             });
     };
     const handleDeleteService = (id) => {
-        fetch(`http://localhost:8000/services?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/services?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
