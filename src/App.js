@@ -31,6 +31,7 @@ import WorkerDashboardHome from './Pages/Dashboards/WorkerDashboard/WorkerDashbo
 import WorkRequest from './Pages/Dashboards/WorkerDashboard/WorkRequest/WorkRequest';
 import WorkerServices from './Pages/Details/WorkerServices/WorkerServices';
 import Home from './Pages/Home/Home/Home';
+import AllServices from './Pages/ServicesPage/AllServices';
 import Hire from './Pages/Shared/Hire/Hire';
 
 function App() {
@@ -40,9 +41,14 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
 
-                    {/* services route */}
+                    {/* workers */}
+                    <Route path="/workers" element={<AvailableWorkers />} />
+
+                    {/* service route */}
                     <Route path="/services/:service" element={<WorkerServices />} />
 
+                    {/* services */}
+                    <Route path="/allServices" element={<AllServices />} />
                     {/* workers route */}
                     <Route path="/workers/:role" element={<AvailableWorkers />} />
 

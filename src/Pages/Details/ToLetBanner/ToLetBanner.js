@@ -8,10 +8,10 @@ function ToLetBanner() {
     const navigate = useNavigate();
     return (
         <div
-            className="text-white flex items-center justify-center flex-col px-10 "
+            className="text-white flex items-center justify-center flex-col px-10 h-[400px] md:h-[600px] lg:h-[700px]"
             style={{
                 background: `url(${src}) no-repeat center`,
-                height: '80vh',
+
                 backgroundSize: 'cover'
             }}
         >

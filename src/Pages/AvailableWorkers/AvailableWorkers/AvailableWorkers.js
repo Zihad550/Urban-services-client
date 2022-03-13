@@ -11,6 +11,7 @@ function AvailableWorkers() {
     const [workers, setWorkers] = useState([]);
     console.log(workers);
     const { role } = useParams();
+
     useEffect(() => {
         fetch(`https://radiant-sea-18512.herokuapp.com/workers/${role}`)
             .then((res) => res.json())

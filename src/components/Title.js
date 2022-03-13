@@ -5,7 +5,7 @@ function Title({ children, classes }) {
         <div className={` w-max mx-auto ${classes}`}>
             <h2
                 style={{ fontFamily: 'Lobster, cursive' }}
-                className="lg:text-6xl md:text-5xl text-4xl text-center mt-5"
+                className="lg:text-6xl md:text-5xl sm:text-4xl text-2xl text-center mt-5"
             >
                 {children}
             </h2>
