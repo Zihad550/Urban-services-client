@@ -125,19 +125,22 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                                                 className="hover:bg-gray-100 dark:hover:bg-gray-700"
                                             >
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.id}
-                                                </td>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.phone}
+                                                    {col.customerName}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                                    {col.category}
+                                                    {col.customerEmail}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.workersName}
+                                                    {col.workerName}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.status}
+                                                    {col.workersEmail}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.workerCategory}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.workingStatus}
                                                 </td>
                                             </tr>
                                         ))}

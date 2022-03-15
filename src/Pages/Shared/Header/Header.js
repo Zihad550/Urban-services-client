@@ -81,7 +81,7 @@ function Header() {
                                             <span className="sr-only">Open user menu</span>
                                             {user.photoURL ? (
                                                 <>
-                                                    <p className="text-lg uppercase hidden lg:block">
+                                                    <p className="text-lg uppercase hidden lg:block mr-2">
                                                         {user.displayName}
                                                     </p>
                                                     <img
