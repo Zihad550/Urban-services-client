@@ -37,7 +37,7 @@ function HomeServices() {
         }
     ];
     return (
-        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto mt-8 gap-5">
+        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto mt-8 md:gap-5">
             {majorServicesCategories.map((service) => (
                 <HomeService service={service} key={service.id} />
             ))}

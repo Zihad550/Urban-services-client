@@ -17,12 +17,12 @@ function WhyChooseUs() {
             <Title classes="mb-5">Why Choose Us</Title>
 
             {/* section 1 = happy clients */}
-            <div className="h-max lg:grid lg:grid-cols-2  lg:gap-5 flex flex-col  w-1/2 mx-auto">
-                <div className="h-[400px] w-full flex items-end lg:justify-end overflow-hidden ">
+            <div className="h-max md:grid md:grid-cols-2  md:gap-5 flex flex-col lg:w-1/2 p-5 lg:p-0 mx-auto">
+                <div className="md:h-[400px] w-full flex items-end lg:justify-end overflow-hidden ">
                     <img className=" h-full" src={happyClients} alt="service" />
                 </div>
                 <div className="flex items-start justify-center flex-col ">
-                    <h4 className="text-2xl uppercase text-gray-700 mb-3 mx-auto">
+                    <h4 className="text-2xl uppercase text-gray-700 mb-3 mx-auto text-center">
                         Our Clients Are Happy
                     </h4>
                     <p className="text-center">
@@ -35,9 +35,9 @@ function WhyChooseUs() {
             </div>
 
             {/* section 2 = we innovate for you */}
-            <div className="h-max lg:grid lg:grid-cols-2  lg:gap-5 flex flex-col-reverse  w-1/2 mx-auto">
+            <div className="h-max md:grid md:grid-cols-2  md:gap-5 flex flex-col-reverse lg:w-1/2 p-5 lg:p-0 mx-auto">
                 <div className="flex items-end justify-center flex-col">
-                    <h4 className="text-2xl mb-3 uppercase text-gray-700 mx-auto">
+                    <h4 className="text-2xl mb-3 uppercase text-gray-700 mx-auto text-center">
                         We Innovate for You
                     </h4>
                     <p className="text-center">
@@ -48,18 +48,18 @@ function WhyChooseUs() {
                         work.
                     </p>
                 </div>
-                <div className="h-[400px] w-full flex items-end justify-start">
+                <div className="md:h-[400px] w-full flex items-end justify-start">
                     <img className=" h-full" src={weInnovate} alt="service" />
                 </div>
             </div>
 
             {/* section 3 */}
-            <div className="h-max lg:grid lg:grid-cols-2  lg:gap-5 flex flex-col  w-1/2 mx-auto">
-                <div className="h-[400px] w-full flex items-end justify-end">
-                    <img className=" h-full" src={standValue} alt="service" />
+            <div className="h-max md:grid md:grid-cols-2  md:gap-5 flex flex-col lg:w-1/2 p-5 lg:p-0 mx-auto">
+                <div className="md:h-[400px] overflow-hidden w-full flex items-end justify-end">
+                    <img className=" h-auto" src={standValue} alt="service" />
                 </div>
                 <div className="flex items-start justify-center flex-col">
-                    <h4 className="text-2xl mb-3 uppercase text-gray-700 mx-auto">
+                    <h4 className="text-2xl md:mb-3 uppercase text-gray-700 mx-auto text-center">
                         We Stand by Our Values
                     </h4>
                     <p className="text-center">

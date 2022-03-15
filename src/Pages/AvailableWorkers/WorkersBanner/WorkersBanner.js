@@ -28,12 +28,14 @@ function WorkersBanner({ role }) {
         arrows: false
     };
     return (
-        <div className="bg-pink-400 -z-10 pt-20 pb-10 -mt-20 ">
+        <div className="bg-pink-400 -z-10 pt-20 pb-10 -mt-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 md:w-3/4 mx-auto w-full">
                 {/* search field */}
                 <div className="my-auto lg:ml-10 mx-10 lg:mx-0">
-                    <h2 className="text-3xl mb-3 capitalize">Find the perfect {role}</h2>
-                    <InputWithBtn placeholder="Search Services" btnText="Search" />
+                    <h2 className="text-3xl mb-3 capitalize">
+                        Find the perfect {role || 'Worker'}
+                    </h2>
+                    <InputWithBtn placeholder="Search Worker" btnText="Search" />
                     <div className="mt-3">
                         <span className="mr-2">Popular:</span>
                         {popularServices.map((service) => (

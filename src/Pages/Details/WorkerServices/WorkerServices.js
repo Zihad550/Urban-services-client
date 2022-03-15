@@ -24,7 +24,7 @@ function NextArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="text-white absolute top-[40%] -right-10 bg-blue-500 p-3 rounded-tr-full rounded-br-full z-10 hover:bg-blue-600"
+            className="absolute bottom-[40%] -right-10 md:right-[40%]  md:-bottom-9  p-2 w-10 h-10 rounded-full z-10  flex items-center justify-center hover:bg-gray-300"
         >
             {' '}
             <FontAwesomeIcon className="text-4xl" icon={faAngleRight} />
@@ -36,7 +36,7 @@ function PrevArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="text-white absolute top-[40%] -left-10 bg-blue-500 p-3 rounded-tl-full rounded-bl-full z-10 hover:bg-blue-600"
+            className="absolute bottom-[40%] -left-10 md:-bottom-9 md:left-[40%]  w-10 h-10 rounded-full z-10 flex items-center justify-center hover:bg-gray-300"
         >
             {' '}
             <FontAwesomeIcon className="text-4xl" icon={faAngleLeft} />
@@ -47,7 +47,6 @@ function PrevArrow({ onClick }) {
 function WorkerServices() {
     const [services, setServices] = useState([]);
     const { service } = useParams();
-    console.log(service);
     useEffect(() => {
         fetch(`https://radiant-sea-18512.herokuapp.com/services/${service}`)
             .then((res) => res.json())
@@ -93,6 +92,7 @@ function WorkerServices() {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
+        autoplay: true,
 
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
@@ -170,7 +170,7 @@ function WorkerServices() {
             </div>
 
             {/* services */}
-            <div className="my-20 container mx-auto">
+            <div className="my-20 container mx-auto ">
                 <Title>Our Services</Title>
                 <p className="w-2/4 text-center mx-auto mt-3 mb-10">
                     Our estimates are free, schedule an appointment with our online scheduling

@@ -1,11 +1,10 @@
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Input from '../../../components/Input';
 import useAuth from '../../../hooks/useAuth';
 import img from '../../../images/login.jpg';
-import Header from '../../Shared/Header/Header';
 
 function Login() {
     // usefirebase
@@ -32,9 +31,17 @@ function Login() {
     };
     return (
         <>
-            <Header />
+            {/* header */}
+            <Link
+                to="/"
+                className="text-4xl text-center font-serif w-full inline-block border-b-2 py-2"
+            >
+                Urban Services
+            </Link>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 mx-5 ">
+            {/* body */}
+
+            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 ">
                 <div className="hidden lg:block">
                     <img src={img} alt="" />
                 </div>
@@ -72,12 +79,15 @@ function Login() {
                             Login
                         </button>
 
-                        {/* google login */}
-                        <div className="text-center text-xl bg-orange-300 text-white py-2 rounded-lg mt-1">
-                            <button onClick={() => googleLogin(location, navigate)}>
-                                Login With google{' '}
-                                <FontAwesomeIcon icon={faGoogle} className="text-blue-500" />
-                            </button>
+                        <div className="flex items-center justify-center">
+                            <p className="text-center my-5 mr-5">Or,</p>
+                            {/* google login */}
+                            <div className="text-center text-xl bg-orange-300 text-white py-2 rounded-lg mt-1 px-5">
+                                <button onClick={() => googleLogin(location, navigate)}>
+                                    Login With google{' '}
+                                    <FontAwesomeIcon icon={faGoogle} className="text-blue-500" />
+                                </button>
+                            </div>
                         </div>
 
                         {/* goto register */}

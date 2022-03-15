@@ -14,9 +14,9 @@ function ContactUs() {
             {/* header */}
             <Header />
             {/* body */}
-            <div className="w-screen  h-full container mx-auto my-20">
+            <div className="h-full container mx-auto my-20">
                 <Title classes="mb-5 ">Contact Us</Title>
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2 p-5 lg:p-0">
                     <div>
                         <img src={src} alt="" />
                     </div>
@@ -50,11 +50,11 @@ function ContactUs() {
                                 placeholder="Message"
                             />
                             <Button type="submit" variant="outlined">
-                                Send Message
+                                Send
                             </Button>
                         </form>
                         {/* other contacts */}
-                        <div>
+                        <div className="flex flex-col items-center lg:items-start lg:mt-5">
                             <h3 className="text-2xl mb-1">Send us a message</h3>
                             <p className="mb-4">Our customer care is open 24/7</p>
                             {/* LOcation */}

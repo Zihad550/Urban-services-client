@@ -10,7 +10,7 @@ function NextArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="text-white absolute top-[40%] -right-10 bg-blue-500 p-3 rounded-tr-full rounded-br-full z-10 hover:bg-blue-600"
+            className="absolute bottom-[40%] -right-10 md:right-[40%]  md:-bottom-10  p-2 w-10 h-10 rounded-full z-10  flex items-center justify-center hover:bg-gray-300"
         >
             {' '}
             <FontAwesomeIcon className="text-4xl" icon={faAngleRight} />
@@ -22,7 +22,7 @@ function PrevArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="text-white absolute top-[40%] -left-10 bg-blue-500 p-3 rounded-tl-full rounded-bl-full z-10 hover:bg-blue-600"
+            className=" absolute bottom-[40%] -left-10 md:-bottom-10 md:left-[40%]  w-10 h-10 rounded-full z-10 flex items-center justify-center hover:bg-gray-300"
         >
             {' '}
             <FontAwesomeIcon className="text-4xl" icon={faAngleLeft} />
@@ -141,7 +141,7 @@ function TopWorkers() {
         ]
     };
     return (
-        <div className="my-20 container mx-auto">
+        <div className="my-20 container mx-auto ">
             <Title>Top Workers</Title>
             <p className="w-2/4 text-center mx-auto mt-3 mb-10">Top, workers available to hire</p>
             <Slider className="" {...settings}>

@@ -23,15 +23,15 @@ function Header() {
     return (
         <Disclosure
             as="nav"
-            className={location.pathname === '/services' ? 'md:bg-transparent' : 'bg-blue-400'}
+            className={location.pathname === '/workers' ? 'md:bg-transparent' : 'bg-blue-400'}
         >
             {({ open }) => (
-                <>
+                <div className={location.pathname === '/workers' && 'bg-gray-800'}>
                     <div className="container mx-auto sm:px-6 lg:px-8 ">
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden ">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white bg-violet-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white bg-violet-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ml-2">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -209,7 +209,13 @@ function Header() {
                     </div>
 
                     {/* mobile screen menu panel */}
-                    <Disclosure.Panel className="sm:hidden  bg-gray-700 ">
+                    <Disclosure.Panel
+                        className={
+                            location.pathname === '/workers'
+                                ? 'sm:hidden  bg-gray-700 mb-20'
+                                : 'sm:hidden bg-gray-700'
+                        }
+                    >
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navigation.map((item) => (
                                 <Disclosure.Button
@@ -254,7 +260,7 @@ function Header() {
                             )}
                         </div>
                     </Disclosure.Panel>
-                </>
+                </div>
             )}
         </Disclosure>
     );

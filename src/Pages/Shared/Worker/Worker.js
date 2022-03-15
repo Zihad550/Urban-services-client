@@ -37,24 +37,23 @@ function Worker({ worker }) {
                 </div>
                 {/* experience & location */}
 
-                <div className="flex mt-2">
+                <div className=" mt-2">
                     <p className="text-sm mr-2">
                         Experience:
                         <span className="font-bold"> {experience}</span>
                     </p>
-                    <p className="text-sm">
+                    <p className="text-sm my-2">
                         Location: <span className="font-bold">{location}</span>
                     </p>
                 </div>
                 {/* phone & email */}
-                <div className="">
+                <div className="flex text-sm justify-between">
                     <p>
-                        E-mail <FontAwesomeIcon icon={faEnvelope} />:{' '}
-                        <span className="ml-1">{email}</span>
+                        <FontAwesomeIcon icon={faEnvelope} />:{' '}
+                        <span className="ml-.5">{email}</span>
                     </p>
                     <p>
-                        Phone <FontAwesomeIcon icon={faPhone} />:{' '}
-                        <span className="ml-1">{phone}</span>
+                        <FontAwesomeIcon icon={faPhone} />: <span className="ml-.5">{phone}</span>
                     </p>
                 </div>
                 {/* social */}

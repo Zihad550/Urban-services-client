@@ -11,10 +11,10 @@ function NextArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="text-white absolute top-[50%] right-0 bg-blue-500 p-3 rounded-tl-full rounded-bl-full z-10 hover:bg-blue-600"
+            className="text-white absolute top-[50%] right-0 bg-blue-500 p-2 md:p-3 rounded-tl-full rounded-bl-full z-10 hover:bg-blue-600"
         >
             {' '}
-            <FontAwesomeIcon className="text-4xl" icon={faAngleRight} />
+            <FontAwesomeIcon className="text-3xl md:text-4xl" icon={faAngleRight} />
         </button>
     );
 }
@@ -23,10 +23,10 @@ function PrevArrow({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="text-white absolute top-[50%] left-0 bg-blue-500 p-3 rounded-tr-full rounded-br-full z-10 hover:bg-blue-600"
+            className="text-white absolute top-[50%] left-0 bg-blue-500 p-2 md:p-3 rounded-tr-full rounded-br-full z-10 hover:bg-blue-600"
         >
             {' '}
-            <FontAwesomeIcon className="text-4xl" icon={faAngleLeft} />
+            <FontAwesomeIcon className="text-3xl md:text-4xl" icon={faAngleLeft} />
         </button>
     );
 }
@@ -46,7 +46,7 @@ function HomeBanner() {
             id: 1,
             src: img2,
             title: 'Help You Find the perfect Service',
-            link: '/services',
+            link: '/allServices',
             linkText: 'Services'
         },
         {
@@ -68,7 +68,7 @@ function HomeBanner() {
         <div>
             <Slider className="m-0" {...settings}>
                 {banners.map((banner) => (
-                    <div className="w-full xl:h-[90vh] h-[70vh] ">
+                    <div className="w-full xl:h-[800px]  md:h-[600px] h-[400px] ">
                         <div
                             className="w-full h-full flex items-center justify-center "
                             style={{
@@ -78,12 +78,14 @@ function HomeBanner() {
                             key={banner.id}
                         >
                             <div className="flex flex-col items-center ">
-                                <h2 className="text-white text-5xl">{banner.title}</h2>
+                                <h2 className="text-white text-3xl md:text-5xl text-center">
+                                    {banner.title}
+                                </h2>
                                 <Link
                                     className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-3"
                                     to={banner.link}
                                 >
-                                    {banner.linkText}{' '}
+                                    {banner.linkText}
                                 </Link>
                             </div>
                         </div>
