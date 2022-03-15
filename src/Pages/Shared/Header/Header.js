@@ -1,6 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
@@ -90,12 +90,13 @@ function Header() {
                                                     />
                                                 </>
                                             ) : (
-                                                <>
-                                                    <p className="text-lg uppercase hidden lg:block">
-                                                        {user.displayName}
-                                                    </p>
-                                                    <UserIcon className="block h-10 w-10 text-violet-700 border-2 rounded-full border-violet-700" />
-                                                </>
+                                                <button
+                                                    onClick={() => navigate('/login')}
+                                                    type="button"
+                                                    className="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-800"
+                                                >
+                                                    Log In
+                                                </button>
                                             )}
                                         </Menu.Button>
                                     </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Subscribe from './Subscribe';
 
 function Footer() {
     // pages that the website has
@@ -25,11 +24,9 @@ function Footer() {
     ];
 
     return (
-        <div>
-            {/* newsletter */}
-            <Subscribe />
+        <div className="bg-gray-100 -z-20 ">
             {/* footer */}
-            <footer className="p-4 bg-white sm:p-6 dark:bg-gray-800 md:w-3/4 mx-auto">
+            <footer className="p-10 container mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
                     <div className="mb-6 md:mb-0 flex flex-col items-center lg:justify-start lg:items-start">
                         <span className=" text-2xl font-semibold whitespace-nowrap dark:text-white">

@@ -2,9 +2,12 @@ import React from 'react';
 import Title from '../../../components/Title';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
-import ContactUs from '../ContactUs/ContactUs';
+import FeedbackSection from '../FeedbackSection/FeedbackSection';
 import HomeBanner from '../HomeBanner/HomeBanner';
 import HomeServices from '../HomeServices/HomeServices';
+import Newsletter from '../Newsletter/Newsletter';
+import Partners from '../Partners/Partners';
+import WhyChooseUs from '../WhyChooseUs/WhyChooseUs';
 
 function Home() {
     return (
@@ -21,8 +24,17 @@ function Home() {
                 <HomeServices />
             </div>
 
-            {/* contact us  component */}
-            <ContactUs />
+            {/* why choose us */}
+            <WhyChooseUs />
+
+            {/* feedbacks */}
+            <FeedbackSection />
+
+            {/* newsletter section */}
+            <Newsletter />
+
+            {/* partners */}
+            <Partners />
 
             {/* footer */}
             <Footer />
