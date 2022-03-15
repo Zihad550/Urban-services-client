@@ -75,6 +75,17 @@ function TopWorkers() {
             skill: 'intermediate',
             email: 'fahadhossain@gmail.com',
             phone: '01234567891'
+        },
+        {
+            id: 5,
+            src: elec1,
+            name: 'Fahad Hossain',
+            location: 'Dhanmondi, Dhaka',
+            experience: '5 year',
+            category: 'Electrician',
+            skill: 'intermediate',
+            email: 'fahadhossain@gmail.com',
+            phone: '01234567891'
         }
     ];
 
@@ -104,7 +115,9 @@ function TopWorkers() {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    nextArrow: 0,
+                    prevArrow: 0
                 }
             },
             {

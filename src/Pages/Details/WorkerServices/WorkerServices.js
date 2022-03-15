@@ -113,7 +113,9 @@ function WorkerServices() {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    nextArrow: 0,
+                    prevArrow: 0
                 }
             },
             {
@@ -150,7 +152,7 @@ function WorkerServices() {
             {/* skills */}
             <div className="mt-10 lg:mt-0">
                 <Title classes="lg:hidden block">Skills</Title>
-                <div className="container grid lg:grid-cols-4 grid-cols-2 gap-4 lg:-mt-28 mx-auto mt-10  lg:mx-auto ">
+                <div className="container grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 lg:-mt-28 mx-auto mt-10">
                     {skills.map((skill) => (
                         <div
                             className="bg-white  p-3 rounded-lg lg:shadow-md shadow-lg  flex flex-col"

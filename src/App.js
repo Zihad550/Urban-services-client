@@ -8,6 +8,7 @@ import Register from './Pages/Authentication/Register/Register';
 import UserRoute from './Pages/Authentication/UserRoute/UserRoute';
 import WorkerRoute from './Pages/Authentication/WorkerRoute/WorkerRoute';
 import AvailableWorkers from './Pages/AvailableWorkers/AvailableWorkers/AvailableWorkers';
+import ContactUs from './Pages/ContactUs/ContactUs';
 import AdminAddOwner from './Pages/Dashboards/AdminDashboard/AdminAddOwner/AdminAddOwner';
 import AdminAddService from './Pages/Dashboards/AdminDashboard/AdminAddService/AdminAddService';
 import AdminAddWorker from './Pages/Dashboards/AdminDashboard/AdminAddWorker/AdminAddWorker';
@@ -43,6 +44,8 @@ function App() {
 
                     {/* workers */}
                     <Route path="/workers" element={<AvailableWorkers />} />
+                    {/* workers */}
+                    <Route path="/contactUs" element={<ContactUs />} />
 
                     {/* service route */}
                     <Route path="/services/:service" element={<WorkerServices />} />

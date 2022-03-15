@@ -27,6 +27,7 @@ function FeedbackSection() {
         autoplay: true,
         speed: 500,
         fade: true
+
         /* nextArrow: 0,
         prevArrow: 0, */
     };

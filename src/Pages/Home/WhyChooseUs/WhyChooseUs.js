@@ -17,13 +17,15 @@ function WhyChooseUs() {
             <Title classes="mb-5">Why Choose Us</Title>
 
             {/* section 1 = happy clients */}
-            <div className="h-max grid grid-cols-2  gap-5">
-                <div className="h-[400px] w-full flex items-end justify-end overflow-hidden">
+            <div className="h-max lg:grid lg:grid-cols-2  lg:gap-5 flex flex-col  w-1/2 mx-auto">
+                <div className="h-[400px] w-full flex items-end lg:justify-end overflow-hidden ">
                     <img className=" h-full" src={happyClients} alt="service" />
                 </div>
-                <div className="flex items-start justify-center flex-col">
-                    <h4 className="text-2xl uppercase text-gray-700 mb-3">Our Clients Are Happy</h4>
-                    <p className="w-2/4">
+                <div className="flex items-start justify-center flex-col ">
+                    <h4 className="text-2xl uppercase text-gray-700 mb-3 mx-auto">
+                        Our Clients Are Happy
+                    </h4>
+                    <p className="text-center">
                         Nothing gives us greater pride than seeing our clients delighted with the
                         work we’ve done together. Our case studies are solid proof of all the
                         different ways we’ve transformed the way people collaborate, work, and
@@ -33,10 +35,12 @@ function WhyChooseUs() {
             </div>
 
             {/* section 2 = we innovate for you */}
-            <div className="h-max grid grid-cols-2 gap-5 ">
+            <div className="h-max lg:grid lg:grid-cols-2  lg:gap-5 flex flex-col-reverse  w-1/2 mx-auto">
                 <div className="flex items-end justify-center flex-col">
-                    <h4 className="text-2xl mb-3 uppercase text-gray-700">We Innovate for You</h4>
-                    <p className="w-2/4 text-right">
+                    <h4 className="text-2xl mb-3 uppercase text-gray-700 mx-auto">
+                        We Innovate for You
+                    </h4>
+                    <p className="text-center">
                         We’re a team of dreamers, thinkers and creators. We’re constantly evolving
                         our products to reach even higher standards for design, quality,
                         manufacturing, and environmental sustainability. It’s how we earned ISO 9001
@@ -50,15 +54,15 @@ function WhyChooseUs() {
             </div>
 
             {/* section 3 */}
-            <div className="h-max grid grid-cols-2  gap-5">
+            <div className="h-max lg:grid lg:grid-cols-2  lg:gap-5 flex flex-col  w-1/2 mx-auto">
                 <div className="h-[400px] w-full flex items-end justify-end">
                     <img className=" h-full" src={standValue} alt="service" />
                 </div>
                 <div className="flex items-start justify-center flex-col">
-                    <h4 className="text-2xl mb-3 uppercase text-gray-700">
+                    <h4 className="text-2xl mb-3 uppercase text-gray-700 mx-auto">
                         We Stand by Our Values
                     </h4>
-                    <p className="w-2/4">
+                    <p className="text-center">
                         We care deeply about the people we serve and the products we create. It
                         stems from a set of uncompromising brand values that guide us in everything
                         we do. It’s why we believe in people-first design, working collaboratively,

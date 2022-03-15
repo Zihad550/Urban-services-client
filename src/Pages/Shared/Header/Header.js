@@ -8,7 +8,8 @@ import useAuth from '../../../hooks/useAuth';
 const navigation = [
     { name: 'Home', to: '/', current: false },
     { name: 'Services', to: '/allServices', current: false },
-    { name: 'Workers', to: '/workers', current: false }
+    { name: 'Workers', to: '/workers', current: false },
+    { name: 'Contact Us', to: '/contactUs', current: false }
 ];
 
 function classNames(...classes) {
@@ -26,7 +27,7 @@ function Header() {
         >
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 ">
+                    <div className="container mx-auto sm:px-6 lg:px-8 ">
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden ">
                                 {/* Mobile menu button */}

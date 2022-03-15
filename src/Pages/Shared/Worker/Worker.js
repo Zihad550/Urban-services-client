@@ -14,7 +14,7 @@ function Worker({ worker }) {
     ];
 
     return (
-        <div className="shadow-lg">
+        <div className="shadow-lg mx-2">
             {/* card header */}
             {/* img */}
             <div className="h-[300px] overflow-hidden">

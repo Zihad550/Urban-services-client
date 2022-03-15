@@ -5,7 +5,7 @@ function Service({ service }) {
     const { src, linkText, link, category, about, name } = service;
 
     return (
-        <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
+        <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-1 ">
             <div className="h-[200px] overflow-hidden">
                 <img className="w-full h-auto rounded-t-lg" src={src} alt="" />
             </div>

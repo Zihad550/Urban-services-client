@@ -30,12 +30,11 @@ function Home() {
             {/* feedbacks */}
             <FeedbackSection />
 
-            {/* newsletter section */}
-            <Newsletter />
-
             {/* partners */}
             <Partners />
 
+            {/* newsletter section */}
+            <Newsletter />
             {/* footer */}
             <Footer />
         </div>
