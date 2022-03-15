@@ -1,14 +1,14 @@
 import React from 'react';
+import Select from 'react-select';
 import Slider from 'react-slick';
 import Button from '../../../components/Button';
-import InputWithBtn from '../../../components/InputWithBtn';
 // import person1 from '../../../images/person1-removebg-preview.png';
 import person2 from '../../../images/person2-removebg-preview.png';
 import person3 from '../../../images/person3-removebg-preview.png';
 import person4 from '../../../images/person4-removebg-preview.png';
 import './WorkersBanner.css';
 
-function WorkersBanner({ role }) {
+function WorkersBanner({ role, options, setSearchValue, setSearch }) {
     const persons = [
         // { id: 1, src: person1, name: 'Jashim' },
         { id: 1, src: person2, name: 'Karim' },
@@ -27,6 +27,7 @@ function WorkersBanner({ role }) {
         fade: true,
         arrows: false
     };
+
     return (
         <div className="bg-pink-400 -z-10 pt-20 pb-10 -mt-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 md:w-3/4 mx-auto w-full">
@@ -35,7 +36,21 @@ function WorkersBanner({ role }) {
                     <h2 className="text-3xl mb-3 capitalize">
                         Find the perfect {role || 'Worker'}
                     </h2>
-                    <InputWithBtn placeholder="Search Worker" btnText="Search" />
+
+                    <div className="flex">
+                        <Select
+                            className="w-full"
+                            options={options}
+                            onChange={(e) => setSearchValue(e.value)}
+                        />
+                        <button
+                            onClick={() => setSearch(true)}
+                            type="button"
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-r-lg"
+                        >
+                            Search
+                        </button>
+                    </div>
                     <div className="mt-3">
                         <span className="mr-2">Popular:</span>
                         {popularServices.map((service) => (

@@ -9,23 +9,43 @@ import WorkersBanner from '../WorkersBanner/WorkersBanner';
 
 function AvailableWorkers() {
     const [workers, setWorkers] = useState([]);
-    console.log(workers);
+    const [searchValue, setSearchValue] = useState('');
+    const [search, setSearch] = useState(false);
     const { role } = useParams();
+    console.log(workers);
 
     useEffect(() => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/workers/${role}`)
-            .then((res) => res.json())
-            .then((data) => setWorkers(data));
-    }, []);
+        if (search && searchValue) {
+            setSearch(false);
+            console.log('inside1');
+            fetch(`http://localhost:8000/worker/${searchValue}`)
+                .then((res) => res.json())
+                .then((data) => setWorkers([...data]));
+        } else {
+            console.log('inside2');
+            fetch(`http://localhost:8000/workers/${role}`)
+                .then((res) => res.json())
+                .then((data) => setWorkers(data));
+        }
+    }, [search, role]);
 
-    console.log(role);
+    const allAvailableWorkerNames = workers.map((worker) => ({
+        value: worker._id,
+        label: worker.name.charAt(0).toUpperCase() + worker.name.slice(1)
+    }));
+    console.log(allAvailableWorkerNames);
 
     return (
         <>
             {/* header */}
             <Header />
             {/* banner */}
-            <WorkersBanner role={role} />
+            <WorkersBanner
+                role={role}
+                options={allAvailableWorkerNames}
+                setSearchValue={setSearchValue}
+                setSearch={setSearch}
+            />
             {/* workers */}
             <div className="my-20">
                 <Title classes="mb-5 capitalize">All Available {role || 'Workers'}</Title>
