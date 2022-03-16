@@ -1,3 +1,5 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -35,6 +37,8 @@ import WorkerServices from './Pages/Details/WorkerServices/WorkerServices';
 import Home from './Pages/Home/Home/Home';
 import AllServices from './Pages/ServicesPage/AllServices';
 import Hire from './Pages/Shared/Hire/Hire';
+// ..
+AOS.init();
 
 function App() {
     return (

@@ -18,10 +18,13 @@ function WhyChooseUs() {
 
             {/* section 1 = happy clients */}
             <div className="h-max md:grid md:grid-cols-2  md:gap-5 flex flex-col lg:w-1/2 p-5 lg:p-0 mx-auto">
-                <div className="md:h-[400px] w-full flex items-end lg:justify-end overflow-hidden ">
+                <div
+                    data-aos="fade-up-right"
+                    className="md:h-[400px] w-full flex items-end lg:justify-end overflow-hidden "
+                >
                     <img className=" h-full" src={happyClients} alt="service" />
                 </div>
-                <div className="flex items-start justify-center flex-col ">
+                <div data-aos="fade-up-left" className="flex items-start justify-center flex-col ">
                     <h4 className="text-2xl uppercase text-gray-700 mb-3 mx-auto text-center">
                         Our Clients Are Happy
                     </h4>
@@ -36,7 +39,7 @@ function WhyChooseUs() {
 
             {/* section 2 = we innovate for you */}
             <div className="h-max md:grid md:grid-cols-2  md:gap-5 flex flex-col-reverse lg:w-1/2 p-5 lg:p-0 mx-auto">
-                <div className="flex items-end justify-center flex-col">
+                <div data-aos="fade-right" className="flex items-end justify-center flex-col">
                     <h4 className="text-2xl mb-3 uppercase text-gray-700 mx-auto text-center">
                         We Innovate for You
                     </h4>
@@ -48,7 +51,10 @@ function WhyChooseUs() {
                         work.
                     </p>
                 </div>
-                <div className="md:h-[400px] w-full flex items-end justify-start">
+                <div
+                    data-aos="fade-left"
+                    className="md:h-[400px] w-full flex items-end justify-start"
+                >
                     <img className=" h-full" src={weInnovate} alt="service" />
                 </div>
             </div>
