@@ -1,12 +1,13 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 import useAuth from '../../../hooks/useAuth';
 
 function WorkerRoute({ children, ...rest }) {
     const { savedUser, adminLoading, user } = useAuth();
     const location = useLocation();
     if (adminLoading) {
-        return <div className="rounded-full w-20 h-20 border-4 border-red-600" />;
+        return <Loader />;
     }
     if (savedUser.role === 'worker' && user.email) {
         return children;

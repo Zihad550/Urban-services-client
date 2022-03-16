@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import AuthProvider from './context/AuthProvider';
 import AdminRoute from './Pages/Authentication/AdminRoute/AdminRoute';
 import Login from './Pages/Authentication/Login/Login';
+import PrivateRoute from './Pages/Authentication/PrivateRoute/PrivateRoute';
 import Register from './Pages/Authentication/Register/Register';
 import UserRoute from './Pages/Authentication/UserRoute/UserRoute';
 import WorkerRoute from './Pages/Authentication/WorkerRoute/WorkerRoute';
@@ -56,7 +57,14 @@ function App() {
                     <Route path="/workers/:role" element={<AvailableWorkers />} />
 
                     {/* hire */}
-                    <Route path="/hire/:id" element={<Hire />} />
+                    <Route
+                        path="/hire/:id"
+                        element={
+                            <PrivateRoute>
+                                <Hire />
+                            </PrivateRoute>
+                        }
+                    />
 
                     {/* Admin Dashboard */}
                     <Route
