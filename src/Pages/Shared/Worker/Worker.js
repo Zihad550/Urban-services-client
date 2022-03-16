@@ -34,6 +34,9 @@ function Worker({ worker }) {
                     >
                         {skill}
                     </p>
+                    <p className="text-white inline-block ml-5 px-3 py-1 rounded-full w-min h-min text-sm capitalize bg-blue-500">
+                        {category}
+                    </p>
                 </div>
                 {/* experience & location */}
 

@@ -9,25 +9,27 @@ import WorkersBanner from '../WorkersBanner/WorkersBanner';
 
 function AvailableWorkers() {
     const [workers, setWorkers] = useState([]);
+    const [searchedWorkers, setSearchedWorkers] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [search, setSearch] = useState(false);
+    console.log(search, searchValue);
     const { role } = useParams();
     console.log(workers);
 
     useEffect(() => {
-        if (search && searchValue) {
+        if (searchValue && search) {
             setSearch(false);
             console.log('inside1');
-            fetch(`http://localhost:8000/worker/${searchValue}`)
+            fetch(`https://radiant-sea-18512.herokuapp.com/worker/${searchValue}`)
                 .then((res) => res.json())
-                .then((data) => setWorkers([...data]));
+                .then((data) => setSearchedWorkers([data]));
         } else {
             console.log('inside2');
-            fetch(`http://localhost:8000/workers/${role}`)
+            fetch(`https://radiant-sea-18512.herokuapp.com/workers?role=${role}`)
                 .then((res) => res.json())
                 .then((data) => setWorkers(data));
         }
-    }, [search, role]);
+    }, [search]);
 
     const allAvailableWorkerNames = workers.map((worker) => ({
         value: worker._id,
@@ -50,9 +52,16 @@ function AvailableWorkers() {
             <div className="my-20">
                 <Title classes="mb-5 capitalize">All Available {role || 'Workers'}</Title>
                 <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto gap-5">
-                    {role === 'toLet'
-                        ? workers.map((owner) => <Owner key={owner._id} owner={owner} />)
-                        : workers.map((worker) => <Worker worker={worker} key={worker._id} />)}
+                    {role === 'toLet' &&
+                        workers.map((owner) => <Owner key={owner._id} owner={owner} />)}
+
+                    {searchedWorkers.length > 0 &&
+                        searchedWorkers.map((worker) => (
+                            <Worker worker={worker} key={worker._id} />
+                        ))}
+                    {searchedWorkers.length === 0 &&
+                        role !== 'toLet' &&
+                        workers.map((worker) => <Worker worker={worker} key={worker._id} />)}
                 </div>
             </div>
             {/* footer */}

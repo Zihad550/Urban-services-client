@@ -68,7 +68,7 @@ function HomeBanner() {
         <div>
             <Slider className="m-0" {...settings}>
                 {banners.map((banner) => (
-                    <div className="w-full xl:h-[800px]  md:h-[600px] h-[400px] ">
+                    <div key={banner.id} className="w-full xl:h-[800px]  md:h-[600px] h-[400px] ">
                         <div
                             className="w-full h-full flex items-center justify-center "
                             style={{

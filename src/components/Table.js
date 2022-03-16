@@ -97,7 +97,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
             });
     };
     return (
-        <div>
+        <div className="mr-2">
             <div className="flex flex-col">
                 <div className="overflow-x-auto shadow-md sm:rounded-lg">
                     <div className="inline-block min-w-full align-middle">
