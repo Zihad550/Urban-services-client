@@ -22,6 +22,7 @@ import AdminServices from './Pages/Dashboards/AdminDashboard/AdminServices/Admin
 import AdminWorkers from './Pages/Dashboards/AdminDashboard/AdminWorkers/AdminWorkers';
 import BusyWorkers from './Pages/Dashboards/AdminDashboard/BusyWorkers/BusyWorkers';
 import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
+import MakeAdmin from './Pages/Dashboards/AdminDashboard/MakeAdmin/MakeAdmin';
 import ToLetRequests from './Pages/Dashboards/AdminDashboard/ToLetRequests/ToLetRequests';
 import WorkerRequests from './Pages/Dashboards/AdminDashboard/WorkerRequests/WorkerRequests';
 import Dashboards from './Pages/Dashboards/Dashboards/Dashboards';
@@ -103,6 +104,14 @@ function App() {
                             element={
                                 <AdminRoute>
                                     <AdminServices />
+                                </AdminRoute>
+                            }
+                        />
+                        <Route
+                            path="/adminDashboard/make-admin"
+                            element={
+                                <AdminRoute>
+                                    <MakeAdmin />
                                 </AdminRoute>
                             }
                         />

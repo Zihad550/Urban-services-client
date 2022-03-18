@@ -5,7 +5,7 @@ import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
 import Title from '../../../../components/Title';
-import src from '../../../../images/addWorker.svg';
+import src from '../../../../images/postTolet.svg';
 
 function AdminAddOwner() {
     /* 

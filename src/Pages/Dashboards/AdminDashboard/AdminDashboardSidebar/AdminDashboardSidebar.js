@@ -1,4 +1,5 @@
 import {
+    faAnglesUp,
     faArrowRightFromBracket,
     faBolt,
     faBuilding,
@@ -30,26 +31,27 @@ function AdminadminDashboardSidebar({ closeSidebar }) {
 
     // sidebar navs
     const navs = [
-        { id: 1, nav: 'Customers', link: '/adminDashboard/customers', icon: faUsers },
+        { id: 1, nav: 'Make Admin', link: '/adminDashboard/make-admin', icon: faAnglesUp },
+        { id: 2, nav: 'Customers', link: '/adminDashboard/customers', icon: faUsers },
         {
-            id: 2,
+            id: 3,
             nav: 'Worker Requests',
             link: '/adminDashboard/worker-requests',
             icon: faEnvelope
         },
         {
-            id: 3,
+            id: 4,
             nav: 'ToLet Requests',
             link: '/adminDashboard/toLet-requests',
             icon: faEnvelope
         },
         {
-            id: 4,
+            id: 5,
             nav: 'Available Workers',
             link: '/adminDashboard/available-workers',
             icon: faUserCheck
         },
-        { id: 4, nav: 'Busy Workers', link: '/adminDashboard/busy-workers', icon: faBusinessTime }
+        { id: 6, nav: 'Busy Workers', link: '/adminDashboard/busy-workers', icon: faBusinessTime }
     ];
 
     const services = [
