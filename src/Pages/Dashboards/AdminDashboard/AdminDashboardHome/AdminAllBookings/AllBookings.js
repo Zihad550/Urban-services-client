@@ -18,18 +18,6 @@ function AdminAllBookings() {
         'Status'
     ];
 
-    /* cost: "12"
-customerEmail: "jehad5295@gmail.com"
-customerName: "Jehad Hossain"
-customerPhone: "1233"
-workerCategory: "electrician"
-workerEmail: "mr.zihad321@gmail.com"
-workerLocation: "Dhaka, Bangladesh"
-workerName: "Mr Z"
-workerPhone: "012345566"
-workingProgress: "100%"
-workingStatus: "working" */
-
     return (
         <div className="">
             <div className="flex flex-col mt-5">

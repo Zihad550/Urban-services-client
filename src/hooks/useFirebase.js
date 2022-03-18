@@ -217,7 +217,7 @@ const useFirebase = () => {
     // get workers
     useEffect(() => {
         setWorkingStatus(false);
-        fetch('http://localhost:8000/allWorkers')
+        fetch('https://radiant-sea-18512.herokuapp.com/allWorkers')
             .then((res) => res.json())
             .then((data) => {
                 const availableWorkers = data.filter((worker) => worker.workingStatus === 'Free');
@@ -238,7 +238,7 @@ const useFirebase = () => {
 
     // get toLets
     useEffect(() => {
-        fetch('http://localhost:8000/allToLets')
+        fetch('https://radiant-sea-18512.herokuapp.com/allToLets')
             .then((res) => res.json())
             .then((data) => setToLets(data));
     }, [toLetUpdated]);
@@ -281,9 +281,12 @@ const useFirebase = () => {
         applications,
         setApplicationUpdate,
         setToLetUpdated,
+        toLetUpdated,
         toLets,
         availableWorkers,
-        busyWorkers
+        busyWorkers,
+        applicationUpdate,
+        workUpdate
     };
 };
 

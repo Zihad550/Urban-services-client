@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import ErrorToast from '../../../../components/ErrorToasts';
+import SuccessToast from '../../../../components/SuccessToasts';
 
 function MakeAdmin() {
     const [email, setEmail] = useState('');
-    console.log(email);
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
 
+    const handleSubmit = (e) => {
+        setIsError(false);
+        setIsSuccess(false);
+        e.preventDefault();
         fetch('https://radiant-sea-18512.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
@@ -14,10 +19,16 @@ function MakeAdmin() {
             body: JSON.stringify({ email })
         })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                if (data.modifiedCount > 0) {
+                    setIsSuccess(true);
+                } else {
+                    setIsError(true);
+                }
+            });
     };
     return (
-        <div className="flex items-center justify-center h-full">
+        <div className="flex items-center justify-center h-full flex-col">
             <div className="flex flex-col lg:w-1/4 items-center justify-center bg-blue-300 pt-8 pb-10 px-5 rounded-lg">
                 <label
                     htmlFor="email-adress-icon"
@@ -53,6 +64,15 @@ function MakeAdmin() {
                         Make
                     </button>
                 </form>
+            </div>
+            {/* toast */}
+            <div className="mt-2">
+                <SuccessToast isSuccess={isSuccess} setIsSuccess={setIsSuccess}>
+                    User Successfully updated to Admin
+                </SuccessToast>
+                <ErrorToast isError={isError} setIsError={setIsError}>
+                    User Does not exists
+                </ErrorToast>
             </div>
         </div>
     );

@@ -11,24 +11,27 @@ function Table({
     setStatus,
     setWorkingStatus,
     setToLetUpdate,
-    setToLetUpdated
+    setToLetUpdated,
+    setWorkerUpdated
 }) {
     // hooks
     const { setWorkUpdate } = useAuth();
     // handle delete worker
     const handleDeleteWorker = (id) => {
+        setWorkerUpdated(false);
         fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
             .then((data) => {
                 data.deletedCount > 0 && alert('Deleted Successfully');
-                setIsDeleted(true);
+                setWorkerUpdated(true);
             });
     };
 
     // handle delete services
     const handleDeleteService = (id) => {
+        setIsDeleted(false);
         fetch(`https://radiant-sea-18512.herokuapp.com/services?id=${id}`, {
             method: 'DELETE'
         })
@@ -127,7 +130,7 @@ function Table({
     // handle tolet delete
     const handleDeleteToLet = (id) => {
         console.log(id);
-        fetch(`http://localhost:8000/toLet/delete?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/toLet/delete?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -176,13 +179,33 @@ function Table({
                                                     {col.workerName}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.workersEmail}
+                                                    {col.workerEmail}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                     {col.workerCategory}
                                                 </td>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.workingStatus}
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    <span
+                                                        className={`py-1 px-2 rounded-full text-black ${
+                                                            col.workingStatus === 'Pending' &&
+                                                            'bg-yellow-500'
+                                                        } ${
+                                                            col.workingStatus === 'Not Working' &&
+                                                            'bg-violet-500'
+                                                        } ${
+                                                            col.workingStatus === 'Working' &&
+                                                            'bg-blue-500'
+                                                        } ${
+                                                            col.workingStatus === 'Completed' &&
+                                                            'bg-green-500'
+                                                        }
+                                                        ${
+                                                            col.workingStatus === 'Rejected' &&
+                                                            'bg-red-500'
+                                                        }`}
+                                                    >
+                                                        {col.workingStatus}
+                                                    </span>
                                                 </td>
                                             </tr>
                                         ))}

@@ -2,13 +2,16 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import Button from '../../../../components/Button';
+import ErrorToasts from '../../../../components/ErrorToasts';
 import Input from '../../../../components/Input';
+import SuccessToasts from '../../../../components/SuccessToasts';
 import Title from '../../../../components/Title';
 import src from '../../../../images/addService.svg';
 
 function AdminAddService() {
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
     const [data, setData] = useState({ category: 'electricianService' });
-    console.log(data);
 
     // handle form fields data
     const handleFormData = (e) => {
@@ -16,12 +19,12 @@ function AdminAddService() {
         newData[e.target.name] = e.target.value;
         setData(newData);
     };
-    console.log(data);
 
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        setError(false);
+        setSuccess(false);
         fetch('https://radiant-sea-18512.herokuapp.com/services', {
             method: 'POST',
             headers: {
@@ -32,10 +35,10 @@ function AdminAddService() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.insertedId) {
-                    alert('Added Successfully');
+                    setSuccess(true);
                     e.target.reset();
                 } else {
-                    alert('Process Unsuccessful');
+                    setError(true);
                 }
             });
     };
@@ -48,6 +51,15 @@ function AdminAddService() {
                     <img src={src} alt="" />
                 </div>
                 <div>
+                    {/* toast */}
+                    <div className="flex  justify-center w-full mb-5 ">
+                        <SuccessToasts isSuccess={success} setIsSuccess={setSuccess}>
+                            Service Added Successfully{' '}
+                        </SuccessToasts>
+                        <ErrorToasts isError={error} setIsError={setError}>
+                            An Error Occurred. Please Refresh the page and try again.
+                        </ErrorToasts>
+                    </div>
                     <Title classes="mb-5 lg:hidden">Add New Service</Title>
                     <form onSubmit={handleSubmit}>
                         {/* service name */}

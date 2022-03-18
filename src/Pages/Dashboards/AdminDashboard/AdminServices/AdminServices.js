@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import SuccessToasts from '../../../../components/SuccessToasts';
 import Table from '../../../../components/Table';
 
 function AdminServices() {
@@ -17,6 +18,11 @@ function AdminServices() {
     console.log(services);
     return (
         <div>
+            <div className="absolute top-[25%] right-[25%]">
+                <SuccessToasts isSuccess={isDeleted} setIsSuccess={setIsDeleted}>
+                    Service Deleted Successfully
+                </SuccessToasts>
+            </div>
             <Table
                 setIsDeleted={setIsDeleted}
                 rows={rows}

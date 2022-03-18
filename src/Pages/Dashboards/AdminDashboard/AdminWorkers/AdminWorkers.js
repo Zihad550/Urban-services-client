@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import SuccessToasts from '../../../../components/SuccessToasts';
 import Table from '../../../../components/Table';
 
 function AdminWorkers() {
     const [workers, setWorkers] = useState([]);
+    const [workerUpdated, setWorkerUpdated] = useState(false);
     const { role } = useParams();
-    console.log(role);
     useEffect(() => {
         fetch(`https://radiant-sea-18512.herokuapp.com/workers/${role}`)
             .then((res) => res.json())
             .then((data) => setWorkers(data));
-    }, [role]);
+    }, [role, workerUpdated]);
     const rows = ['Name', 'Phone Number', 'E-mail', 'Experience', 'Skill', 'Action'];
     return (
         <div>
-            <Table rows={rows} cols={workers} variant="workersTable" />
+            <div className="absolute top-[25%] right-[25%]">
+                <SuccessToasts isSuccess={workerUpdated} setIsSuccess={setWorkerUpdated}>
+                    Worker Deleted Successfully
+                </SuccessToasts>
+            </div>
+            <Table
+                rows={rows}
+                cols={workers}
+                setWorkerUpdated={setWorkerUpdated}
+                variant="workersTable"
+            />
         </div>
     );
 }
