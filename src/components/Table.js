@@ -1,8 +1,11 @@
-import { faCheck, faPen, faSign, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesUp, faCheck, faPen, faSign, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import useAuth from '../hooks/useAuth';
 
 function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus }) {
+    // hooks
+    const { setWorkUpdate } = useAuth();
     // handle delete worker
     const handleDeleteWorker = (id) => {
         fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}`, {
@@ -74,7 +77,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                 if (data.insertedId) {
                     alert('Status Updated');
                 }
-                setWorkingStatus(true);
+                setWorkUpdate(true);
             });
     };
 
@@ -234,9 +237,29 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                                                     {col.workerPhone}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                                    {col?.workingStatus}
+                                                    <span
+                                                        className={`py-1 px-2 rounded-full text-black ${
+                                                            col.workingStatus === 'Pending' &&
+                                                            'bg-yellow-500'
+                                                        } ${
+                                                            col.workingStatus === 'Not Working' &&
+                                                            'bg-violet-500'
+                                                        } ${
+                                                            col.workingStatus === 'Working' &&
+                                                            'bg-blue-500'
+                                                        } ${
+                                                            col.workingStatus === 'Completed' &&
+                                                            'bg-green-500'
+                                                        }
+                                                        ${
+                                                            col.workingStatus === 'Rejected' &&
+                                                            'bg-red-500'
+                                                        }`}
+                                                    >
+                                                        {col.workingStatus}
+                                                    </span>
                                                 </td>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white ">
                                                     {col?.workingProgress}
                                                 </td>
                                             </tr>
@@ -289,7 +312,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
 
                                     {/* current works */}
                                     {variant === 'currentWorks' &&
-                                        cols.map((col) => (
+                                        cols?.map((col) => (
                                             <tr
                                                 key={col.id}
                                                 className="hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -305,7 +328,17 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                                                     {col.customerPhone}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                                    {col.workingStatus}
+                                                    <span
+                                                        className={`py-1 px-2 rounded-full text-black ${
+                                                            col.workingStatus === 'Not Working' &&
+                                                            'bg-yellow-500'
+                                                        } ${
+                                                            col.workingStatus === 'Working' &&
+                                                            'bg-green-500'
+                                                        }`}
+                                                    >
+                                                        {col.workingStatus}
+                                                    </span>
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                                                     {col.workingProgress}
@@ -318,17 +351,23 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                                                         onClick={() =>
                                                             handleWorkingStatus(
                                                                 col.workerEmail,
-                                                                'working',
+                                                                'Working',
                                                                 col._id
                                                             )
                                                         }
                                                         title="Update Working Status"
                                                         className="bg-yellow-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-yellow-500"
                                                     >
-                                                        <FontAwesomeIcon icon={faSign} />
+                                                        <FontAwesomeIcon icon={faAnglesUp} />
                                                     </button>
                                                     <button
-                                                        onClick={() => handleCompleteWork(col._id)}
+                                                        onClick={() =>
+                                                            handleWorkingStatus(
+                                                                col.workerEmail,
+                                                                'Completed',
+                                                                col._id
+                                                            )
+                                                        }
                                                         title="Work Completed"
                                                         className="bg-green-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-green-500"
                                                     >
@@ -340,7 +379,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
 
                                     {/* to show Available to-lets */}
                                     {variant === 'toLets' &&
-                                        cols.map((col) => (
+                                        cols?.map((col) => (
                                             <tr
                                                 key={col.id}
                                                 className="hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -449,6 +488,147 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                                                     >
                                                         <FontAwesomeIcon icon={faSign} />
                                                     </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    {/* to show work request */}
+                                    {variant === 'workRequest' &&
+                                        cols?.map((col) => (
+                                            <tr
+                                                key={col.id}
+                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            >
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.customerName}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.customerPhone}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.customerEmail}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.cost}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    <span
+                                                        className={`py-1 px-2 rounded-full text-black font-light bg-yellow-400
+                                                         `}
+                                                    >
+                                                        {col.workingStatus}
+                                                    </span>
+                                                </td>
+
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    <button
+                                                        onClick={() =>
+                                                            handleWorkingStatus(
+                                                                col.workerEmail,
+                                                                'Not Working',
+                                                                col._id
+                                                            )
+                                                        }
+                                                        title="Accept Request"
+                                                        className="bg-green-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-green-500"
+                                                    >
+                                                        <FontAwesomeIcon icon={faCheck} />
+                                                    </button>
+                                                    <button
+                                                        title="Delete Request"
+                                                        className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
+                                                        onClick={() =>
+                                                            handleWorkingStatus(
+                                                                col.workerEmail,
+                                                                'Rejected',
+                                                                col._id
+                                                            )
+                                                        }
+                                                    >
+                                                        <FontAwesomeIcon icon={faXmark} />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    {/* to show all works */}
+                                    {variant === 'works' &&
+                                        cols?.map((col) => (
+                                            <tr
+                                                key={col.id}
+                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            >
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.customerName}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.customerPhone}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.customerEmail}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.cost}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <span
+                                                        className={`py-1 px-2 rounded-full text-black font-light  ${
+                                                            col.workingStatus === 'Completed' &&
+                                                            'bg-green-400'
+                                                        } ${
+                                                            col.workingStatus === 'Rejected' &&
+                                                            'bg-red-500'
+                                                        } ${
+                                                            col.workingStatus === 'Pending' &&
+                                                            'bg-yellow-500'
+                                                        } ${
+                                                            col.workingStatus === 'Not Working' &&
+                                                            'bg-blue-500'
+                                                        } ${
+                                                            col.workingStatus === 'Rejected' &&
+                                                            'bg-green-500'
+                                                        }`}
+                                                    >
+                                                        {col.workingStatus}
+                                                    </span>
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.workingStatus}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    {/* to show pending requests */}
+
+                                    {variant === 'requestPending' &&
+                                        cols?.map((col) => (
+                                            <tr
+                                                key={col.id}
+                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            >
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.workerName}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.workerEmail}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.workerPhone}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.cost}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <span
+                                                        className={`py-1 px-2 rounded-full text-black font-light   ${
+                                                            col.workingStatus === 'Rejected' &&
+                                                            'bg-red-500'
+                                                        } ${
+                                                            col.workingStatus === 'Pending' &&
+                                                            'bg-yellow-500'
+                                                        } `}
+                                                    >
+                                                        {col.workingStatus}
+                                                    </span>
                                                 </td>
                                             </tr>
                                         ))}

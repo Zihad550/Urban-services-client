@@ -1,7 +1,9 @@
 import {
+    faAnglesUp,
     faArrowRightFromBracket,
     faChartLine,
     faEnvelope,
+    faHelmetSafety,
     faUser,
     faUsers
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,8 +22,9 @@ function UseruserDashboardSidebar({ closeSidebar }) {
     // sidebar navs
     const navs = [
         { id: 1, nav: 'Hired', link: '/userDashboard/hired', icon: faUsers },
-        { id: 2, nav: 'Became Worker', link: '/userDashboard/became-worker', icon: faEnvelope },
-        { id: 3, nav: 'Post ToLet', link: '/userDashboard/post-toLet', icon: faEnvelope }
+        { id: 2, nav: 'Request Pending', link: '/userDashboard/requestPending', icon: faAnglesUp },
+        { id: 3, nav: 'Became Worker', link: '/userDashboard/became-worker', icon: faHelmetSafety },
+        { id: 4, nav: 'Post ToLet', link: '/userDashboard/post-toLet', icon: faEnvelope }
     ];
 
     return (

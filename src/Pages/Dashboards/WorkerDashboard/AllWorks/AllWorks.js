@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Table from '../../../../components/Table';
+import useAuth from '../../../../hooks/useAuth';
 
 function AllWorks() {
-    const [works, setWorks] = useState([]);
-    useEffect(() => {
-        fetch('')
-            .then((res) => res.json())
-            .then((data) => setWorks(data));
-    });
-    return <div>AllWorks</div>;
+    const { works } = useAuth();
+    const rows = [
+        'Customer Name',
+        'Customer Email',
+        'Customer Phone',
+        'Salary',
+        'Working Status',
+        'Working Progress'
+    ];
+    return (
+        <div>
+            <Table cols={works} rows={rows} variant="works" />
+        </div>
+    );
 }
 
 export default AllWorks;

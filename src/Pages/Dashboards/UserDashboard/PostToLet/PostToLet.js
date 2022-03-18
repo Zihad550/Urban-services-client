@@ -5,11 +5,14 @@ import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
 import Title from '../../../../components/Title';
+import useAuth from '../../../../hooks/useAuth';
 
 function PostToLet() {
+    // hooks
     const [data, setData] = useState({
         category: 'toLet'
     });
+    const { user } = useAuth();
 
     // handle form fields data
     const handleFormData = (e) => {
@@ -26,7 +29,7 @@ function PostToLet() {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ ...data, email: user.email, name: user.displayName })
         })
             .then((res) => res.json())
             .then((data) => {
@@ -57,6 +60,7 @@ function PostToLet() {
                                     variant="underlined"
                                     placeholder=" "
                                     type="text"
+                                    value={user.displayName}
                                 />
                                 <Label>Name</Label>
                             </div>
@@ -69,6 +73,7 @@ function PostToLet() {
                                     variant="underlined"
                                     placeholder=" "
                                     type="email"
+                                    value={user.email}
                                 />
                                 <Label>Email Address</Label>
                             </div>

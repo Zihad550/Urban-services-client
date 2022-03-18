@@ -9,7 +9,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Slider from 'react-slick/lib/slider';
 import Title from '../../../components/Title';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
@@ -54,9 +53,19 @@ function WorkerServices() {
     });
     const navigate = useNavigate();
 
+    /* {service === 'electricianService' && <ElectricianBanner />}
+            {service === 'plumberService' && <PlumberBanner />}
+            {service === 'chefService' && <ChefBanner />}
+            {service === 'toLetService' && <ToLetBanner />} */
     let serviceFor;
-    if (service === 'electricianServices') {
+    if (service === 'electricianService') {
         serviceFor = 'electrician';
+    } else if (service === 'plumberService') {
+        serviceFor = 'plumber';
+    } else if (service === 'chefService') {
+        serviceFor = 'chef';
+    } else if (service === 'toLetService') {
+        serviceFor = 'toLet';
     }
 
     const skills = [
@@ -104,7 +113,7 @@ function WorkerServices() {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             },
             {
@@ -175,11 +184,11 @@ function WorkerServices() {
                 <p className="w-2/4 text-center mx-auto mt-3 mb-10">
                     Our estimates are free, schedule an appointment with our online scheduling
                 </p>
-                <Slider {...settings}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                     {services.map((service) => (
-                        <Service service={service} key={service._id} />
+                        <Service serviceFor={serviceFor} service={service} key={service._id} />
                     ))}
-                </Slider>
+                </div>
             </div>
 
             {/* topworkers */}

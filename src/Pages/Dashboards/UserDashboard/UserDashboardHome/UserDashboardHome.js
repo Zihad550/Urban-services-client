@@ -1,13 +1,24 @@
 import { faEnvelope, faHome, faUserGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../../../hooks/useAuth';
 
 function UserDashboardHome() {
+    const { bookings, requestPending, user } = useAuth();
+    const [toLets, setToLets] = useState([]);
+    console.log(toLets);
+    console.log(bookings, requestPending);
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/toLets?email=${user.email}`)
+            .then((res) => res.json())
+            .then((data) => setToLets(data));
+    }, [user.email]);
     const stats = [
         {
             id: 2,
             about: 'Hired workers',
-            total: 0,
+            total: bookings?.length || 0,
             icon: faUserGear,
             iconColor: 'text-white',
             bgColor: 'green'
@@ -15,7 +26,7 @@ function UserDashboardHome() {
         {
             id: 3,
             about: 'Workers Request',
-            peoples: 0,
+            total: requestPending?.length || 0,
             icon: faEnvelope,
             iconColor: 'text-white',
             bgColor: 'yellow'
@@ -23,7 +34,7 @@ function UserDashboardHome() {
         {
             id: 4,
             about: 'To-Lets posted',
-            total: 0,
+            total: toLets?.length || 0,
             icon: faHome,
             iconColor: 'text-white',
             bgColor: 'pink'
@@ -38,7 +49,7 @@ function UserDashboardHome() {
                         className={`shadow-lg w-full flex items-center p-4 justify-between bg-${state.bgColor}-400`}
                     >
                         <div>
-                            <p className="text-center text-3xl">00</p>
+                            <p className="text-center text-3xl">{state.total}</p>
                             <h4 className="text-2xl">{state.about}</h4>
                         </div>
                         <FontAwesomeIcon

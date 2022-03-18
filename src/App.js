@@ -27,6 +27,7 @@ import Dashboards from './Pages/Dashboards/Dashboards/Dashboards';
 import BecameWorker from './Pages/Dashboards/UserDashboard/BecameWorker/BecameWorker';
 import Bookings from './Pages/Dashboards/UserDashboard/Bookings/Bookings';
 import PostToLet from './Pages/Dashboards/UserDashboard/PostToLet/PostToLet';
+import RequestPending from './Pages/Dashboards/UserDashboard/RequestPending/RequestPending';
 import UserDashboardHome from './Pages/Dashboards/UserDashboard/UserDashboardHome/UserDashboardHome';
 import AllWorks from './Pages/Dashboards/WorkerDashboard/AllWorks/AllWorks';
 import CurrentWorks from './Pages/Dashboards/WorkerDashboard/CurrentWorks/CurrentWorks';
@@ -178,6 +179,14 @@ function App() {
                             element={
                                 <UserRoute>
                                     <Bookings />
+                                </UserRoute>
+                            }
+                        />
+                        <Route
+                            path="/userDashboard/requestPending"
+                            element={
+                                <UserRoute>
+                                    <RequestPending />
                                 </UserRoute>
                             }
                         />

@@ -48,7 +48,7 @@ function Hire() {
                 workerPhone: worker.phone,
                 customerName: displayName,
                 customerEmail: email,
-                workingStatus: 'not working',
+                workingStatus: 'Pending',
                 workingProgress: '0%',
                 workerEmail: worker.email
             })

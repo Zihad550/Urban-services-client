@@ -61,10 +61,13 @@ function WhyChooseUs() {
 
             {/* section 3 */}
             <div className="h-max md:grid md:grid-cols-2  md:gap-5 flex flex-col lg:w-1/2 p-5 lg:p-0 mx-auto">
-                <div className="md:h-[400px] overflow-hidden w-full flex items-end justify-end">
+                <div
+                    data-aos="fade-right"
+                    className="md:h-[400px] overflow-hidden w-full flex items-end justify-end"
+                >
                     <img className=" h-auto" src={standValue} alt="service" />
                 </div>
-                <div className="flex items-start justify-center flex-col">
+                <div data-aos="fade-left" className="flex items-start justify-center flex-col">
                     <h4 className="text-2xl md:mb-3 uppercase text-gray-700 mx-auto text-center">
                         We Stand by Our Values
                     </h4>

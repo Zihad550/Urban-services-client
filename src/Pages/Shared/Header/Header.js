@@ -20,6 +20,10 @@ function Header() {
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logOut, admin, savedUser } = useAuth();
+
+    const handleLogOut = () => {
+        logOut();
+    };
     return (
         <Disclosure
             as="nav"
@@ -110,22 +114,13 @@ function Header() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         {/* profile items */}
-                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg  bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             {user.email ? (
                                                 <>
-                                                    <Menu.Item>
-                                                        {({ active }) => (
-                                                            <button
-                                                                onClick={logOut}
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-100 ' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-700 w-full'
-                                                                )}
-                                                            >
-                                                                Log out
-                                                            </button>
-                                                        )}
-                                                    </Menu.Item>
+                                                    <p className="text-sm text-center py-2 bg-green-300 rounded-t-md text-gray-600">
+                                                        Logged In as {savedUser.role}
+                                                    </p>
+
                                                     <Menu.Item>
                                                         {({ active }) => (
                                                             <>
@@ -136,12 +131,7 @@ function Header() {
                                                                                 '/adminDashboard'
                                                                             )
                                                                         }
-                                                                        className={classNames(
-                                                                            active
-                                                                                ? 'bg-gray-100 '
-                                                                                : '',
-                                                                            'block px-4 py-2 text-sm text-gray-700 w-full'
-                                                                        )}
+                                                                        className="hover:bg-gray-100 text-gray-600 text-center w-full py-2"
                                                                     >
                                                                         Dashboard
                                                                     </button>
@@ -153,12 +143,7 @@ function Header() {
                                                                                 '/userDashboard'
                                                                             )
                                                                         }
-                                                                        className={classNames(
-                                                                            active
-                                                                                ? 'bg-gray-100 '
-                                                                                : '',
-                                                                            'block px-4 py-2 text-sm text-gray-700 w-full'
-                                                                        )}
+                                                                        className="hover:bg-gray-100 text-gray-600 text-center w-full py-2"
                                                                     >
                                                                         Dashboard
                                                                     </button>
@@ -170,17 +155,25 @@ function Header() {
                                                                                 '/workerDashboard'
                                                                             )
                                                                         }
-                                                                        className={classNames(
-                                                                            active
-                                                                                ? 'bg-gray-100 '
-                                                                                : '',
-                                                                            'block px-4 py-2 text-sm text-gray-700 w-full'
-                                                                        )}
+                                                                        className="hover:bg-gray-100 text-gray-600 text-center w-full py-2"
                                                                     >
                                                                         Dashboard
                                                                     </button>
                                                                 )}
                                                             </>
+                                                        )}
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <button
+                                                                onClick={handleLogOut}
+                                                                className={classNames(
+                                                                    active ? 'bg-red-100 ' : '',
+                                                                    'block px-4 py-2 text-sm text-gray-700 w-full rounded-b-md'
+                                                                )}
+                                                            >
+                                                                Log out
+                                                            </button>
                                                         )}
                                                     </Menu.Item>
                                                 </>

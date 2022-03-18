@@ -14,7 +14,6 @@ function AvailableWorkers() {
     const [search, setSearch] = useState(false);
     console.log(search, searchValue);
     const { role } = useParams();
-    console.log(workers);
 
     useEffect(() => {
         if (searchValue && search) {
@@ -25,7 +24,7 @@ function AvailableWorkers() {
                 .then((data) => setSearchedWorkers([data]));
         } else {
             console.log('inside2');
-            fetch(`https://radiant-sea-18512.herokuapp.com/workers?role=${role}`)
+            fetch(`http://localhost:8000/workers?role=${role}`)
                 .then((res) => res.json())
                 .then((data) => setWorkers(data));
         }
@@ -35,7 +34,6 @@ function AvailableWorkers() {
         value: worker._id,
         label: worker.name.charAt(0).toUpperCase() + worker.name.slice(1)
     }));
-    console.log(allAvailableWorkerNames);
 
     return (
         <>

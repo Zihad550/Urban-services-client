@@ -32,7 +32,7 @@ function FeedbackSection() {
         prevArrow: 0, */
     };
     return (
-        <div className="container mx-auto my-20">
+        <div data-aos="zoom-out" className="container mx-auto my-20">
             <Title classes="mb-10">Clients Feedback</Title>
 
             <Slider {...settings}>
