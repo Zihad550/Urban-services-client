@@ -30,20 +30,26 @@ function AdminadminDashboardSidebar({ closeSidebar }) {
 
     // sidebar navs
     const navs = [
-        { id: 4, nav: 'Customers', link: '/adminDashboard/customers', icon: faUsers },
+        { id: 1, nav: 'Customers', link: '/adminDashboard/customers', icon: faUsers },
         {
-            id: 5,
+            id: 2,
             nav: 'Worker Requests',
             link: '/adminDashboard/worker-requests',
             icon: faEnvelope
         },
         {
-            id: 7,
+            id: 3,
+            nav: 'ToLet Requests',
+            link: '/adminDashboard/toLet-requests',
+            icon: faEnvelope
+        },
+        {
+            id: 4,
             nav: 'Available Workers',
             link: '/adminDashboard/available-workers',
             icon: faUserCheck
         },
-        { id: 8, nav: 'Busy Workers', link: '/adminDashboard/busy-workers', icon: faBusinessTime }
+        { id: 4, nav: 'Busy Workers', link: '/adminDashboard/busy-workers', icon: faBusinessTime }
     ];
 
     const services = [
@@ -74,8 +80,8 @@ function AdminadminDashboardSidebar({ closeSidebar }) {
         { id: 3, nav: 'Chefs', link: '/adminDashboard/workers/chef', icon: faUser },
         {
             id: 4,
-            nav: 'Add New House Owner',
-            link: '/adminDashboard/add-house-owner',
+            nav: 'Post ToLet',
+            link: '/adminDashboard/post-toLet',
             icon: faHouseUser
         },
         { id: 5, nav: 'Add New Worker', link: '/adminDashboard/add-worker', icon: faUserPlus }

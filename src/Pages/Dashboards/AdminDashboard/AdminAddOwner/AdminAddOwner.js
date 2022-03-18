@@ -53,13 +53,13 @@ function AdminAddOwner() {
 
     return (
         <>
-            <Title classes="mb-5 hidden lg:block">Add New House Owner</Title>
+            <Title classes="mb-5 hidden lg:block">Post ToLet</Title>
             <div className="container px-5 lg:mx-auto pt-5 grid lg:grid-cols-2 grid-cols-1 items-center">
                 <div className="lg:flex hidden">
                     <img src={src} alt="" />
                 </div>
                 <div>
-                    <Title classes="mb-5 lg:hidden">Add New House Owner</Title>
+                    <Title classes="mb-5 lg:hidden">Post ToLet</Title>
                     <form onSubmit={handleSubmit}>
                         {/* worker name & email */}
                         <div className="flex">

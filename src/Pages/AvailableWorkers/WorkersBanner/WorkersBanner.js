@@ -8,15 +8,26 @@ import person3 from '../../../images/person3-removebg-preview.png';
 import person4 from '../../../images/person4-removebg-preview.png';
 import './WorkersBanner.css';
 
-function WorkersBanner({ role, options, setSearchValue, setSearch }) {
+function WorkersBanner({
+    role,
+    options,
+    setSearchValue,
+    setSearch,
+    setReset,
+    setFilter,
+    setSearchedWorkers
+}) {
     const persons = [
         // { id: 1, src: person1, name: 'Jashim' },
         { id: 1, src: person2, name: 'Karim' },
         { id: 1, src: person3, name: 'Rabbi' },
         { id: 1, src: person4, name: 'Jasim' }
     ];
-
-    const popularServices = ['Network Provider', 'Health Care', 'Housing'];
+    const filterOptions = [
+        { label: 'Top Workers', value: 'expert' },
+        { label: 'Available Workers', value: 'Free' },
+        { label: 'Busy Workers', value: 'Busy' }
+    ];
     const settings = {
         dots: false,
         infinite: true,
@@ -26,6 +37,21 @@ function WorkersBanner({ role, options, setSearchValue, setSearch }) {
         autoplay: true,
         fade: true,
         arrows: false
+    };
+
+    // funcs
+    const handleReset = () => {
+        console.log('inside');
+        setSearchValue('');
+        setSearchedWorkers([]);
+        setFilter('');
+        setReset(true);
+    };
+
+    const handleFilter = (e) => {
+        const filter = filterOptions.find((option) => option.label === e.target.innerText);
+        console.log(filter);
+        setFilter(filter.value);
     };
 
     return (
@@ -39,25 +65,28 @@ function WorkersBanner({ role, options, setSearchValue, setSearch }) {
 
                     <div className="flex">
                         <Select
-                            className="w-full"
+                            className="w-full rounded-r-none"
                             options={options}
                             onChange={(e) => setSearchValue(e.value)}
                         />
                         <button
                             onClick={() => setSearch(true)}
                             type="button"
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-r-lg"
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-[9px] -ml-1 z-10 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-r-lg"
                         >
                             Search
                         </button>
                     </div>
                     <div className="mt-3">
-                        <span className="mr-2">Popular:</span>
-                        {popularServices.map((service) => (
-                            <Button key={service} variant="outlined">
-                                {service}
+                        <span className="mr-2">Filter:</span>
+                        {filterOptions.map((option) => (
+                            <Button onClick={handleFilter} key={option.value} variant="outlined">
+                                {option.label}
                             </Button>
                         ))}
+                        <Button onClick={handleReset} variant="primary">
+                            Clear Filter & Search
+                        </Button>
                     </div>
                 </div>
                 {/* slider */}

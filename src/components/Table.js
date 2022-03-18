@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import useAuth from '../hooks/useAuth';
 
-function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus }) {
+function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus, setToLetUpdate }) {
     // hooks
     const { setWorkUpdate } = useAuth();
     // handle delete worker
@@ -97,6 +97,21 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                     alert('Status Updated');
                 }
                 setWorkingStatus(true);
+            });
+    };
+
+    // handle toLet application Delete & approve
+    const handleToLetApplication = (id, method) => {
+        fetch(`http://localhost:8000/toLet`, {
+            method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setToLetUpdate(true);
             });
     };
     return (
@@ -629,6 +644,60 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus 
                                                     >
                                                         {col.workingStatus}
                                                     </span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    {/* to show pending tolet requests */}
+
+                                    {variant === 'toLetRequests' &&
+                                        cols?.map((col) => (
+                                            <tr
+                                                key={col.id}
+                                                className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            >
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.name}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.email}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.phone}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.price}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.location}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {col.houseCategory}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <span className="bg-yellow-500 py-1 px-2 rounded-full">
+                                                        {col.applicationStatus || 'Pending'}
+                                                    </span>
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    <button
+                                                        onClick={() =>
+                                                            handleToLetApplication(col._id, 'PUT')
+                                                        }
+                                                        title="Accept Request"
+                                                        className="bg-green-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-green-500"
+                                                    >
+                                                        <FontAwesomeIcon icon={faCheck} />
+                                                    </button>
+                                                    <button
+                                                        title="Delete Request"
+                                                        className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
+                                                        onClick={
+                                                            (() => handleToLetApplication(col._id),
+                                                            'DELETE')
+                                                        }
+                                                    >
+                                                        <FontAwesomeIcon icon={faXmark} />
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}

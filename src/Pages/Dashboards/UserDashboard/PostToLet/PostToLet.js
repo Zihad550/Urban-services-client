@@ -24,12 +24,17 @@ function PostToLet() {
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://radiant-sea-18512.herokuapp.com/workers', {
+        fetch('http://localhost:8000/workers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ ...data, email: user.email, name: user.displayName })
+            body: JSON.stringify({
+                ...data,
+                email: user.email,
+                name: user.displayName,
+                applicationStatus: 'Pending'
+            })
         })
             .then((res) => res.json())
             .then((data) => {

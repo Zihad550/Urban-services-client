@@ -22,6 +22,7 @@ import AdminServices from './Pages/Dashboards/AdminDashboard/AdminServices/Admin
 import AdminWorkers from './Pages/Dashboards/AdminDashboard/AdminWorkers/AdminWorkers';
 import BusyWorkers from './Pages/Dashboards/AdminDashboard/BusyWorkers/BusyWorkers';
 import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
+import ToLetRequests from './Pages/Dashboards/AdminDashboard/ToLetRequests/ToLetRequests';
 import WorkerRequests from './Pages/Dashboards/AdminDashboard/WorkerRequests/WorkerRequests';
 import Dashboards from './Pages/Dashboards/Dashboards/Dashboards';
 import BecameWorker from './Pages/Dashboards/UserDashboard/BecameWorker/BecameWorker';
@@ -122,6 +123,14 @@ function App() {
                             }
                         />
                         <Route
+                            path="/adminDashboard/toLet-requests"
+                            element={
+                                <AdminRoute>
+                                    <ToLetRequests />
+                                </AdminRoute>
+                            }
+                        />
+                        <Route
                             path="/adminDashboard/available-workers"
                             element={
                                 <AdminRoute>
@@ -138,7 +147,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="/adminDashboard/add-house-owner"
+                            path="/adminDashboard/post-toLet"
                             element={
                                 <AdminRoute>
                                     <AdminAddOwner />

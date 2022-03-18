@@ -12,23 +12,26 @@ function AvailableWorkers() {
     const [searchedWorkers, setSearchedWorkers] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [search, setSearch] = useState(false);
-    console.log(search, searchValue);
+    const [filter, setFilter] = useState('');
+    const [reset, setReset] = useState(false);
+    console.log(search, searchValue, filter);
     const { role } = useParams();
 
     useEffect(() => {
         if (searchValue && search) {
             setSearch(false);
+            setReset(false);
             console.log('inside1');
-            fetch(`https://radiant-sea-18512.herokuapp.com/worker/${searchValue}`)
+            fetch(`http://localhost:8000/worker/${searchValue}`)
                 .then((res) => res.json())
                 .then((data) => setSearchedWorkers([data]));
         } else {
             console.log('inside2');
-            fetch(`http://localhost:8000/workers?role=${role}`)
+            fetch(`http://localhost:8000/workers?role=${role}&&filter=${filter}`)
                 .then((res) => res.json())
                 .then((data) => setWorkers(data));
         }
-    }, [search]);
+    }, [search, reset, filter, role]);
 
     const allAvailableWorkerNames = workers.map((worker) => ({
         value: worker._id,
@@ -45,10 +48,14 @@ function AvailableWorkers() {
                 options={allAvailableWorkerNames}
                 setSearchValue={setSearchValue}
                 setSearch={setSearch}
+                setFilter={setFilter}
+                setReset={setReset}
+                setSearchedWorkers={setSearchedWorkers}
             />
             {/* workers */}
             <div className="my-20">
                 <Title classes="mb-5 capitalize">All Available {role || 'Workers'}</Title>
+
                 <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto gap-5">
                     {role === 'toLet' &&
                         workers.map((owner) => <Owner key={owner._id} owner={owner} />)}
