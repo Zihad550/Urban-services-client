@@ -150,7 +150,7 @@ const useFirebase = () => {
     // get the current worker works
     useEffect(() => {
         setWorkUpdate(false);
-        fetch(`http://localhost:8000/work?email=${user.email}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/work?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('idToken')}`
             }
@@ -172,7 +172,7 @@ const useFirebase = () => {
 
     // get bookings
     useEffect(() => {
-        fetch(`http://localhost:8000/hired?email=${user.email}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/hired?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 const bookings = data.filter(

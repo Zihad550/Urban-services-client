@@ -6,7 +6,7 @@ function MakeAdmin() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:8000/users/admin', {
+        fetch('https://radiant-sea-18512.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

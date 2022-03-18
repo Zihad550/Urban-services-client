@@ -102,7 +102,7 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus,
 
     // handle toLet application Delete & approve
     const handleToLetApplication = (id, method) => {
-        fetch(`http://localhost:8000/toLet`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/toLet`, {
             method,
             headers: {
                 'content-type': 'application/json'
