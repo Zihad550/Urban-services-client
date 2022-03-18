@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Table from '../../../../components/Table';
+import useAuth from '../../../../hooks/useAuth';
 
 function WorkerRequests() {
-    const [requests, setRequests] = useState([]);
-    const [status, setStatus] = useState(false);
-    useEffect(() => {
-        setStatus(false);
-        fetch('https://radiant-sea-18512.herokuapp.com/applications')
-            .then((res) => res.json())
-            .then((data) => setRequests(data));
-    }, [status]);
+    const { applications, setApplicationUpdate } = useAuth();
     const rows = ['Name', 'Catagories', 'Phone Number', 'Experience', 'Skill', 'Actions'];
 
     return (
         <div>
-            <Table rows={rows} cols={requests} variant="workersRequest" setStatus={setStatus} />
+            <Table
+                rows={rows}
+                cols={applications}
+                variant="workersRequest"
+                setStatus={setApplicationUpdate}
+            />
         </div>
     );
 }

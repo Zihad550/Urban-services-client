@@ -80,13 +80,14 @@ function AdminadminDashboardSidebar({ closeSidebar }) {
         { id: 1, nav: 'Electricians', link: '/adminDashboard/workers/electrician', icon: faUser },
         { id: 2, nav: 'Plumbers', link: '/adminDashboard/workers/plumber', icon: faUser },
         { id: 3, nav: 'Chefs', link: '/adminDashboard/workers/chef', icon: faUser },
+        { id: 4, nav: 'To-Lets', link: '/adminDashboard/workers/toLets', icon: faUser },
         {
-            id: 4,
+            id: 5,
             nav: 'Post ToLet',
             link: '/adminDashboard/post-toLet',
             icon: faHouseUser
         },
-        { id: 5, nav: 'Add New Worker', link: '/adminDashboard/add-worker', icon: faUserPlus }
+        { id: 6, nav: 'Add New Worker', link: '/adminDashboard/add-worker', icon: faUserPlus }
     ];
     return (
         <div>

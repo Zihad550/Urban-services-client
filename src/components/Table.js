@@ -1,9 +1,18 @@
-import { faAnglesUp, faCheck, faPen, faSign, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesUp, faCheck, faSign, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import useAuth from '../hooks/useAuth';
 
-function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus, setToLetUpdate }) {
+function Table({
+    rows,
+    cols,
+    variant,
+    setIsDeleted,
+    setStatus,
+    setWorkingStatus,
+    setToLetUpdate,
+    setToLetUpdated
+}) {
     // hooks
     const { setWorkUpdate } = useAuth();
     // handle delete worker
@@ -112,6 +121,21 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus,
             .then((res) => res.json())
             .then((data) => {
                 setToLetUpdate(true);
+            });
+    };
+
+    // handle tolet delete
+    const handleDeleteToLet = (id) => {
+        console.log(id);
+        fetch(`http://localhost:8000/toLet/delete?id=${id}`, {
+            method: 'DELETE'
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    setToLetUpdated(true);
+                }
             });
     };
     return (
@@ -396,14 +420,11 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus,
                                     {variant === 'toLets' &&
                                         cols?.map((col) => (
                                             <tr
-                                                key={col.id}
+                                                key={col._id}
                                                 className="hover:bg-gray-100 dark:hover:bg-gray-700"
                                             >
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.id}
-                                                </td>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {col.ownerName}
+                                                    {col.name}
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                                                     {col.location}
@@ -411,15 +432,22 @@ function Table({ rows, cols, variant, setIsDeleted, setStatus, setWorkingStatus,
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                                                     {col.phone}
                                                 </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    {col.houseCategory}
+                                                </td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                    {col.price}
+                                                </td>
 
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                                    <button
+                                                    {/* <button
                                                         title="Update to-let information"
                                                         className="bg-blue-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-blue-500"
                                                     >
                                                         <FontAwesomeIcon icon={faPen} />
-                                                    </button>
+                                                    </button> */}
                                                     <button
+                                                        onClick={() => handleDeleteToLet(col._id)}
                                                         title="Remove to-let"
                                                         className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
                                                     >

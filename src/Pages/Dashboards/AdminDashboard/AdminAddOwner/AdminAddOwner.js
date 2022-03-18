@@ -5,19 +5,11 @@ import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
 import Title from '../../../../components/Title';
+import useAuth from '../../../../hooks/useAuth';
 import src from '../../../../images/postTolet.svg';
 
 function AdminAddOwner() {
-    /* 
-    //  https://i.ibb.co/gFxX0PG/elec8.png
-        // https://i.ibb.co/x8DVqwM/elec6.png
-        // https://i.ibb.co/mT1Kzx9/elec1.png
-        // https://i.ibb.co/JpqB8wn/elec7.png
-        // https://i.ibb.co/556P6rK/elec4.png
-        // https://i.ibb.co/JshHdq2/elec2.png
-        // https://i.ibb.co/yNB0MSB/elec3.png
-        // https://i.ibb.co/X29gT3v/elec5.png 
-        */
+    const { user } = useAuth();
     const [data, setData] = useState({
         category: 'toLet'
     });
@@ -38,7 +30,7 @@ function AdminAddOwner() {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ ...data, name: user.displayName, email: user.email })
         })
             .then((res) => res.json())
             .then((data) => {
@@ -72,6 +64,7 @@ function AdminAddOwner() {
                                     variant="underlined"
                                     placeholder=" "
                                     type="text"
+                                    value={user.displayName}
                                 />
                                 <Label>Name</Label>
                             </div>
@@ -84,6 +77,7 @@ function AdminAddOwner() {
                                     variant="underlined"
                                     placeholder=" "
                                     type="email"
+                                    value={user.email}
                                 />
                                 <Label>Email Address</Label>
                             </div>

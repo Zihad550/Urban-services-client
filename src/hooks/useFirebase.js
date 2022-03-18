@@ -39,9 +39,26 @@ const useFirebase = () => {
     const [workUpdate, setWorkUpdate] = useState(false);
     const [completedWorks, setCompletedWorks] = useState('');
 
+    // customers state
+    const [customers, setCustomers] = useState([]);
+
+    // workers state
+    const [workers, setWorkers] = useState([]);
+    const [availableWorkers, setAvailableWorkers] = useState([]);
+    const [busyWorkers, setBusyWorkers] = useState([]);
+    const [workingStatus, setWorkingStatus] = useState(false);
+
     // booking states
     const [bookings, setBookings] = useState([]);
     const [requestPending, setRequestPending] = useState([]);
+
+    // job application state
+    const [applications, setApplications] = useState([]);
+    const [applicationUpdate, setApplicationUpdate] = useState(false);
+
+    // toLet state
+    const [toLets, setToLets] = useState([]);
+    const [toLetUpdated, setToLetUpdated] = useState(false);
 
     // navigate
     // save user to the server
@@ -190,6 +207,42 @@ const useFirebase = () => {
             });
     }, [user.email]);
 
+    // get customers
+    useEffect(() => {
+        fetch('https://radiant-sea-18512.herokuapp.com/users')
+            .then((res) => res.json())
+            .then((data) => setCustomers(data));
+    }, []);
+
+    // get workers
+    useEffect(() => {
+        setWorkingStatus(false);
+        fetch('http://localhost:8000/allWorkers')
+            .then((res) => res.json())
+            .then((data) => {
+                const availableWorkers = data.filter((worker) => worker.workingStatus === 'Free');
+                setAvailableWorkers(availableWorkers);
+                const busyWorkers = data.filter((worker) => worker.workingStatus === 'Busy');
+                setBusyWorkers(busyWorkers);
+                setWorkers(data);
+            });
+    }, [workingStatus]);
+
+    // get job applications
+    useEffect(() => {
+        setApplicationUpdate(false);
+        fetch('https://radiant-sea-18512.herokuapp.com/applications')
+            .then((res) => res.json())
+            .then((data) => setApplications(data));
+    }, [applicationUpdate]);
+
+    // get toLets
+    useEffect(() => {
+        fetch('http://localhost:8000/allToLets')
+            .then((res) => res.json())
+            .then((data) => setToLets(data));
+    }, [toLetUpdated]);
+
     // observe the user
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -222,7 +275,15 @@ const useFirebase = () => {
         completedWorks,
         setWorkUpdate,
         bookings,
-        requestPending
+        requestPending,
+        customers,
+        workers,
+        applications,
+        setApplicationUpdate,
+        setToLetUpdated,
+        toLets,
+        availableWorkers,
+        busyWorkers
     };
 };
 

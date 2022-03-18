@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Table from '../../../../components/Table';
+import useAuth from '../../../../hooks/useAuth';
 
 function Customers() {
-    const [customers, setCustomers] = useState([]);
-    useEffect(() => {
-        fetch('https://radiant-sea-18512.herokuapp.com/users')
-            .then((res) => res.json())
-            .then((data) => setCustomers(data));
-    }, []);
-
+    const { customers } = useAuth();
     const rows = ['Name', 'Email'];
     return (
         <div>

@@ -8,14 +8,25 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import useAuth from '../../../../../hooks/useAuth';
 import AdminAllBookings from '../AdminAllBookings/AllBookings';
 
 function AdminDashboardHome() {
+    const {
+        customers,
+        workers,
+        workRequests,
+        applications,
+        toLets,
+        availableWorkers,
+        busyWorkers
+    } = useAuth();
+    console.log(workers);
     const stats = [
         {
             id: 1,
             about: 'Customers',
-            total: 0,
+            total: customers?.length || 0,
             icon: faUsers,
             iconColor: 'text-blue-400',
             bgColor: 'yellow'
@@ -23,7 +34,7 @@ function AdminDashboardHome() {
         {
             id: 2,
             about: 'workers',
-            total: 0,
+            total: workers?.length || 0,
             icon: faUserGear,
             iconColor: 'text-white',
             bgColor: 'pink'
@@ -31,7 +42,7 @@ function AdminDashboardHome() {
         {
             id: 3,
             about: 'Workers Request',
-            peoples: 0,
+            total: applications?.length || 0,
             icon: faEnvelope,
             iconColor: 'text-white',
             bgColor: 'pink'
@@ -39,7 +50,7 @@ function AdminDashboardHome() {
         {
             id: 4,
             about: 'To-Lets',
-            total: 0,
+            total: toLets?.length || 0,
             icon: faHome,
             iconColor: 'text-white',
             bgColor: 'pink'
@@ -47,7 +58,7 @@ function AdminDashboardHome() {
         {
             id: 5,
             about: 'Employee Available',
-            peoples: 0,
+            total: availableWorkers?.length || 0,
             icon: faUserCheck,
             iconColor: 'text-white',
             bgColor: 'green'
@@ -55,7 +66,7 @@ function AdminDashboardHome() {
         {
             id: 6,
             about: 'Employee Busy',
-            total: 0,
+            total: busyWorkers?.length || 0,
             icon: faBusinessTime,
             iconColor: 'text-white',
             bgColor: 'red'
@@ -70,7 +81,7 @@ function AdminDashboardHome() {
                         className={`shadow-lg w-full flex items-center p-4 justify-between bg-${state.bgColor}-400 hover:bg-${state.bgColor}-500`}
                     >
                         <div>
-                            <p className="text-center text-3xl">00</p>
+                            <p className="text-center text-3xl">{state.total}</p>
                             <h4 className="text-2xl">{state.about}</h4>
                         </div>
                         <FontAwesomeIcon
