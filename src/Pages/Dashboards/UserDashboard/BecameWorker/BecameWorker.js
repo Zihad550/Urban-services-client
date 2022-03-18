@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Button from '../../../../components/Button';
+import ErrorToasts from '../../../../components/ErrorToasts';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
+import SuccessToasts from '../../../../components/SuccessToasts';
 import Title from '../../../../components/Title';
 import useAuth from '../../../../hooks/useAuth';
 import src from '../../../../images/becameWorker.svg';
@@ -17,6 +19,10 @@ function BecameWorker() {
     });
     console.log(data);
 
+    // toast state
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
+
     // handle form fields data
     const handleFormData = (e) => {
         const newData = { ...data };
@@ -27,7 +33,9 @@ function BecameWorker() {
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://radiant-sea-18512.herokuapp.com/apply', {
+        setIsSuccess(false);
+        setIsError(false);
+        fetch('http://localhost:8000/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -37,10 +45,10 @@ function BecameWorker() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.insertedId) {
-                    alert('Applied Successfully');
+                    setIsSuccess(true);
                     e.target.reset();
                 } else {
-                    alert('Process Unsuccessful');
+                    setIsSuccess(true);
                 }
             });
     };
@@ -53,6 +61,15 @@ function BecameWorker() {
                     <img src={src} alt="" />
                 </div>
                 <div>
+                    {/* toasts */}
+                    <div className="flex justify-center mb-4">
+                        <SuccessToasts isSuccess={isSuccess} setIsSuccess={setIsSuccess}>
+                            Request Sent Successfully
+                        </SuccessToasts>
+                        <ErrorToasts isError={isError} setIsError={setIsError}>
+                            An Error Occurred. Please Refresh the page and try again.
+                        </ErrorToasts>
+                    </div>
                     <Title classes="mb-5 lg:hidden">Became Worker</Title>
                     <form onSubmit={handleSubmit}>
                         {/* worker name & email */}

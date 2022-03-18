@@ -9,7 +9,7 @@ function AdminServices() {
     const [isDeleted, setIsDeleted] = useState(false);
     useEffect(() => {
         setIsDeleted(false);
-        fetch(`https://radiant-sea-18512.herokuapp.com/services/${type}`)
+        fetch(`http://localhost:8000/services/${type}`)
             .then((res) => res.json())
             .then((data) => setServices(data));
     }, [type, isDeleted]);

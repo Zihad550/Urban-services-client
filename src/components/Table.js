@@ -15,24 +15,21 @@ function Table({
     setWorkerUpdated
 }) {
     // hooks
-    const { setWorkUpdate } = useAuth();
+    const { setWorkUpdate, setApplicationUpdate } = useAuth();
     // handle delete worker
     const handleDeleteWorker = (id) => {
-        setWorkerUpdated(false);
-        fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}`, {
+        fetch(`http://localhost:8000/workers?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
             .then((data) => {
-                data.deletedCount > 0 && alert('Deleted Successfully');
-                setWorkerUpdated(true);
+                data.deletedCount > 0 && setWorkerUpdated(true);
             });
     };
 
     // handle delete services
     const handleDeleteService = (id) => {
-        setIsDeleted(false);
-        fetch(`https://radiant-sea-18512.herokuapp.com/services?id=${id}`, {
+        fetch(`http://localhost:8000/services?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -44,7 +41,7 @@ function Table({
 
     // handle approve application
     const handleApproveApplication = (worker) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/application`, {
+        fetch(`http://localhost:8000/application`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -55,28 +52,26 @@ function Table({
             .then((data) => {
                 console.log(data);
                 if (data.insertedId) {
-                    alert('Approved Successfully');
+                    setApplicationUpdate(true);
                 }
-                setWorkingStatus(true);
             });
     };
     // handle delete application
     const handleDeleteApplication = (email) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/application?email=${email}`, {
+        fetch(`http://localhost:8000/application?email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
             .then((data) => {
                 if (data.deletedCount > 0) {
-                    setStatus(true);
-                    alert('Deleted successfully');
+                    setApplicationUpdate(true);
                 }
             });
     };
 
     // handle working status
     const handleWorkingStatus = (email, status = 'free', id) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/workingStatus`, {
+        fetch(`http://localhost:8000/workingStatus`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -95,7 +90,7 @@ function Table({
 
     // handle complete work
     const handleCompleteWork = (id) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/complete`, {
+        fetch(`http://localhost:8000/complete`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -114,7 +109,7 @@ function Table({
 
     // handle toLet application Delete & approve
     const handleToLetApplication = (id, method) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLet`, {
+        fetch(`http://localhost:8000/toLet`, {
             method,
             headers: {
                 'content-type': 'application/json'
@@ -130,7 +125,7 @@ function Table({
     // handle tolet delete
     const handleDeleteToLet = (id) => {
         console.log(id);
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLet/delete?id=${id}`, {
+        fetch(`http://localhost:8000/toLet/delete?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -742,9 +737,11 @@ function Table({
                                                     <button
                                                         title="Delete Request"
                                                         className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
-                                                        onClick={
-                                                            (() => handleToLetApplication(col._id),
-                                                            'DELETE')
+                                                        onClick={() =>
+                                                            handleToLetApplication(
+                                                                col._id,
+                                                                'DELETE'
+                                                            )
                                                         }
                                                     >
                                                         <FontAwesomeIcon icon={faXmark} />

@@ -2,8 +2,10 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import Button from '../../../../components/Button';
+import ErrorToasts from '../../../../components/ErrorToasts';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
+import SuccessToasts from '../../../../components/SuccessToasts';
 import Title from '../../../../components/Title';
 import useAuth from '../../../../hooks/useAuth';
 
@@ -13,6 +15,10 @@ function PostToLet() {
         category: 'toLet'
     });
     const { user } = useAuth();
+
+    // toast state
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     // handle form fields data
     const handleFormData = (e) => {
@@ -24,7 +30,9 @@ function PostToLet() {
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://radiant-sea-18512.herokuapp.com/workers', {
+        setIsError(false);
+        setIsSuccess(false);
+        fetch('http://localhost:8000/workers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -39,10 +47,10 @@ function PostToLet() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.insertedId) {
-                    alert('Added Successfully');
+                    setIsSuccess(true);
                     e.target.reset();
                 } else {
-                    alert('Process Unsuccessful');
+                    setIsError(true);
                 }
             });
     };
@@ -52,6 +60,15 @@ function PostToLet() {
             <Title classes="mb-5 hidden lg:block">Post To-Let</Title>
             <div className="container px-5 mx-auto pt-5 grid  grid-cols-1 items-center ">
                 <div>
+                    {/* toasts */}
+                    <div className="flex justify-center mb-4">
+                        <SuccessToasts isSuccess={isSuccess} setIsSuccess={setIsSuccess}>
+                            Request Sent Successfully
+                        </SuccessToasts>
+                        <ErrorToasts isError={isError} setIsError={setIsError}>
+                            An Error Occurred. Please Refresh the page and try again.
+                        </ErrorToasts>
+                    </div>
                     <Title classes="mb-5 lg:hidden">Post To-Let</Title>
                     <form onSubmit={handleSubmit}>
                         {/* worker name & email */}

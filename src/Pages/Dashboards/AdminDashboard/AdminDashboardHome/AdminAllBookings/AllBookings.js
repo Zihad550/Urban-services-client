@@ -5,7 +5,7 @@ function AdminAllBookings() {
     const [hiredWorkers, setHiredWorkers] = useState([]);
     console.log(hiredWorkers);
     useEffect(() => {
-        fetch('https://radiant-sea-18512.herokuapp.com/allHiredWorkers')
+        fetch('http://localhost:8000/allHiredWorkers')
             .then((res) => res.json())
             .then((data) => setHiredWorkers(data));
     }, []);
