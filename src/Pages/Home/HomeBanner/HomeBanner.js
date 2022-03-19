@@ -77,8 +77,8 @@ function HomeBanner() {
                             }}
                             key={banner.id}
                         >
-                            <div className="flex flex-col items-center ">
-                                <h2 className="text-white text-3xl md:text-5xl text-center">
+                            <div className="flex flex-col items-center bg-blue-200 opacity-75 p-5 rounded-lg">
+                                <h2 className="text-black text-3xl md:text-5xl text-center">
                                     {banner.title}
                                 </h2>
                                 <Link

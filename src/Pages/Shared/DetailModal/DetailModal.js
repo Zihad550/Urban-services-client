@@ -1,7 +1,7 @@
 import React from 'react';
 
 function WorkerDetailModal({ showDetail, setShowDetail, detail }) {
-    const { name } = detail;
+    const { name, category, experience, location, email, phone, houseCategory } = detail;
     return (
         <div
             className={
@@ -42,18 +42,29 @@ function WorkerDetailModal({ showDetail, setShowDetail, detail }) {
                     </div>
 
                     <div className="p-6 space-y-6">
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            With less than a month to go before the European Union enacts new
-                            consumer privacy laws for its citizens, companies around the world are
-                            updating their terms of service agreements to comply.
-                        </p>
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            The European Union’s General Data Protection Regulation (G.D.P.R.) goes
-                            into effect on May 25 and is meant to ensure a common set of data rights
-                            in the European Union. It requires organizations to notify users as soon
-                            as possible of high-risk data breaches that could personally affect
-                            them.
-                        </p>
+                        {category === 'toLet' ? (
+                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                The house owner is {name}. He wants to give a {houseCategory}. And
+                                also provide all the services. That a {category} provides. If you
+                                want to book it then please contact him with the given below email
+                                and contact number.
+                            </p>
+                        ) : (
+                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                Mr. {name} is 18 years old {category}. Who can fix any problems
+                                related to {category}. And also provide all the services. That a{' '}
+                                {category} provides.
+                            </p>
+                        )}
+                        <div>
+                            <p>Location: {location}</p>
+                            {experience && <p>Experience: {experience}</p>}
+                            {houseCategory && <p>House type: {houseCategory}</p>}
+                        </div>
+                        <div>
+                            <p>Email: {email}</p>
+                            <p>Phone: {phone}</p>
+                        </div>
                     </div>
 
                     <div className="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
