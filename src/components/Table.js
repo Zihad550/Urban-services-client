@@ -19,7 +19,7 @@ function Table({
     // handle delete worker
     const handleDeleteWorker = (id, email) => {
         console.log(id);
-        fetch(`http://localhost:8000/workers?id=${id}&&email=${email}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}&&email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -31,7 +31,7 @@ function Table({
 
     // handle delete services
     const handleDeleteService = (id) => {
-        fetch(`http://localhost:8000/services?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/services?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -42,7 +42,7 @@ function Table({
 
     // handle approve application
     const handleApproveApplication = (worker) => {
-        fetch(`http://localhost:8000/application`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/application`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -59,7 +59,7 @@ function Table({
     };
     // handle delete application
     const handleDeleteApplication = (email) => {
-        fetch(`http://localhost:8000/application?email=${email}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/application?email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -72,7 +72,7 @@ function Table({
 
     // handle working status
     const handleWorkingStatus = (email, status = 'free', id) => {
-        fetch(`http://localhost:8000/workingStatus`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workingStatus`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -91,7 +91,7 @@ function Table({
 
     // handle complete work
     const handleCompleteWork = (id) => {
-        fetch(`http://localhost:8000/complete`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/complete`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -110,7 +110,7 @@ function Table({
 
     // handle toLet application Delete & approve
     const handleToLetApplication = (id, method) => {
-        fetch(`http://localhost:8000/toLet`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/toLet`, {
             method,
             headers: {
                 'content-type': 'application/json'
@@ -126,7 +126,7 @@ function Table({
     // handle tolet delete
     const handleDeleteToLet = (id) => {
         console.log(id);
-        fetch(`http://localhost:8000/toLet/delete?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/toLet/delete?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())

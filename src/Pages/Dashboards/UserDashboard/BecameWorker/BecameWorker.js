@@ -35,7 +35,7 @@ function BecameWorker() {
         e.preventDefault();
         setIsSuccess(false);
         setIsError(false);
-        fetch('http://localhost:8000/apply', {
+        fetch('https://radiant-sea-18512.herokuapp.com/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
