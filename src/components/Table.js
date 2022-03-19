@@ -17,13 +17,15 @@ function Table({
     // hooks
     const { setWorkUpdate, setApplicationUpdate } = useAuth();
     // handle delete worker
-    const handleDeleteWorker = (id) => {
-        fetch(`http://localhost:8000/workers?id=${id}`, {
+    const handleDeleteWorker = (id, email) => {
+        console.log(id);
+        fetch(`http://localhost:8000/workers?id=${id}&&email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
             .then((data) => {
                 data.deletedCount > 0 && setWorkerUpdated(true);
+                console.log(data);
             });
     };
 
@@ -34,8 +36,7 @@ function Table({
         })
             .then((res) => res.json())
             .then((data) => {
-                data.deletedCount > 0 && alert('Deleted Successfully');
-                setIsDeleted(true);
+                data.deletedCount > 0 && setIsDeleted(true);
             });
     };
 
@@ -269,7 +270,12 @@ function Table({
                                                     <button
                                                         title="Remove worker"
                                                         className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
-                                                        onClick={() => handleDeleteWorker(col._id)}
+                                                        onClick={() =>
+                                                            handleDeleteWorker(
+                                                                col._id,
+                                                                col.workerEmail
+                                                            )
+                                                        }
                                                     >
                                                         <FontAwesomeIcon icon={faXmark} />
                                                     </button>

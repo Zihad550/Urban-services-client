@@ -1,7 +1,6 @@
 import {
     createUserWithEmailAndPassword,
     getAuth,
-    getIdToken,
     GoogleAuthProvider,
     onAuthStateChanged,
     signInWithEmailAndPassword,
@@ -12,6 +11,8 @@ import {
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../Firebase/firebase.init';
 
+// https://radiant-sea-18512.herokuapp.com/
+
 // providers
 const googleProvider = new GoogleAuthProvider();
 
@@ -21,20 +22,21 @@ initializeAuthentication();
 const useFirebase = () => {
     const auth = getAuth();
 
-    // states
+    // user states
     const [user, setUser] = useState({});
     const [savedUser, setSavedUser] = useState({});
+    console.log(savedUser);
+    console.log(user.email);
+
+    // admin states
     const [admin, setAdmin] = useState(false);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [adminLoading, setAdminLoading] = useState(true);
-    const [token, setToken] = useState('');
-    console.log(token);
 
     // works states
     const [works, setWorks] = useState();
     const [workRequests, setWorkRequests] = useState([]);
-    console.log(workRequests);
     const [currentWorks, setCurrentWorks] = useState([]);
     const [workUpdate, setWorkUpdate] = useState(false);
     const [completedWorks, setCompletedWorks] = useState('');
@@ -90,7 +92,6 @@ const useFirebase = () => {
             })
             .finally(() => {
                 setIsLoading(false);
-                window.location.reload();
             });
     };
 
@@ -118,7 +119,6 @@ const useFirebase = () => {
             })
             .finally(() => {
                 setIsLoading(false);
-                window.location.reload();
             });
     };
 
@@ -135,7 +135,6 @@ const useFirebase = () => {
             .catch((error) => setError(error.message))
             .finally(() => {
                 setIsLoading(false);
-                window.location.reload();
             });
     };
 
@@ -167,23 +166,23 @@ const useFirebase = () => {
     // get the current worker works
     useEffect(() => {
         setWorkUpdate(false);
-        fetch(`http://localhost:8000/work?email=${user.email}`, {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('idToken')}`
-            }
-        })
+        fetch(`http://localhost:8000/work?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
-                const requests = data.filter((work) => work.workingStatus === 'Pending');
-                setWorkRequests(requests);
-                const currentWorks = data.filter(
-                    (work) =>
-                        work.workingStatus === 'Not Working' || work.workingStatus === 'Working'
-                );
-                const completedWorks = data.filter((work) => work.workingStatus === 'Completed');
-                setCompletedWorks(completedWorks.length);
-                setCurrentWorks(currentWorks);
-                setWorks(data);
+                if (data.length) {
+                    const requests = data?.filter((work) => work.workingStatus === 'Pending');
+                    setWorkRequests(requests);
+                    const currentWorks = data?.filter(
+                        (work) =>
+                            work.workingStatus === 'Not Working' || work.workingStatus === 'Working'
+                    );
+                    const completedWorks = data?.filter(
+                        (work) => work.workingStatus === 'Completed'
+                    );
+                    setCompletedWorks(completedWorks?.length);
+                    setCurrentWorks(currentWorks);
+                    setWorks(data);
+                }
             });
     }, [user.email, workUpdate]);
 
@@ -248,7 +247,7 @@ const useFirebase = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                getIdToken(user).then((idToken) => localStorage.setItem('idToken', idToken));
+                // getIdToken(user).then((idToken) => localStorage.setItem('idToken', idToken));
                 setUser(user);
                 setError('');
             } else {

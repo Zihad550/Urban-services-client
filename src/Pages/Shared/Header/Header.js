@@ -1,4 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
@@ -83,16 +85,23 @@ function Header() {
                                     <div>
                                         <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white items-center">
                                             <span className="sr-only">Open user menu</span>
-                                            {user.photoURL ? (
+                                            {user.email ? (
                                                 <>
                                                     <p className="text-lg uppercase hidden lg:block mr-2">
-                                                        {user.displayName}
+                                                        {savedUser.displayName}
                                                     </p>
-                                                    <img
-                                                        className="h-8 w-8 rounded-full"
-                                                        src={user.photoURL}
-                                                        alt=""
-                                                    />
+                                                    {user.photoURL ? (
+                                                        <img
+                                                            className="h-8 w-8 rounded-full"
+                                                            src={user.photoURL}
+                                                            alt=""
+                                                        />
+                                                    ) : (
+                                                        <FontAwesomeIcon
+                                                            className="h-8 w-8 rounded-full"
+                                                            icon={faUser}
+                                                        />
+                                                    )}
                                                 </>
                                             ) : (
                                                 <Link
