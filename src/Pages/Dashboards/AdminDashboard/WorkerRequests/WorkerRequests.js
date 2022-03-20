@@ -1,10 +1,12 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import SuccessToasts from '../../../../components/SuccessToasts';
 import Table from '../../../../components/Table';
 import useAuth from '../../../../hooks/useAuth';
 
 function WorkerRequests() {
     const { applications, setApplicationUpdate, applicationUpdate } = useAuth();
+    const location = useLocation();
     const rows = ['Name', 'Catagories', 'Phone Number', 'Experience', 'Skill', 'Actions'];
 
     return (

@@ -19,7 +19,7 @@ function Table({
     // handle delete worker
     const handleDeleteWorker = (id, email) => {
         console.log(id);
-        fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}&&email=${email}`, {
+        fetch(`http://localhost:8000/workers?id=${id}&&email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())

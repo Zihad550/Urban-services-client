@@ -10,7 +10,6 @@ import {
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../Firebase/firebase.init';
-
 // https://radiant-sea-18512.herokuapp.com/
 
 // providers
@@ -27,6 +26,7 @@ const useFirebase = () => {
     const [savedUser, setSavedUser] = useState({});
     console.log(savedUser);
     console.log(user.email);
+    console.log(user);
 
     // admin states
     const [admin, setAdmin] = useState(false);
@@ -53,10 +53,12 @@ const useFirebase = () => {
     // booking states
     const [bookings, setBookings] = useState([]);
     const [requestPending, setRequestPending] = useState([]);
+    const [refreshClientRequest, setRefreshClientRequest] = useState(false);
 
     // job application state
     const [applications, setApplications] = useState([]);
     const [applicationUpdate, setApplicationUpdate] = useState(false);
+    const [userApplied, setUserApplied] = useState(false);
 
     // toLet state
     const [toLets, setToLets] = useState([]);
@@ -188,6 +190,7 @@ const useFirebase = () => {
 
     // get bookings
     useEffect(() => {
+        setRefreshClientRequest(false);
         fetch(`https://radiant-sea-18512.herokuapp.com/hired?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
@@ -197,21 +200,20 @@ const useFirebase = () => {
                         data.workingStatus === 'Working' ||
                         data.workingStatus === 'Completed'
                 );
-                console.log(bookings);
                 setBookings(bookings);
                 const pending = data.filter(
                     (data) => data.workingStatus === 'Pending' || data.workingStatus === 'Rejected'
                 );
                 setRequestPending(pending);
             });
-    }, [user.email]);
+    }, [user.email, refreshClientRequest]);
 
     // get customers
     useEffect(() => {
         fetch('https://radiant-sea-18512.herokuapp.com/users')
             .then((res) => res.json())
             .then((data) => setCustomers(data));
-    }, []);
+    }, [user.email]);
 
     // get workers
     useEffect(() => {
@@ -229,12 +231,13 @@ const useFirebase = () => {
 
     // get job applications
     useEffect(() => {
+        setUserApplied(true);
         fetch('https://radiant-sea-18512.herokuapp.com/applications')
             .then((res) => res.json())
             .then((data) => {
                 setApplications(data);
             });
-    }, [applicationUpdate]);
+    }, [applicationUpdate, userApplied]);
 
     // get toLets
     useEffect(() => {
@@ -286,7 +289,9 @@ const useFirebase = () => {
         availableWorkers,
         busyWorkers,
         applicationUpdate,
-        workUpdate
+        workUpdate,
+        refreshClientRequest,
+        setRefreshClientRequest
     };
 };
 

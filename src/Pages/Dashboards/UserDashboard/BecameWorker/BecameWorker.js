@@ -9,7 +9,7 @@ import useAuth from '../../../../hooks/useAuth';
 import src from '../../../../images/becameWorker.svg';
 
 function BecameWorker() {
-    const { user } = useAuth();
+    const { user, setUserApplied } = useAuth();
     const [data, setData] = useState({
         category: 'electrician',
         role: 'worker',
@@ -47,6 +47,7 @@ function BecameWorker() {
                 if (data.insertedId) {
                     setIsSuccess(true);
                     e.target.reset();
+                    setUserApplied(true);
                 } else {
                     setIsSuccess(true);
                 }

@@ -17,12 +17,9 @@ function Hire() {
             .then((data) => setWorker(data));
     }, [id]);
 
-    const { user } = useAuth();
+    const { user, setRefreshClientRequest } = useAuth();
     const { displayName, photoURL, email } = user;
     const [data, setData] = useState({});
-    console.log(data);
-
-    console.log(id);
 
     // handle form fields data
     const handleFormData = (e) => {
@@ -56,10 +53,11 @@ function Hire() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.insertedId) {
+                    setRefreshClientRequest(true);
                     alert('Added Successfully');
                     e.target.reset();
                     setData('');
-                    navigate('/userDashboard/hired');
+                    navigate('/userDashboard/requestPending');
                 } else {
                     alert('Process Unsuccessful');
                 }
