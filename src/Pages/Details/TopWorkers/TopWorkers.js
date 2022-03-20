@@ -1,9 +1,8 @@
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick/lib/slider';
 import Title from '../../../components/Title';
-import elec1 from '../../../images/workers/elec1.png';
 import Worker from '../../Shared/Worker/Worker';
 
 function NextArrow({ onClick }) {
@@ -30,64 +29,20 @@ function PrevArrow({ onClick }) {
     );
 }
 
-function TopWorkers() {
-    const workers = [
-        {
-            id: 1,
-            src: elec1,
-            name: 'Fahad Hossain',
-            location: 'Dhanmondi, Dhaka',
-            experience: '8 year',
-            category: 'Electrician',
-            skill: 'expert',
-            email: 'fahadhossain@gmail.com',
-            phone: '01234567891'
-        },
-        {
-            id: 2,
-            src: elec1,
-            name: 'Fahad Hossain',
-            location: 'Dhanmondi, Dhaka',
-            experience: '5 year',
-            category: 'Electrician',
-            skill: 'intermediate',
-            email: 'fahadhossain@gmail.com',
-            phone: '01234567891'
-        },
-        {
-            id: 3,
-            src: elec1,
-            name: 'Fahad Hossain',
-            location: 'Dhanmondi, Dhaka',
-            experience: '8 year',
-            category: 'Electrician',
-            skill: 'expert',
-            email: 'fahadhossain@gmail.com',
-            phone: '01234567891'
-        },
-        {
-            id: 4,
-            src: elec1,
-            name: 'Fahad Hossain',
-            location: 'Dhanmondi, Dhaka',
-            experience: '5 year',
-            category: 'Electrician',
-            skill: 'intermediate',
-            email: 'fahadhossain@gmail.com',
-            phone: '01234567891'
-        },
-        {
-            id: 5,
-            src: elec1,
-            name: 'Fahad Hossain',
-            location: 'Dhanmondi, Dhaka',
-            experience: '5 year',
-            category: 'Electrician',
-            skill: 'intermediate',
-            email: 'fahadhossain@gmail.com',
-            phone: '01234567891'
-        }
-    ];
+function TopWorkers({ role }) {
+    const [workers, setWorkers] = useState([]);
+    const [showCarousel, setShowCarousel] = useState(false);
+    console.log(role, workers, showCarousel);
+    useEffect(() => {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers?role=${role}&&filter=expert`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.length > 4) {
+                    setShowCarousel(true);
+                }
+                setWorkers(data);
+            });
+    }, [role]);
 
     const settings = {
         dots: false,
@@ -141,15 +96,27 @@ function TopWorkers() {
         ]
     };
     return (
-        <div className="my-20 container mx-auto ">
-            <Title>Top Workers</Title>
-            <p className="w-2/4 text-center mx-auto mt-3 mb-10">Top, workers available to hire</p>
-            <Slider className="" {...settings}>
-                {workers.map((worker) => (
-                    <Worker worker={worker} key={worker.id} />
-                ))}
-            </Slider>
-        </div>
+        workers.length && (
+            <div className="my-20 container mx-auto ">
+                <Title>Top {role}</Title>
+                <p className="w-2/4 text-center mx-auto mt-3 mb-10">
+                    Top, workers available to hire
+                </p>
+                {showCarousel ? (
+                    <Slider className="" {...settings}>
+                        {workers.map((worker) => (
+                            <Worker worker={worker} key={worker.id} />
+                        ))}
+                    </Slider>
+                ) : (
+                    <div className="grid grid-cols-4">
+                        {workers.map((worker) => (
+                            <Worker worker={worker} key={worker.id} />
+                        ))}
+                    </div>
+                )}
+            </div>
+        )
     );
 }
 

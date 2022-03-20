@@ -16,6 +16,7 @@ function AvailableWorkers() {
     const [reset, setReset] = useState(false);
     console.log(search, searchValue, filter);
     const { role } = useParams();
+    console.log(role);
 
     useEffect(() => {
         if (searchValue && search) {

@@ -53,10 +53,6 @@ function WorkerServices() {
     });
     const navigate = useNavigate();
 
-    /* {service === 'electricianService' && <ElectricianBanner />}
-            {service === 'plumberService' && <PlumberBanner />}
-            {service === 'chefService' && <ChefBanner />}
-            {service === 'toLetService' && <ToLetBanner />} */
     let serviceFor;
     if (service === 'electricianService') {
         serviceFor = 'electrician';
@@ -192,7 +188,7 @@ function WorkerServices() {
             </div>
 
             {/* topworkers */}
-            <TopWorkers />
+            <TopWorkers role={serviceFor} />
 
             {/* footer */}
             <Footer />
