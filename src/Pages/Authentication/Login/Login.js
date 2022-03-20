@@ -2,7 +2,9 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '../../../components/Button';
 import Input from '../../../components/Input';
+import Label from '../../../components/UnderlinedFieldLabel';
 import useAuth from '../../../hooks/useAuth';
 import src from '../../../images/login-register-bg.jpg';
 
@@ -30,7 +32,16 @@ function Login() {
         login(email, password, location, navigate);
     };
     return (
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-800 w-screen h-screen flex items-center justify-center ">
+        <div className="bg-gradient-to-r from-cyan-500 to-blue-800 w-screen h-screen flex items-center justify-center flex-col">
+            <div className="mb-10">
+                <button
+                    onClick={() => navigate('/')}
+                    className="mb-2 text-white text-4xl font-serif inline-block cursor-pointer"
+                >
+                    Urban Services
+                </button>
+                <span className="h-1 w-3/4 bg-white block mx-auto" />
+            </div>
             {/* inner container */}
             <div
                 style={{
@@ -52,9 +63,7 @@ function Login() {
                                     name="email"
                                     type="email"
                                 />
-                                <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 uppercase ">
-                                    Email address or phone number
-                                </label>
+                                <Label>Email address or phone number</Label>
                             </div>
                             <div className="mb-3 relative z-0">
                                 <Input
@@ -63,17 +72,12 @@ function Login() {
                                     name="password"
                                     type="password"
                                 />
-                                <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 uppercase">
-                                    password
-                                </label>
+                                <Label>password</Label>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="w-full py-1 mb-2 text-md bg-gradient-to-r from-cyan-500 to-blue-800  rounded-full text-white uppercase"
-                            >
+                            <Button type="submit" variant="auth">
                                 Sign In
-                            </button>
+                            </Button>
 
                             <div className="flex items-center justify-center">
                                 <p className="text-center my-5 mr-5">Or,</p>

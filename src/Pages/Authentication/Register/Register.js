@@ -1,10 +1,10 @@
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '../../../components/Button';
 import Input from '../../../components/Input';
+import Label from '../../../components/UnderlinedFieldLabel';
 import useAuth from '../../../hooks/useAuth';
-import img from '../../../images/register.jpg';
+import src from '../../../images/login-register-bg.jpg';
 
 function Register() {
     // use firebase
@@ -37,103 +37,94 @@ function Register() {
         }
     };
     return (
-        <>
-            {/* header */}
-            <Link
-                to="/"
-                className="text-4xl text-center font-serif w-full inline-block border-b-2 py-2"
+        <div className="bg-gradient-to-r from-cyan-500 to-blue-800 w-screen h-screen flex items-center justify-center flex-col">
+            <div className="mb-10">
+                <button
+                    onClick={() => navigate('/')}
+                    className="mb-2 text-white text-4xl font-serif inline-block cursor-pointer"
+                >
+                    Urban Services
+                </button>
+                <span className="h-1 w-3/4 bg-white block mx-auto" />
+            </div>
+            {/* inner container */}
+            <div
+                style={{
+                    background: `url(${src}) no-repeat center`,
+                    backgroundSize: 'cover'
+                }}
             >
-                Urban Services
-            </Link>
-
-            {/* body */}
-            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 ">
-                <div className="hidden lg:block">
-                    <img src={img} alt="" />
-                </div>
-                <div className="md:my-auto">
-                    <h2
-                        className="text-center text-5xl mb-5 mt-20 lg:mt-0 text-white tracking-widest"
-                        style={{ textShadow: '0px 0px 6px black' }}
-                    >
-                        Register
-                    </h2>
-                    <form className="" onSubmit={handleRegister}>
-                        <div className="mb-3">
-                            <Input
-                                variant="outlined"
-                                onBlur={handleBlur}
-                                name="name"
-                                type="text"
-                                placeholder="Name"
-                            />
+                <div className="container grid grid-cols-3">
+                    {/* navigation */}
+                    <div className="text-white flex flex-col items-center justify-between py-10 ">
+                        <div>
+                            <h3 className="text-3xl text-center">Let&#39;s Start Our Journey</h3>
+                            <p className="text-center mt-3">Sign up and Make your life easier</p>
+                            {/* goto register */}
                         </div>
-                        <div className="mb-3">
-                            <Input
-                                variant="outlined"
-                                onBlur={handleBlur}
-                                name="email"
-                                type="email"
-                                placeholder="Email"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <Input
-                                variant="outlined"
-                                name="password"
-                                type="password"
-                                onBlur={handleBlur}
-                                placeholder="Password"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <Input
-                                variant="outlined"
-                                name="confirmPassword"
-                                type="password"
-                                onBlur={handleBlur}
-                                placeholder="Confirm Password"
-                            />
-                        </div>
-
                         <button
-                            type="submit"
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full mb-2"
+                            onClick={() => navigate('/login')}
+                            className="text-white border-2 border-white rounded-full px-3 py-1 uppercase hover:bg-gradient-to-r from-cyan-500 to-blue-800 mb-20"
                         >
-                            Register new account
+                            sign in
                         </button>
+                    </div>
 
-                        {/* google login */}
-                        <div className="flex items-center justify-center">
-                            <p className="text-center my-5 mr-5">Or,</p>
-
-                            <div className="text-center text-xl bg-orange-300 text-white py-2 rounded-lg mt-1 px-5">
-                                <button onClick={() => googleLogin(location, navigate)}>
-                                    Create Account With google{' '}
-                                    <FontAwesomeIcon icon={faGoogle} className="text-blue-500" />
-                                </button>
+                    {/* form */}
+                    <div className="md:my-auto col-span-2 bg-white p-20">
+                        <h2 className="text-4xl text-center mb-8">Sign Up</h2>
+                        <form className="" onSubmit={handleRegister}>
+                            <div className="my-5 relative z-0 ">
+                                <Input
+                                    variant="underlined"
+                                    onBlur={handleBlur}
+                                    name="name"
+                                    type="text"
+                                />
+                                <Label>Name</Label>
                             </div>
-                        </div>
+                            <div className="my-5 relative z-0 ">
+                                <Input
+                                    variant="underlined"
+                                    onBlur={handleBlur}
+                                    name="email"
+                                    type="email"
+                                />
+                                <Label>Email</Label>
+                            </div>
+                            <div className="my-5 relative z-0 ">
+                                <Input
+                                    variant="underlined"
+                                    name="password"
+                                    type="password"
+                                    onBlur={handleBlur}
+                                />
+                                <Label>Password</Label>
+                            </div>
+                            <div className="my-5 relative z-0 ">
+                                <Input
+                                    variant="underlined"
+                                    name="confirmPassword"
+                                    type="password"
+                                    onBlur={handleBlur}
+                                />
+                                <Label>Confirm Password</Label>
+                            </div>
 
-                        {/* go to login */}
-                        <p className="text-center my-2 ">
-                            New user, Please{' '}
-                            <button
-                                onClick={() => navigate('/login')}
-                                className="underline text-blue-500"
-                            >
-                                Login
-                            </button>
-                        </p>
-                        {error && (
-                            <p className="py-1 bg-red-400 text-white text-center mt-1 rounded-md">
-                                {error}
-                            </p>
-                        )}
-                    </form>
+                            <Button variant="auth" type="submit">
+                                Sign UP Now
+                            </Button>
+
+                            {error && (
+                                <p className="py-1 bg-red-400 text-white text-center mt-1 rounded-md">
+                                    {error}
+                                </p>
+                            )}
+                        </form>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
