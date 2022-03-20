@@ -23,12 +23,12 @@ function AvailableWorkers() {
             setSearch(false);
             setReset(false);
             console.log('inside1');
-            fetch(`https://radiant-sea-18512.herokuapp.com/worker/${searchValue}`)
+            fetch(`http://localhost:8000/worker/${searchValue}`)
                 .then((res) => res.json())
                 .then((data) => setSearchedWorkers([data]));
         } else {
             console.log('inside2');
-            fetch(`https://radiant-sea-18512.herokuapp.com/workers?role=${role}&&filter=${filter}`)
+            fetch(`http://localhost:8000/workers?role=${role}&&filter=${filter}`)
                 .then((res) => res.json())
                 .then((data) => setWorkers(data));
         }

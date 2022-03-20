@@ -12,7 +12,7 @@ function Hire() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/worker/${id}`)
+        fetch(`http://localhost:8000/worker/${id}`)
             .then((res) => res.json())
             .then((data) => setWorker(data));
     }, [id]);
@@ -31,7 +31,7 @@ function Hire() {
     // handle form submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://radiant-sea-18512.herokuapp.com/hired', {
+        fetch('http://localhost:8000/hired', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -40,14 +40,15 @@ function Hire() {
                 ...data,
                 cost: data.cost,
                 workerName: worker?.name,
-                workerLocation: worker.location,
-                workerCategory: worker.category,
-                workerPhone: worker.phone,
+                workerLocation: worker?.location,
+                workerCategory: worker?.category,
+                workerPhone: worker?.phone,
                 customerName: displayName,
                 customerEmail: email,
                 workingStatus: 'Pending',
                 workingProgress: '0%',
-                workerEmail: worker.email
+                workerEmail: worker?.email,
+                salary: worker?.salary || '5000'
             })
         })
             .then((res) => res.json())
@@ -127,6 +128,7 @@ function Hire() {
                                 variant="underlined"
                                 placeholder=" "
                                 type="number"
+                                value={worker?.salary || '2000'}
                             />
                             <Label>Cost</Label>
                         </div>

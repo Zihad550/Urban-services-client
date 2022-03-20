@@ -10,7 +10,7 @@ function UserDashboardHome() {
     console.log(bookings, requestPending);
 
     useEffect(() => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLets?email=${user.email}`)
+        fetch(`http://localhost:8000/toLets?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => setToLets(data));
     }, [user.email]);

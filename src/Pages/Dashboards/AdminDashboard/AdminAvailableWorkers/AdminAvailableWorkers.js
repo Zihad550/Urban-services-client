@@ -4,6 +4,7 @@ import useAuth from '../../../../hooks/useAuth';
 
 function AdminAvailableWorkers() {
     const { availableWorkers, setWorkingStatus } = useAuth();
+    console.log(availableWorkers);
     const rows = ['Name', 'Catagories', 'Phone Number', 'Action'];
 
     return (

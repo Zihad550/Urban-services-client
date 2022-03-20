@@ -7,7 +7,7 @@ function ToLetRequests() {
     const [toLetUpdate, setToLetUpdate] = useState(false);
 
     useEffect(() => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLets?status=Pending`)
+        fetch(`http://localhost:8000/toLets?status=Pending`)
             .then((res) => res.json())
             .then((data) => setRequests(data));
     }, [toLetUpdate]);

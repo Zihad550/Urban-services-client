@@ -35,7 +35,7 @@ function AdminAddWorker() {
         e.preventDefault();
         setIsError(false);
         setIsSuccess(false);
-        fetch('https://radiant-sea-18512.herokuapp.com/workers', {
+        fetch('http://localhost:8000/workers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -170,27 +170,40 @@ function AdminAddWorker() {
                             </div>
                         </div>
                         {/* category */}
-                        <div className="mb-5">
-                            <label
-                                htmlFor="categories"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-                            >
-                                Select Category
-                            </label>
-                            <select
-                                name="category"
+                        <div className="mb-5 flex items-center justify-center">
+                            <div className="w-full">
+                                <label
+                                    htmlFor="categories"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                                >
+                                    Select Category
+                                </label>
+                                <select
+                                    name="category"
+                                    onBlur={handleFormData}
+                                    id="categories"
+                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    required
+                                >
+                                    <option value="electrician">Electrician</option>
+                                    <option value="plumber">Plumber</option>
+                                    <option value="chef">Chef</option>
+                                </select>
+                            </div>
+                        </div>
+                        {/* Salary */}
+                        <div className="relative z-0 mb-6 w-full group ">
+                            <Input
                                 onBlur={handleFormData}
-                                id="categories"
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                required
-                            >
-                                <option value="electrician">Electrician</option>
-                                <option value="plumber">Plumber</option>
-                                <option value="chef">Chef</option>
-                            </select>
+                                name="salary"
+                                variant="underlined"
+                                placeholder=" "
+                                type="number"
+                            />
+                            <Label>Salary</Label>
                         </div>
 
-                        {/* name */}
+                        {/* image */}
                         <div className="relative z-0 mb-6 w-full group mr-5">
                             <Input
                                 onBlur={handleFormData}

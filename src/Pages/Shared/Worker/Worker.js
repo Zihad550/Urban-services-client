@@ -8,8 +8,19 @@ import WorkerDetailModal from '../DetailModal/DetailModal';
 function Worker({ worker }) {
     const [showDetail, setShowDetail] = useState(false);
     const navigate = useNavigate();
-    const { src, name, location, experience, category, skill, email, phone, _id, workingStatus } =
-        worker;
+    const {
+        src,
+        name,
+        location,
+        experience,
+        category,
+        skill,
+        email,
+        phone,
+        _id,
+        workingStatus,
+        salary
+    } = worker;
     const socials = [
         { id: 1, icon: faFacebookF, link: '#', bg: '#3b5998' },
         { id: 2, icon: faLinkedinIn, link: '#', bg: '#0e76a8' },
@@ -85,6 +96,13 @@ function Worker({ worker }) {
                                 <FontAwesomeIcon icon={social.icon} />
                             </div>
                         ))}
+                    </div>
+
+                    {/* salary */}
+                    <div>
+                        <p className="text-xl text-center mt-4 font-bold">
+                            Salary: <span className="text-yellow-500">{salary || '5000'}</span>
+                        </p>
                     </div>
 
                     {/* actions */}

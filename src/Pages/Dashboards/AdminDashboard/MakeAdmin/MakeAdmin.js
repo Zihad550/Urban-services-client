@@ -11,7 +11,7 @@ function MakeAdmin() {
         setIsError(false);
         setIsSuccess(false);
         e.preventDefault();
-        fetch('https://radiant-sea-18512.herokuapp.com/users/admin', {
+        fetch('http://localhost:8000/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

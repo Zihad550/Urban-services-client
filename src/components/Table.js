@@ -31,7 +31,7 @@ function Table({
 
     // handle delete services
     const handleDeleteService = (id) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/services?id=${id}`, {
+        fetch(`http://localhost:8000/services?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -42,7 +42,7 @@ function Table({
 
     // handle approve application
     const handleApproveApplication = (worker) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/application`, {
+        fetch(`http://localhost:8000/application`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -59,7 +59,7 @@ function Table({
     };
     // handle delete application
     const handleDeleteApplication = (email) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/application?email=${email}`, {
+        fetch(`http://localhost:8000/application?email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -71,8 +71,8 @@ function Table({
     };
 
     // handle working status
-    const handleWorkingStatus = (email, status = 'free', id) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/workingStatus`, {
+    const handleWorkingStatus = (email, status, id) => {
+        fetch(`http://localhost:8000/workingStatus`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -82,16 +82,15 @@ function Table({
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                if (data.insertedId) {
-                    alert('Status Updated');
+                if (data.message) {
+                    setWorkingStatus(true);
                 }
-                setWorkUpdate(true);
             });
     };
 
     // handle complete work
     const handleCompleteWork = (id) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/complete`, {
+        fetch(`http://localhost:8000/complete`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -110,7 +109,7 @@ function Table({
 
     // handle toLet application Delete & approve
     const handleToLetApplication = (id, method) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLet`, {
+        fetch(`http://localhost:8000/toLet`, {
             method,
             headers: {
                 'content-type': 'application/json'
@@ -126,7 +125,7 @@ function Table({
     // handle tolet delete
     const handleDeleteToLet = (id) => {
         console.log(id);
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLet/delete?id=${id}`, {
+        fetch(`http://localhost:8000/toLet/delete?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -518,7 +517,11 @@ function Table({
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                                                     <button
                                                         onClick={() =>
-                                                            handleWorkingStatus(col.email, 'busy')
+                                                            handleWorkingStatus(
+                                                                col.email,
+                                                                'Busy',
+                                                                col._id
+                                                            )
                                                         }
                                                         title="Update Status"
                                                         className="bg-green-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-green-500"
@@ -548,7 +551,7 @@ function Table({
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                                                     <button
                                                         onClick={() =>
-                                                            handleWorkingStatus(col.email, 'free')
+                                                            handleWorkingStatus(col.email, 'Free')
                                                         }
                                                         title="Update Status"
                                                         className="bg-green-400 text-white p-2 mr-2 rounded-full w-10 h-10 hover:bg-green-500"

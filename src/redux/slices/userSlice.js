@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // get user
 const getUserByEmail = createAsyncThunk('user/fetchByEmail', async (email) => {
-    const res = await fetch(`https://radiant-sea-18512.herokuapp.com/users/${email}`);
+    const res = await fetch(`http://localhost:8000/users/${email}`);
     const data = await res.json();
     return data;
 });
 
 // save user to db
 const saveUser = createAsyncThunk('user/SaveUser', async (user, method) => {
-    const res = await fetch('https://radiant-sea-18512.herokuapp.com/users', {
+    const res = await fetch('http://localhost:8000/users', {
         method,
         headers: {
             'content-type': 'application/json'
