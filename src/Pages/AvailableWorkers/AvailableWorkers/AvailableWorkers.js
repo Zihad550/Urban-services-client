@@ -14,21 +14,22 @@ function AvailableWorkers() {
     const [search, setSearch] = useState(false);
     const [filter, setFilter] = useState('');
     const [reset, setReset] = useState(false);
-    console.log(search, searchValue, filter);
     const { role } = useParams();
-    console.log(role);
+    console.log(searchValue);
+    console.log(searchedWorkers);
+    console.log(workers);
 
     useEffect(() => {
         if (searchValue && search) {
             setSearch(false);
             setReset(false);
             console.log('inside1');
-            fetch(`http://localhost:8000/worker/${searchValue}`)
+            fetch(`https://radiant-sea-18512.herokuapp.com/worker/${searchValue}`)
                 .then((res) => res.json())
                 .then((data) => setSearchedWorkers([data]));
         } else {
             console.log('inside2');
-            fetch(`http://localhost:8000/workers?role=${role}&&filter=${filter}`)
+            fetch(`https://radiant-sea-18512.herokuapp.com/workers?role=${role}&&filter=${filter}`)
                 .then((res) => res.json())
                 .then((data) => setWorkers(data));
         }
@@ -63,7 +64,7 @@ function AvailableWorkers() {
 
                     {searchedWorkers.length > 0 &&
                         searchedWorkers.map((worker) => (
-                            <Worker worker={worker} key={worker._id} />
+                            <Worker worker={worker} key={worker?._id} />
                         ))}
                     {searchedWorkers.length === 0 &&
                         role !== 'toLet' &&

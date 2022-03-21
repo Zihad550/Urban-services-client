@@ -35,7 +35,7 @@ function BecameWorker() {
         e.preventDefault();
         setIsSuccess(false);
         setIsError(false);
-        fetch('http://localhost:8000/apply', {
+        fetch('https://radiant-sea-18512.herokuapp.com/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -189,7 +189,19 @@ function BecameWorker() {
                             </select>
                         </div>
 
-                        {/* name */}
+                        {/* salary */}
+                        <div className="relative z-0 mb-6 w-full group mr-5">
+                            <Input
+                                onBlur={handleFormData}
+                                name="salary"
+                                variant="underlined"
+                                placeholder=" "
+                                type="number"
+                            />
+                            <Label>Salary</Label>
+                        </div>
+
+                        {/* image */}
                         <div className="relative z-0 mb-6 w-full group mr-5">
                             <Input
                                 onBlur={handleFormData}

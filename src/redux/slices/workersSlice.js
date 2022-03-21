@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // get user
 const getWorkers = createAsyncThunk('workers/getWorkers', async () => {
-    const res = await fetch(`http://localhost:8000/allWorkers`);
+    const res = await fetch(`https://radiant-sea-18512.herokuapp.com/allWorkers`);
     const data = await res.json();
     return data;
 });

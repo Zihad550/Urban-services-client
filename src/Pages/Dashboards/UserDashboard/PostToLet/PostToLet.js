@@ -32,7 +32,7 @@ function PostToLet() {
         e.preventDefault();
         setIsError(false);
         setIsSuccess(false);
-        fetch('http://localhost:8000/workers', {
+        fetch('https://radiant-sea-18512.herokuapp.com/workers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

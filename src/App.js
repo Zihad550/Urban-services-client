@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import AuthProvider from './context/AuthProvider';
 import AdminRoute from './Pages/Authentication/AdminRoute/AdminRoute';
 import Login from './Pages/Authentication/Login/Login';
+import NotFound from './Pages/Authentication/NotFound/NotFound';
 import PrivateRoute from './Pages/Authentication/PrivateRoute/PrivateRoute';
 import Register from './Pages/Authentication/Register/Register';
 import UserRoute from './Pages/Authentication/UserRoute/UserRoute';
@@ -275,6 +276,9 @@ function App() {
                     {/* authentication routes */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+
+                    {/* not found */}
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

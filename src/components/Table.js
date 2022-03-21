@@ -9,7 +9,6 @@ function Table({
     variant,
     setIsDeleted,
     setStatus,
-    setWorkingStatus,
     setToLetUpdate,
     setToLetUpdated,
     setWorkerUpdated
@@ -19,19 +18,19 @@ function Table({
     // handle delete worker
     const handleDeleteWorker = (id, email) => {
         console.log(id);
-        fetch(`http://localhost:8000/workers?id=${id}&&email=${email}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers?id=${id}&&email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
             .then((data) => {
-                data.deletedCount > 0 && setWorkerUpdated(true);
                 console.log(data);
+                data.deletedCount > 0 && setWorkerUpdated(true);
             });
     };
 
     // handle delete services
     const handleDeleteService = (id) => {
-        fetch(`http://localhost:8000/services?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/services?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -42,7 +41,7 @@ function Table({
 
     // handle approve application
     const handleApproveApplication = (worker) => {
-        fetch(`http://localhost:8000/application`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/application`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -51,15 +50,12 @@ function Table({
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-                if (data.insertedId) {
-                    setApplicationUpdate(true);
-                }
+                setApplicationUpdate(true);
             });
     };
     // handle delete application
     const handleDeleteApplication = (email) => {
-        fetch(`http://localhost:8000/application?email=${email}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/application?email=${email}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -72,7 +68,7 @@ function Table({
 
     // handle working status
     const handleWorkingStatus = (email, status, id) => {
-        fetch(`http://localhost:8000/workingStatus`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/workingStatus`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -83,14 +79,14 @@ function Table({
             .then((data) => {
                 console.log(data);
                 if (data.message) {
-                    setWorkingStatus(true);
+                    setWorkUpdate(true);
                 }
             });
     };
 
     // handle complete work
     const handleCompleteWork = (id) => {
-        fetch(`http://localhost:8000/complete`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/complete`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -103,13 +99,13 @@ function Table({
                 if (data.insertedId) {
                     alert('Status Updated');
                 }
-                setWorkingStatus(true);
+                setWorkUpdate(true);
             });
     };
 
     // handle toLet application Delete & approve
     const handleToLetApplication = (id, method) => {
-        fetch(`http://localhost:8000/toLet`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/toLet`, {
             method,
             headers: {
                 'content-type': 'application/json'
@@ -125,7 +121,7 @@ function Table({
     // handle tolet delete
     const handleDeleteToLet = (id) => {
         console.log(id);
-        fetch(`http://localhost:8000/toLet/delete?id=${id}`, {
+        fetch(`https://radiant-sea-18512.herokuapp.com/toLet/delete?id=${id}`, {
             method: 'DELETE'
         })
             .then((res) => res.json())
@@ -270,10 +266,7 @@ function Table({
                                                         title="Remove worker"
                                                         className="bg-red-400 text-white p-2  rounded-full w-10 h-10 hover:bg-red-500"
                                                         onClick={() =>
-                                                            handleDeleteWorker(
-                                                                col._id,
-                                                                col.workerEmail
-                                                            )
+                                                            handleDeleteWorker(col._id, col.email)
                                                         }
                                                     >
                                                         <FontAwesomeIcon icon={faXmark} />
@@ -331,7 +324,7 @@ function Table({
                                     {variant === 'workersRequest' &&
                                         cols.map((col) => (
                                             <tr
-                                                key={col.id}
+                                                key={col._id}
                                                 className="hover:bg-gray-100 dark:hover:bg-gray-700"
                                             >
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -501,7 +494,7 @@ function Table({
                                     {variant === 'availableWorkers' &&
                                         cols.map((col) => (
                                             <tr
-                                                key={col.id}
+                                                key={col._id}
                                                 className="hover:bg-gray-100 dark:hover:bg-gray-700"
                                             >
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">

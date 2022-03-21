@@ -34,7 +34,7 @@ function TopWorkers({ role }) {
     const [showCarousel, setShowCarousel] = useState(false);
     console.log(role, workers, showCarousel);
     useEffect(() => {
-        fetch(`http://localhost:8000/workers?role=${role}&&filter=expert`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers?role=${role}&&filter=expert`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.length > 4) {

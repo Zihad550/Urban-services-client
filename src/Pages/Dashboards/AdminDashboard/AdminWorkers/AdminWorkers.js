@@ -5,10 +5,12 @@ import Table from '../../../../components/Table';
 
 function AdminWorkers() {
     const [workers, setWorkers] = useState([]);
+    console.log(workers);
     const [workerUpdated, setWorkerUpdated] = useState(false);
     const { role } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:8000/workers/${role}`)
+        setWorkerUpdated(false);
+        fetch(`https://radiant-sea-18512.herokuapp.com/workers/${role}`)
             .then((res) => res.json())
             .then((data) => setWorkers(data));
     }, [role, workerUpdated]);
