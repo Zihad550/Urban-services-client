@@ -22,6 +22,7 @@ import AdminDashboardHome from './Pages/Dashboards/AdminDashboard/AdminDashboard
 import AdminServices from './Pages/Dashboards/AdminDashboard/AdminServices/AdminServices';
 import AdminWorkers from './Pages/Dashboards/AdminDashboard/AdminWorkers/AdminWorkers';
 import BusyWorkers from './Pages/Dashboards/AdminDashboard/BusyWorkers/BusyWorkers';
+import CustomerMessages from './Pages/Dashboards/AdminDashboard/CustomerMessages/CustomerMessages';
 import Customers from './Pages/Dashboards/AdminDashboard/Customers/Customers';
 import MakeAdmin from './Pages/Dashboards/AdminDashboard/MakeAdmin/MakeAdmin';
 import ToLetRequests from './Pages/Dashboards/AdminDashboard/ToLetRequests/ToLetRequests';
@@ -130,6 +131,14 @@ function App() {
                             element={
                                 <AdminRoute>
                                     <Customers />
+                                </AdminRoute>
+                            }
+                        />
+                        <Route
+                            path="/adminDashboard/messages"
+                            element={
+                                <AdminRoute>
+                                    <CustomerMessages />
                                 </AdminRoute>
                             }
                         />

@@ -34,11 +34,11 @@ function Worker({ worker }) {
             <div className="shadow-lg mx-2 rounded-md hover:shadow-xl">
                 {/* card header */}
                 {/* img */}
-                <div className="h-[300px] overflow-hidden">
-                    <img className="w-full h-auto rounded-lg " src={src} alt="" />
+                <div className="h-[270px] overflow-hidden">
+                    <img className="w-full h-auto rounded-lg " src={src} alt="worker" />
                 </div>
                 {/* card body */}
-                <div className="p-5 rounded-b-lg">
+                <div className="px-5 pt-2 pb-3 rounded-b-lg">
                     {/* name */}
                     <h2 className="text-xl text-center mb-3">{name}</h2>
                     {/*  level & category & avaivility */}
@@ -66,7 +66,7 @@ function Worker({ worker }) {
 
                     {/* experience & location & contact */}
 
-                    <div className="my-5">
+                    <div className="my-2">
                         <div className=" mt-2">
                             <p className="text-sm mr-2">
                                 Experience:
@@ -102,13 +102,13 @@ function Worker({ worker }) {
 
                     {/* salary */}
                     <div>
-                        <p className="text-xl text-center mt-4 font-bold">
+                        <p className="text-xl text-center my-3 font-bold">
                             Salary: <span className="text-yellow-500">{salary || '5000'}</span>
                         </p>
                     </div>
 
                     {/* actions */}
-                    <div className="flex rounded-md shadow-sm items-center justify-center mt-4">
+                    <div className="flex rounded-md shadow-sm items-center justify-center">
                         <button
                             onClick={() => setShowDetail(true)}
                             type="button"

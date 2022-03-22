@@ -64,6 +64,9 @@ const useFirebase = () => {
     const [toLets, setToLets] = useState([]);
     const [toLetUpdated, setToLetUpdated] = useState(false);
 
+    // message states
+    const [isMessageSent, setIsMessageSent] = useState(false);
+
     // https://radiant-sea-18512.herokuapp.com/
     //  https://radiant-sea-18512.herokuapp.com/
     // navigate
@@ -294,7 +297,9 @@ const useFirebase = () => {
         workUpdate,
         refreshClientRequest,
         setRefreshClientRequest,
-        setWorkingStatus
+        setWorkingStatus,
+        setIsMessageSent,
+        isMessageSent
     };
 };
 
