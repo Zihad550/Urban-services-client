@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Title from '../../../components/Title';
-import src from '../../../images/toLet/banner.jpg';
+import src from '../../../images/banner.jpg';
 
 function ToLetBanner() {
     const navigate = useNavigate();
