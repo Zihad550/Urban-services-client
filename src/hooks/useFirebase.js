@@ -1,6 +1,7 @@
 import {
     createUserWithEmailAndPassword,
     getAuth,
+    getIdToken,
     GoogleAuthProvider,
     onAuthStateChanged,
     signInWithEmailAndPassword,
@@ -173,7 +174,12 @@ const useFirebase = () => {
     // get the current worker works
     useEffect(() => {
         setWorkUpdate(false);
-        fetch(`https://radiant-sea-18512.herokuapp.com/work?email=${user.email}`)
+        fetch(`https://radiant-sea-18512.herokuapp.com/work?email=${user.email}`, {
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('idToken')}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 if (data.length) {
@@ -218,7 +224,7 @@ const useFirebase = () => {
         fetch('https://radiant-sea-18512.herokuapp.com/users')
             .then((res) => res.json())
             .then((data) => setCustomers(data));
-    }, [user.email]);
+    }, []);
 
     // get workers
     useEffect(() => {
@@ -255,7 +261,7 @@ const useFirebase = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                // getIdToken(user).then((idToken) => localStorage.setItem('idToken', idToken));
+                getIdToken(user).then((idToken) => localStorage.setItem('idToken', idToken));
                 setUser(user);
                 setError('');
             } else {
