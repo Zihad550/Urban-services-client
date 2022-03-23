@@ -47,8 +47,7 @@ function Hire() {
                 customerEmail: email,
                 workingStatus: 'Pending',
                 workingProgress: '0%',
-                workerEmail: worker?.email,
-                salary: worker?.salary || '5000'
+                workerEmail: worker?.email
             })
         })
             .then((res) => res.json())
@@ -128,7 +127,6 @@ function Hire() {
                                 variant="underlined"
                                 placeholder=" "
                                 type="number"
-                                value={worker?.salary || '2000'}
                             />
                             <Label>Cost</Label>
                         </div>
