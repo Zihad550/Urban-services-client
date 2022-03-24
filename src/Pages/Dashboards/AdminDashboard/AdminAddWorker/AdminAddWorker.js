@@ -40,7 +40,7 @@ function AdminAddWorker() {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ ...data, workingStatus: 'Free' })
         })
             .then((res) => res.json())
             .then((data) => {
