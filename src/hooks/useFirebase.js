@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../Firebase/firebase.init';
+import axios from '../services/http.service';
 // https://radiant-sea-18512.herokuapp.com/
 
 // providers
@@ -25,9 +26,6 @@ const useFirebase = () => {
     // user states
     const [user, setUser] = useState({});
     const [savedUser, setSavedUser] = useState({});
-    console.log(savedUser);
-    console.log(user.email);
-    console.log(user);
 
     // admin states
     const [admin, setAdmin] = useState(false);
@@ -159,7 +157,7 @@ const useFirebase = () => {
     // get saved user
     useEffect(() => {
         setAdminLoading(true);
-        fetch(`https://radiant-sea-18512.herokuapp.com/users/${user.email}`)
+        /*  fetch(`https://radiant-sea-18512.herokuapp.com/users/${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data) {
@@ -168,7 +166,15 @@ const useFirebase = () => {
                 } else {
                     setAdminLoading(true);
                 }
-            });
+            }); */
+        axios.get(`/users/${user.email}`).then((res) => {
+            if (res.data) {
+                setSavedUser(res.data);
+                setAdminLoading(false);
+            } else {
+                setAdminLoading(true);
+            }
+        });
     }, [user.email]);
 
     // get the current worker works
@@ -202,7 +208,21 @@ const useFirebase = () => {
     // get bookings
     useEffect(() => {
         setRefreshClientRequest(false);
-        fetch(`https://radiant-sea-18512.herokuapp.com/hired?email=${user.email}`)
+        axios.get(`/hired?email=${user.email}`).then((res) => {
+            const { data } = res;
+            const bookings = data.filter(
+                (data) =>
+                    data.workingStatus === 'Not Working' ||
+                    data.workingStatus === 'Working' ||
+                    data.workingStatus === 'Completed'
+            );
+            setBookings(bookings);
+            const pending = data.filter(
+                (data) => data.workingStatus === 'Pending' || data.workingStatus === 'Rejected'
+            );
+            setRequestPending(pending);
+        });
+        /* fetch(`https://radiant-sea-18512.herokuapp.com/hired?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 const bookings = data.filter(
@@ -216,20 +236,31 @@ const useFirebase = () => {
                     (data) => data.workingStatus === 'Pending' || data.workingStatus === 'Rejected'
                 );
                 setRequestPending(pending);
-            });
+            }); */
     }, [user.email, refreshClientRequest]);
 
     // get customers
     useEffect(() => {
-        fetch('https://radiant-sea-18512.herokuapp.com/users')
+        axios.get('/users').then((res) => {
+            setCustomers(res.data);
+        });
+        /*  fetch('https://radiant-sea-18512.herokuapp.com/users')
             .then((res) => res.json())
-            .then((data) => setCustomers(data));
+            .then((data) => setCustomers(data)); */
     }, []);
 
     // get workers
     useEffect(() => {
         setWorkingStatus(false);
-        fetch('https://radiant-sea-18512.herokuapp.com/allWorkers')
+        axios.get('/allWorkers').then((res) => {
+            const { data } = res;
+            const availableWorkers = data.filter((worker) => worker.workingStatus === 'Free');
+            setAvailableWorkers(availableWorkers);
+            const busyWorkers = data.filter((worker) => worker.workingStatus === 'Busy');
+            setBusyWorkers(busyWorkers);
+            setWorkers(data);
+        });
+        /* fetch('https://radiant-sea-18512.herokuapp.com/allWorkers')
             .then((res) => res.json())
             .then((data) => {
                 const availableWorkers = data.filter((worker) => worker.workingStatus === 'Free');
@@ -237,24 +268,30 @@ const useFirebase = () => {
                 const busyWorkers = data.filter((worker) => worker.workingStatus === 'Busy');
                 setBusyWorkers(busyWorkers);
                 setWorkers(data);
-            });
+            }); */
     }, [workingStatus]);
 
     // get job applications
     useEffect(() => {
         setUserApplied(true);
-        fetch('https://radiant-sea-18512.herokuapp.com/applications')
+        axios.get('/applications').then((res) => {
+            setApplications(res.data);
+        });
+        /* fetch('https://radiant-sea-18512.herokuapp.com/applications')
             .then((res) => res.json())
             .then((data) => {
                 setApplications(data);
-            });
+            }); */
     }, [applicationUpdate, userApplied]);
 
     // get toLets
     useEffect(() => {
-        fetch('https://radiant-sea-18512.herokuapp.com/allToLets')
+        axios.get('/allToLets').then((res) => {
+            setToLets(res.data);
+        });
+        /* fetch('https://radiant-sea-18512.herokuapp.com/allToLets')
             .then((res) => res.json())
-            .then((data) => setToLets(data));
+            .then((data) => setToLets(data)); */
     }, [toLetUpdated]);
 
     // observe the user
