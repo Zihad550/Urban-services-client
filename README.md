@@ -9,7 +9,6 @@ Live site [Urban Services](https://urban-services-233ae.web.app/)
 ## Technologies
 
 - React
-- Redux
 - TailwindCSS
 - Axios
 - Firebase
