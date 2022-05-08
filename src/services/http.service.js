@@ -7,4 +7,24 @@ const axiosConfig = {
 
 const instance = axios.create(axiosConfig);
 
-export default instance;
+class Request {
+    async get(url) {
+        return instance.get(url).then((res) => res.data);
+    }
+
+    async post(url, body) {
+        return instance.post(url, body);
+    }
+
+    async update(url, body) {
+        return instance.patch(url, body);
+    }
+
+    async delete(url) {
+        return instance.delete(url);
+    }
+}
+
+const httpReq = new Request();
+
+export default httpReq;
