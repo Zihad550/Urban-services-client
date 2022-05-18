@@ -1,11 +1,11 @@
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import img1 from 'assets/images/homeBanner/contactBanner.jpg';
+import img2 from 'assets/images/homeBanner/helpYouBanner.jpg';
+import img3 from 'assets/images/homeBanner/workersBanner.jpg';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import img1 from '../../../../images/homeBanner/contactBanner.jpg';
-import img2 from '../../../../images/homeBanner/helpYouBanner.jpg';
-import img3 from '../../../../images/homeBanner/workersBanner.jpg';
 
 function NextArrow({ onClick }) {
     return (

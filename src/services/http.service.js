@@ -5,9 +5,9 @@ const axiosConfig = {
     timeout: 15000
 };
 
-const instance = axios.create(axiosConfig);
+const axiosInstance = axios.create(axiosConfig);
 
-class Request {
+/* class Request {
     async get(url) {
         return instance.get(url).then((res) => res.data);
     }
@@ -23,8 +23,8 @@ class Request {
     async delete(url) {
         return instance.delete(url);
     }
-}
+} */
 
-const httpReq = new Request();
+// const httpReq = new Request();
 
-export default httpReq;
+export default axiosInstance;

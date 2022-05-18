@@ -1,9 +1,9 @@
+import happyClients from 'assets/images/whyUs/happyClients.svg';
+import src from 'assets/images/whyUs/onTime.svg';
+import standValue from 'assets/images/whyUs/standValue.svg';
+import weInnovate from 'assets/images/whyUs/weInnovate.svg';
+import Title from 'components/Shared/Title';
 import React from 'react';
-import happyClients from '../../../../images/whyUs/happyClients.svg';
-import src from '../../../../images/whyUs/onTime.svg';
-import standValue from '../../../../images/whyUs/standValue.svg';
-import weInnovate from '../../../../images/whyUs/weInnovate.svg';
-import Title from '../../../Shared/Title/Title';
 
 function WhyChooseUs() {
     const services = [

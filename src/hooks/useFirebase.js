@@ -11,7 +11,7 @@ import {
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../Firebase/firebase.init';
-import axios from '../services/http.service';
+import axiosInstance from '../services/http.service';
 // https://radiant-sea-18512.herokuapp.com/
 
 // providers
@@ -167,7 +167,7 @@ const useFirebase = () => {
                     setAdminLoading(true);
                 }
             }); */
-        axios.get(`/users/${user.email}`).then((res) => {
+        axiosInstance.get(`/users/${user.email}`).then((res) => {
             if (res.data) {
                 setSavedUser(res.data);
                 setAdminLoading(false);
@@ -208,7 +208,7 @@ const useFirebase = () => {
     // get bookings
     useEffect(() => {
         setRefreshClientRequest(false);
-        axios.get(`/hired?email=${user.email}`).then((res) => {
+        axiosInstance.get(`/hired?email=${user.email}`).then((res) => {
             const { data } = res;
             const bookings = data.filter(
                 (data) =>
@@ -241,7 +241,7 @@ const useFirebase = () => {
 
     // get customers
     useEffect(() => {
-        axios.get('/users').then((res) => {
+        axiosInstance.get('/users').then((res) => {
             setCustomers(res.data);
         });
         /*  fetch('https://radiant-sea-18512.herokuapp.com/users')
@@ -252,7 +252,7 @@ const useFirebase = () => {
     // get workers
     useEffect(() => {
         setWorkingStatus(false);
-        axios.get('/allWorkers').then((res) => {
+        axiosInstance.get('/allWorkers').then((res) => {
             const { data } = res;
             const availableWorkers = data.filter((worker) => worker.workingStatus === 'Free');
             setAvailableWorkers(availableWorkers);
@@ -274,7 +274,7 @@ const useFirebase = () => {
     // get job applications
     useEffect(() => {
         setUserApplied(true);
-        axios.get('/applications').then((res) => {
+        axiosInstance.get('/applications').then((res) => {
             setApplications(res.data);
         });
         /* fetch('https://radiant-sea-18512.herokuapp.com/applications')
@@ -286,7 +286,7 @@ const useFirebase = () => {
 
     // get toLets
     useEffect(() => {
-        axios.get('/allToLets').then((res) => {
+        axiosInstance.get('/allToLets').then((res) => {
             setToLets(res.data);
         });
         /* fetch('https://radiant-sea-18512.herokuapp.com/allToLets')

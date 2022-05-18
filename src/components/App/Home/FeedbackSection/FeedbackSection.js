@@ -1,6 +1,6 @@
+import Title from 'components/Shared/Title';
 import React from 'react';
 import Slider from 'react-slick/lib/slider';
-import Title from '../../../Shared/Title/Title';
 import Feedback from '../Feedback/Feedback';
 
 function FeedbackSection() {
