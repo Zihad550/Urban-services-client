@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../Firebase/firebase.init';
 import axiosInstance from '../services/http.service';
-// https://radiant-sea-18512.herokuapp.com/
+// https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/
 
 // providers
 const googleProvider = new GoogleAuthProvider();
@@ -66,13 +66,13 @@ const useFirebase = () => {
     // message states
     const [isMessageSent, setIsMessageSent] = useState(false);
 
-    // https://radiant-sea-18512.herokuapp.com/
-    //  https://radiant-sea-18512.herokuapp.com/
+    // https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/
+    //  https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/
     // navigate
     // save user to the server
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('https://radiant-sea-18512.herokuapp.com/users', {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users`, {
             method,
             headers: {
                 'content-type': 'application/json'
@@ -157,16 +157,6 @@ const useFirebase = () => {
     // get saved user
     useEffect(() => {
         setAdminLoading(true);
-        /*  fetch(`https://radiant-sea-18512.herokuapp.com/users/${user.email}`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data) {
-                    setSavedUser(data);
-                    setAdminLoading(false);
-                } else {
-                    setAdminLoading(true);
-                }
-            }); */
         axiosInstance.get(`/users/${user.email}`).then((res) => {
             if (res.data) {
                 setSavedUser(res.data);
@@ -180,7 +170,7 @@ const useFirebase = () => {
     // get the current worker works
     useEffect(() => {
         setWorkUpdate(false);
-        fetch(`https://radiant-sea-18512.herokuapp.com/work?email=${user.email}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/work?email=${user?.email}`, {
             headers: {
                 'content-type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('idToken')}`
@@ -202,7 +192,8 @@ const useFirebase = () => {
                     setCurrentWorks(currentWorks);
                     setWorks(data);
                 }
-            });
+            })
+            .catch((err) => console.log(err));
     }, [user.email, workUpdate]);
 
     // get bookings
@@ -222,7 +213,7 @@ const useFirebase = () => {
             );
             setRequestPending(pending);
         });
-        /* fetch(`https://radiant-sea-18512.herokuapp.com/hired?email=${user.email}`)
+        /* fetch(`https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/hired?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 const bookings = data.filter(
@@ -244,7 +235,7 @@ const useFirebase = () => {
         axiosInstance.get('/users').then((res) => {
             setCustomers(res.data);
         });
-        /*  fetch('https://radiant-sea-18512.herokuapp.com/users')
+        /*  fetch('https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/users')
             .then((res) => res.json())
             .then((data) => setCustomers(data)); */
     }, []);
@@ -260,7 +251,7 @@ const useFirebase = () => {
             setBusyWorkers(busyWorkers);
             setWorkers(data);
         });
-        /* fetch('https://radiant-sea-18512.herokuapp.com/allWorkers')
+        /* fetch('https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/allWorkers')
             .then((res) => res.json())
             .then((data) => {
                 const availableWorkers = data.filter((worker) => worker.workingStatus === 'Free');
@@ -277,7 +268,7 @@ const useFirebase = () => {
         axiosInstance.get('/applications').then((res) => {
             setApplications(res.data);
         });
-        /* fetch('https://radiant-sea-18512.herokuapp.com/applications')
+        /* fetch('https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/applications')
             .then((res) => res.json())
             .then((data) => {
                 setApplications(data);
@@ -289,7 +280,7 @@ const useFirebase = () => {
         axiosInstance.get('/allToLets').then((res) => {
             setToLets(res.data);
         });
-        /* fetch('https://radiant-sea-18512.herokuapp.com/allToLets')
+        /* fetch('https://radiant-sea-18512.${process.env.REACT_APP_API_BASE_URL}app.com/allToLets')
             .then((res) => res.json())
             .then((data) => setToLets(data)); */
     }, [toLetUpdated]);

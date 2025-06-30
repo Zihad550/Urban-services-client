@@ -7,6 +7,13 @@ const axiosConfig = {
 
 const axiosInstance = axios.create(axiosConfig);
 
+axiosInstance.interceptors.response.use(
+    (res) => res,
+    (err) => {
+        console.log('err ->', err);
+    }
+);
+
 /* class Request {
     async get(url) {
         return instance.get(url).then((res) => res.data);

@@ -3,7 +3,7 @@ import Header from 'components/Shared/Header';
 import Owner from 'components/Shared/Owner';
 import Title from 'components/Shared/Title';
 import Worker from 'components/Shared/Worker';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from 'services/http.service';
 import WorkersBanner from './WorkersBanner';
@@ -18,19 +18,25 @@ const AvailableWorkers = () => {
     const { role } = useParams();
 
     useEffect(() => {
-        const controller = new AbortController();
+        // const controller = new AbortController();
         // to get search results
         async function fetchSearchData() {
-            const res = await axiosInstance.get(`/worker/${searchValue}`, {
-                signal: controller.signal
-            });
-            setSearchedWorkers([res.data]);
+            try {
+                const res = await axiosInstance.get(`/worker/${searchValue}`, {
+                    // signal: controller.signal
+                });
+
+                console.log(res);
+                setSearchedWorkers([res.data]);
+            } catch (err) {
+                console.log(err);
+            }
         }
 
         // to get filter results
         async function fetchFilterData() {
             const res = await axiosInstance.get(`/workers?role=${role}&&filter=${filter}`, {
-                signal: controller.signal
+                // signal: controller.signal
             });
             setWorkers(res.data);
         }
@@ -43,7 +49,7 @@ const AvailableWorkers = () => {
             fetchFilterData();
         }
 
-        controller.abort();
+        // controller.abort();
     }, [search, reset, filter, role]);
 
     const allAvailableWorkerNames = workers.map((worker) => ({

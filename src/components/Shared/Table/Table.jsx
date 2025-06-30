@@ -1,7 +1,6 @@
 import { faAnglesUp, faCheck, faSign, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuth from 'hooks/useAuth';
-import React from 'react';
 import axiosInstance from 'services/http.service';
 
 const Table = ({
@@ -63,7 +62,7 @@ const Table = ({
     // handle toLet application Delete & approve
     // ! update
     const handleToLetApplication = (id, method) => {
-        fetch(`https://radiant-sea-18512.herokuapp.com/toLet`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/toLet`, {
             method,
             headers: {
                 'content-type': 'application/json'

@@ -2,7 +2,7 @@ import { faFacebookF, faInstagram, faLinkedinIn } from '@fortawesome/free-brands
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuth from 'hooks/useAuth';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WorkerDetailModal from '../DetailModal';
 
@@ -92,6 +92,7 @@ const Worker = ({ worker }) => {
                     <div className="flex justify-center mt-3 items-center">
                         {socials.map((social) => (
                             <div
+                                key={social.id}
                                 className="p-1 mx-2 text-white rounded-full px-2.5 cursor-pointer hover:text-red-500"
                                 style={{ background: social.bg }}
                             >
